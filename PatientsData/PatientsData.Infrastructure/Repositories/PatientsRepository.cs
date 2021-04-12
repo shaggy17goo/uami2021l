@@ -49,7 +49,7 @@ namespace PatientsData.Infrastructure
             {
                 string selectPatientsQuery = String.Format(@"SELECT * FROM patients WHERE patientId = {0}", patientId);
 
-                var patient =  dbConnection.Query<Patient>(selectPatientsQuery);
+                var patient = await dbConnection.QueryAsync<Patient>(selectPatientsQuery);
                 
                 return patient.First();
                 
@@ -62,7 +62,7 @@ namespace PatientsData.Infrastructure
             {
                 string selectPatientsQuery = String.Format(@"SELECT * FROM patients WHERE pesel = {0}", PESEL);
 
-                var patient =  dbConnection.Query<Patient>(selectPatientsQuery);
+                var patient =  await dbConnection.QueryAsync<Patient>(selectPatientsQuery);
                 
                 return patient.First();
                 
