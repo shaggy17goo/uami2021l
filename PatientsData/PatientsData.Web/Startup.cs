@@ -35,7 +35,7 @@ namespace PatientsData.Web
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Doctors.Web", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Patients.Web", Version = "v1" });
             });
 
             //Miejsce, w którym określamy co ma się kryć za poszczególnymi interfejsami.
@@ -56,7 +56,7 @@ namespace PatientsData.Web
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Laboratories.Web v1"));
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Project.Web v1"));
             }
 
             app.UseHttpsRedirection();
