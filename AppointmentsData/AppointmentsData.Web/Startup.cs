@@ -35,7 +35,7 @@ namespace AppointmentsData.Web
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Patients.Web", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Appointments.Web", Version = "v1" });
             });
 
             //Miejsce, w którym określamy co ma się kryć za poszczególnymi interfejsami.
@@ -43,8 +43,8 @@ namespace AppointmentsData.Web
             //framework automatycznie "wstzyknie" do niego wskazaną przez nas implementację
             services.AddSingleton<IAppointmentsRepository, AppointmentsRepository>();
             services.AddTransient<IAppointmentsQueriesHandler, AppointmentsQueriesHandler>();
-            services.AddTransient<ICommandHandler<AddAppointmentCommand>, PatientsCommandsHandler>();
-            services.AddTransient<ICommandHandler<DeleteAppointmentCommand>, PatientsCommandsHandler>();
+            services.AddTransient<ICommandHandler<AddAppointmentCommand>, AppointmentsCommandsHandler>();
+            services.AddTransient<ICommandHandler<DeleteAppointmentCommand>, AppointmentsCommandsHandler>();
 
 
         }

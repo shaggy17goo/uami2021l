@@ -84,9 +84,9 @@ namespace AppointmentsData.Infrastructure.Repositories
         {
             using (var dbConnection = new SqlConnection(Constants.connectionString))
             {
-                const string deleteAppointment = @"DELETE FROM appointments WHERE appointmentId=@commandAppointmentId";
+                const string deleteAppointment = @"DELETE FROM appointments WHERE appointmentId=@appointmentId";
                 
-                dbConnection.QueryAsync(deleteAppointment , commandAppointmentId);
+                dbConnection.QueryAsync(deleteAppointment , new{appointmentId = commandAppointmentId});
       
             }
         }

@@ -33,22 +33,33 @@ namespace AppointmentsData.Web.Controllers
         {
             return await _appointmentsQueriesHandler.GetAllAsync();
         }
+        
+        [HttpGet("getAppointmentByDoctorId")]
+        public async Task<IEnumerable<Appointment>> GetAppointmentByDoctorId([FromQuery] int doctorId)
+        {
+            return await _appointmentsQueriesHandler.GetAllAppointmentsOfDoctor(doctorId);
+        }
+        
+        [HttpGet("getAppointmentByPatientId")]
+        public async Task<IEnumerable<Appointment>> GetAppointmentByPatientId([FromQuery] int patientId)
+        {
+            return await _appointmentsQueriesHandler.GetAllAppointmentsOfPatient(patientId);
+        }
 
         [HttpGet("getAppointmentById")]
-        public async Task<Appointment> GetPatientById([FromQuery] int appointmentId)
+        public async Task<Appointment> GetAppointmentById([FromQuery] int appointmentId)
         {
             return await _appointmentsQueriesHandler.GetAppointmentById(appointmentId);
         }
 
-
         [HttpPost("addAppointment")]
-        public void AddPatient([FromBody] AddAppointmentCommand appointmentCommand)
+        public void AddAppointment([FromBody] AddAppointmentCommand appointmentCommand)
         {
             addAppointmentCommandHandler.Handle(appointmentCommand);
         }
         
         [HttpPost("deleteAppointment")]
-        public void DeletePatient([FromBody] DeleteAppointmentCommand appointmentCommand)
+        public void DeleteAppointment([FromBody] DeleteAppointmentCommand appointmentCommand)
         {
             deleteAppointmentCommandHandler.Handle(appointmentCommand);
         }

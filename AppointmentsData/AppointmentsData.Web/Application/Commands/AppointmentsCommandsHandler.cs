@@ -7,11 +7,11 @@
     using System.Threading.Tasks;
 
     //"handler" komendy tworzenia gabinetu
-    public class PatientsCommandsHandler : ICommandHandler<AddAppointmentCommand>, ICommandHandler<DeleteAppointmentCommand>
+    public class AppointmentsCommandsHandler : ICommandHandler<AddAppointmentCommand>, ICommandHandler<DeleteAppointmentCommand>
     {
         private readonly IAppointmentsRepository _appointmentsRepository;
 
-        public PatientsCommandsHandler(IAppointmentsRepository appointmentsRepository) 
+        public AppointmentsCommandsHandler(IAppointmentsRepository appointmentsRepository) 
         {
             this._appointmentsRepository = appointmentsRepository;
         }
