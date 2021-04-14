@@ -2,11 +2,9 @@
 {
     using Doctors.Domain.DoctorAggregate;
     using Doctors.Web.Application.Mapper;
-    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-
 
     public class DoctorQueriesHandler : IDoctorQueriesHandler
     {

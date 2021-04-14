@@ -3,10 +3,7 @@
     using Doctors.Domain.DoctorAggregate;
     using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Threading.Tasks;
 
-    //"handler" komendy tworzenia gabinetu
     public class DoctorsCommandsHandler : ICommandHandler<AddDoctorCommand>
     {
         private readonly IDoctorsRepository doctorsRepository;

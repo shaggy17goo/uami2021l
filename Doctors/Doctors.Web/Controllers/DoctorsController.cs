@@ -1,13 +1,10 @@
 ﻿namespace Doctors.Web.Controllers
 {
-
     using Doctors.Web.Application;
     using Doctors.Web.Application.Commands;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
-    using System;
     using System.Collections.Generic;
-    using System.Linq;
     using System.Threading.Tasks;
 
     [ApiController]

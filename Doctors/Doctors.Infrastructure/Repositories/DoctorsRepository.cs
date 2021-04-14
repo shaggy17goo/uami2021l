@@ -7,12 +7,10 @@
     using System.Data.Common;
     using System.Data.SqlClient;
     using System.Linq;
-    using System.Text;
     using System.Threading.Tasks;
 
     public class DoctorsRepository : IDoctorsRepository
     {
-
         public DoctorsRepository()
         {
         }
@@ -21,19 +19,19 @@
         {
             const string getAddedRowIdQueryQuery = @"SELECT CAST(SCOPE_IDENTITY() as int)";
 
-            //utworzenie połączenia do bazy danych, klauzula using wykorzystywana jest żebyśmy nie musieli przejmować się zamykaniem polączenia
+            //created a connection with database, 'using' added for automated closing of connection
             using (var dbConnection = new SqlConnection(Constants.connectionString))
             {
-                //otwarcie połączenia 
                 dbConnection.Open();
 
-                //utworzenie transakcji - będziemy wstawiać dane do trzech różnych tabel
+                //created transaction
                 using (DbTransaction transaction = dbConnection.BeginTransaction())
                 {
                     try
                     {
                         const string insertDoctorQuery = @"INSERT INTO Doctor (PESEL,Name,Surname,Sex,BirthDate,City,Street,HouseNr) VALUES (@PESEL,@name, @Surname, @Sex, @BirthDate, @City, @Street, @HouseNr);";
-                        //wykonanie zapytania sql, korzystamy tutaj z Dappera - pakietu ułatwiającego korzystanie z baz danych
+                        
+                        //using Dapper - package will make using database easier
                         int doctorId = await dbConnection.QueryFirstAsync<int>(insertDoctorQuery + ";" + getAddedRowIdQueryQuery, new { PESEL = doctor.PESEL, name = doctor.Name, Surname = doctor.Surname, Sex= doctor.Sex, BirthDate=doctor.BirthDate, City = doctor.City, Street = doctor.Street, HouseNr = doctor.HouseNr }, transaction);  
 
                         var certificationsIds = new List<int>();
@@ -45,7 +43,7 @@
                         const string insertDoctorCertificationQuery = @"INSERT INTO DoctorCertification (DoctorId, CertificationId) VALUES (@doctorId,@certificationId);";
                         foreach (var certifitionId in certificationsIds)
                             await dbConnection.QueryAsync(insertDoctorCertificationQuery, new { doctorId = doctorId, certificationId = certifitionId }, transaction);
-                        //commit transakcji
+                      
                         transaction.Commit();
                     }
                     catch (Exception e)
@@ -63,8 +61,7 @@
             using (var dbConnection = new SqlConnection(Constants.connectionString))
             {
 
-                //otwarcie połączenia tym razem nie jest konieczne, Dapper zrobi to automatycznie w razie potrzeby
-                //poprzednim razem otwarcia połączenia wymagało utworzenie transakcji
+                //Dapper automatically opened connection, don't have to care about it
                 const string selectDoctorCertificationQuery = @"SELECT * FROM DoctorCertification";
 
                 var doctorsCertificates =  (await dbConnection.QueryAsync(selectDoctorCertificationQuery)).Select(x=> new { CertificationId = x.CertificationId, DoctorId = x.DoctorId });
@@ -90,9 +87,6 @@
         {
             using (var dbConnection = new SqlConnection(Constants.connectionString))
             {
-
-                //otwarcie połączenia tym razem nie jest konieczne, Dapper zrobi to automatycznie w razie potrzeby
-                //poprzednim razem otwarcia połączenia wymagało utworzenie transakcji
                 const string selectDoctorCertificationQuery = @"SELECT * FROM DoctorCertification";
 
                 var doctorsCertificates = (await dbConnection.QueryAsync(selectDoctorCertificationQuery)).Select(x => new { CertificationId = x.CertificationId, DoctorId = x.DoctorId });
@@ -118,9 +112,6 @@
         {
             using (var dbConnection = new SqlConnection(Constants.connectionString))
             {
-
-                //otwarcie połączenia tym razem nie jest konieczne, Dapper zrobi to automatycznie w razie potrzeby
-                //poprzednim razem otwarcia połączenia wymagało utworzenie transakcji
                 const string selectDoctorCertificationQuery = @"SELECT * FROM DoctorCertification";
 
                 var doctorsCertificates = (await dbConnection.QueryAsync(selectDoctorCertificationQuery)).Select(x => new { CertificationId = x.CertificationId, DoctorId = x.DoctorId });

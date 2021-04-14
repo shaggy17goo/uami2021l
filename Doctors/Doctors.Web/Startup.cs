@@ -1,23 +1,15 @@
 namespace Doctors.Web
 {
-    using Doctors.Domain;
     using Doctors.Domain.DoctorAggregate;
     using Doctors.Infrastructure;
     using Doctors.Web.Application;
     using Doctors.Web.Application.Commands;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
-    using Microsoft.AspNetCore.HttpsPolicy;
-    using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
-    using Microsoft.Extensions.Logging;
     using Microsoft.OpenApi.Models;
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Threading.Tasks;
 
     public class Startup
     {
@@ -38,9 +30,11 @@ namespace Doctors.Web
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Doctors.Web", Version = "v1" });
             });
 
-            //Miejsce, w którym okreœlamy co ma siê kryæ za poszczególnymi interfejsami.
-            //Poni¿sze trzy linijki sprawi¹, ¿e kiedy zdefiniujemy kontruktor przyjmuj¹cy jako parametr jeden z poni¿szych interfejsów
-            //framework automatycznie "wstzyknie" do niego wskazan¹ przez nas implementacjê
+            /**
+             * A place where we decide what are used for added interfaces
+             * The following three lines in a moment, when we define a constructor which takes as a parameter one of following interfaces,
+             * framework will add to this an indicated implementation
+             **/
             services.AddSingleton<IDoctorsRepository, DoctorsRepository>();
             services.AddTransient<IDoctorQueriesHandler, DoctorQueriesHandler>();
             services.AddTransient<ICommandHandler<AddDoctorCommand>, DoctorsCommandsHandler>();

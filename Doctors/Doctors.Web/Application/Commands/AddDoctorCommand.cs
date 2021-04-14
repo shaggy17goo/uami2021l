@@ -2,10 +2,8 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Threading.Tasks;
 
-    //wykorzystujemy interfejs wskaźnikowy ICommand do jawnego wskazania, że dana klasa jest komendą
+    //used pointer interface ICommand for explict indication that the class is a command
     public class AddDoctorCommand : ICommand
     {
         public int Id { get; set; }
