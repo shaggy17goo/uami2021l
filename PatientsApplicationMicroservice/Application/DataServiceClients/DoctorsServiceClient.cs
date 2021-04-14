@@ -1,18 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using PatientsApplicationMicroservice.Application.Dtos;
-using System.Net.Http;
-using System.Text.Json;
-
-namespace PatientsApplicationMicroservice.Application.DataServiceClients
+﻿namespace PatientsApplicationMicroservice.Application.DataServiceClients
 {
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
+    using System.Net.Http;
+    using System.Text.Json;
+
+    using PatientsApplicationMicroservice.Application.Dtos;
+
     public class DoctorsServiceClient : IDoctorsServiceClient
     {
-
         public IHttpClientFactory clientFactory;
-        
+
         public DoctorsServiceClient(IHttpClientFactory clientFactory)
         {
             this.clientFactory = clientFactory;

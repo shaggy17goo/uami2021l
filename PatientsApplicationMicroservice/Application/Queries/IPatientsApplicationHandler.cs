@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace PatientsApplicationMicroservice.Application.Queries
+﻿namespace PatientsApplicationMicroservice.Application.Queries
 {
+    using System.Threading.Tasks;
+
     public interface IPatientsApplicationHandler
     {
         Task<int> GetPatients();

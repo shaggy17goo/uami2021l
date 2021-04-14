@@ -1,8 +1,7 @@
-﻿using System;
-
-
-namespace PatientsApplicationMicroservice.Application.Dtos
+﻿namespace PatientsApplicationMicroservice.Application.Dtos
 {
+    using System;
+
     public class PatientDto
     {
         public int patientId { get; set; }
@@ -14,6 +13,5 @@ namespace PatientsApplicationMicroservice.Application.Dtos
         public string city { get; set; }
         public string street { get; set; }
         public string houseNr { get; set; }
-
     }
 }

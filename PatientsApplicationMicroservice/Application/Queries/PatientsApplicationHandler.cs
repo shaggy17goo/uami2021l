@@ -1,11 +1,10 @@
-﻿using PatientsApplicationMicroservice.Application.DataServiceClients;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace PatientsApplicationMicroservice.Application.Queries
+﻿namespace PatientsApplicationMicroservice.Application.Queries
 {
+    using System.Linq;
+    using System.Threading.Tasks;
+
+    using PatientsApplicationMicroservice.Application.DataServiceClients;
+
     public class PatientsApplicationHandler : IPatientsApplicationHandler
     {
         private readonly IPatientsServiceClient patientsServiceClient;

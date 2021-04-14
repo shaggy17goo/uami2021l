@@ -1,10 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using PatientsApplicationMicroservice.Application.Queries;
-using System.Threading.Tasks;
-
-namespace PatientsApplicationMicroservice.Controllers
+﻿namespace PatientsApplicationMicroservice.Controllers
 {
+    using System.Threading.Tasks;
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.Extensions.Logging;
+
+    using PatientsApplicationMicroservice.Application.Queries;
+
     [ApiController]
     public class PatientsApplicationController
     {

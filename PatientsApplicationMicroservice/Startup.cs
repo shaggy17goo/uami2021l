@@ -1,14 +1,15 @@
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Microsoft.OpenApi.Models;
-using PatientsApplicationMicroservice.Application.DataServiceClients;
-using PatientsApplicationMicroservice.Application.Queries;
-
 namespace PatientsApplicationMicroservice.Controllers
 {
+    using Microsoft.AspNetCore.Builder;
+    using Microsoft.AspNetCore.Hosting;
+    using Microsoft.Extensions.Configuration;
+    using Microsoft.Extensions.DependencyInjection;
+    using Microsoft.Extensions.Hosting;
+    using Microsoft.OpenApi.Models;
+
+    using PatientsApplicationMicroservice.Application.DataServiceClients;
+    using PatientsApplicationMicroservice.Application.Queries;
+
     public class Startup
     {
         public Startup(IConfiguration configuration)

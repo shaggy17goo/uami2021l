@@ -1,11 +1,11 @@
-﻿using PatientsApplicationMicroservice.Application.Dtos;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Text.Json;
-using System.Threading.Tasks;
-
-namespace PatientsApplicationMicroservice.Application.DataServiceClients
+﻿namespace PatientsApplicationMicroservice.Application.DataServiceClients
 {
+    using System.Collections.Generic;
+    using System.Net.Http;
+    using System.Text.Json;
+    using System.Threading.Tasks;
+
+    using PatientsApplicationMicroservice.Application.Dtos;
 
     public class PatientsServiceClient : IPatientsServiceClient
     {

@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using PatientsApplicationMicroservice.Application.Dtos;
-
-namespace PatientsApplicationMicroservice.Application.DataServiceClients
+﻿namespace PatientsApplicationMicroservice.Application.DataServiceClients
 {
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
+
+    using PatientsApplicationMicroservice.Application.Dtos;
+
     public interface IDoctorsServiceClient
     {
         Task<IEnumerable<DoctorDto>> GetAllDoctors();

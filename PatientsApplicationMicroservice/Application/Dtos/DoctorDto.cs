@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace PatientsApplicationMicroservice.Application.Dtos
+﻿namespace PatientsApplicationMicroservice.Application.Dtos
 {
+    using System;
+    using System.Collections.Generic;
+
     public class DoctorDto
     {
         public int Id { get; set; }
@@ -17,6 +15,5 @@ namespace PatientsApplicationMicroservice.Application.Dtos
         public string Street { get; set; }
         public string HouseNr { get; set; }
         public IEnumerable<int> Certifications { get; set; }
-
     }
 }
