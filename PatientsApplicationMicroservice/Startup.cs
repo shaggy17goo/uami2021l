@@ -30,6 +30,8 @@ namespace PatientsApplicationMicroservice.Controllers
             services.AddHttpClient();
             services.AddTransient<IPatientsApplicationHandler, PatientsApplicationHandler>();
             services.AddTransient<IPatientsServiceClient, PatientsServiceClient>();
+            services.AddTransient<IDoctorsApplicationHandler, DoctorsApplicationHandler>();
+            services.AddTransient<IDoctorsServiceClient, DoctorsServiceClient>();
 
         }
 
