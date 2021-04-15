@@ -11,7 +11,7 @@ namespace PatientsData.Web.Application.Commands
     using System.Threading.Tasks;
 
     //"handler" komendy tworzenia gabinetu
-    public class DoctorsApplicationCommandsHandler : ICommandHandler<AddPatientCommand>, ICommandHandler<DeleteAppointmentCommand>, ICommandHandler<AddAppointmentCommand>, ICommandHandler<PierdolTeRoboteCommand>
+    public class DoctorsApplicationCommandsHandler : ICommandHandler<AddPatientCommand>, ICommandHandler<DeleteAppointmentCommand>, ICommandHandler<AddAppointmentCommand>, ICommandHandler<DeleteDoctorCommand>
     {
         private readonly IDoctorServiceClient _doctorServiceClient;
         private readonly IPatientServiceClient _patientServiceClient;
@@ -31,7 +31,7 @@ namespace PatientsData.Web.Application.Commands
             _appointmentServiceClient.AddAppointment(command);
         }
 
-        public void Handle(PierdolTeRoboteCommand command)
+        public void Handle(DeleteDoctorCommand command)
         {
             throw new NotImplementedException();
         }

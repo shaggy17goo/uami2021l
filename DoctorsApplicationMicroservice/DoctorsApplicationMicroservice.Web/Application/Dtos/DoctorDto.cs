@@ -19,6 +19,18 @@
 
         public IList<int> Certifications { get; private set; } = new List<int>();
 
+        public DoctorDto(int id, string pesel, string name, string surname, string sex, DateTime birthDate, string city, string street, string houseNr)
+        {
+            Id = id;
+            PESEL = pesel;
+            Name = name;
+            Surname = surname;
+            Sex = sex;
+            BirthDate = birthDate;
+            City = city;
+            Street = street;
+            HouseNr = houseNr;
+        }
     }
 }
     

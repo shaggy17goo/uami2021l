@@ -14,7 +14,7 @@
 
         public Task<List<PatientsShortDto>> GetPatientsByDoctorId(int doctorId);
 
-        public Task<List<PatientDto>> GetPatientById(int patientId);
+        public Task<PatientDto> GetPatientById(int patientId);
 
 
     }

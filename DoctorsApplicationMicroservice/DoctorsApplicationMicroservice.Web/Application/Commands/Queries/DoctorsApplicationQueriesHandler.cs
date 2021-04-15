@@ -23,24 +23,53 @@
         }
 
 
-        public Task<List<AppointmentsWithPatientNameDto>> GetAppointmentsByDoctorId(int doctorId)
+        public async Task<List<AppointmentsWithPatientNameDto>> GetAppointmentsByDoctorId(int doctorId)
         {
-            throw new NotImplementedException();
+            var doctorAppointments = await _appointmentServiceClient.GetAppointmentByDoctorId(doctorId);
+            var result = new List<AppointmentsWithPatientNameDto>();
+            foreach (var aD in doctorAppointments)
+            {
+                var tempPatientDto = await _patientServiceClient.GetPatientById(aD.patientId);
+                result.Add(new AppointmentsWithPatientNameDto(aD.appointmentId, aD.doctorId, aD.patientId,
+                    aD.dateOfAppointment, aD.description, tempPatientDto.name, tempPatientDto.surname));
+            }
+
+            return result;
         }
 
-        public Task<List<AppointmentsWithPatientNameDto>> GetAppointmentsByDoctorIdAndData(int doctorId, DateTime data)
+        public async Task<List<AppointmentsWithPatientNameDto>> GetAppointmentsByDoctorIdAndData(int doctorId, DateTime data)
         {
-            throw new NotImplementedException();
+            var doctorAppointments = await _appointmentServiceClient.GetAppointmentByDoctorId(doctorId);
+            var result = new List<AppointmentsWithPatientNameDto>();
+            foreach (var aD in doctorAppointments)
+            {
+                if (data.Date != aD.dateOfAppointment.Date) continue;
+                var tempPatientDto = await _patientServiceClient.GetPatientById(aD.patientId);
+                result.Add(new AppointmentsWithPatientNameDto(aD.appointmentId, aD.doctorId, aD.patientId,
+                    aD.dateOfAppointment, aD.description, tempPatientDto.name, tempPatientDto.surname));
+
+            }
+
+            return result;
         }
 
-        public Task<List<PatientsShortDto>> GetPatientsByDoctorId(int doctorId)
+        public async Task<List<PatientsShortDto>> GetPatientsByDoctorId(int doctorId)
         {
-            throw new NotImplementedException();
+            var doctorAppointments = await _appointmentServiceClient.GetAppointmentByDoctorId(doctorId);
+            var result = new List<PatientsShortDto>();
+            foreach (var aD in doctorAppointments)
+            {
+                var tempPatientDto = await _patientServiceClient.GetPatientById(aD.patientId);
+                result.Add(new PatientsShortDto(tempPatientDto));
+
+            }
+
+            return result;
         }
 
-        public Task<List<PatientDto>> GetPatientById(int patientId)
+        public async Task<PatientDto> GetPatientById(int patientId)
         {
-            throw new NotImplementedException();
+            return await _patientServiceClient.GetPatientById(patientId);
         }
     }
 }

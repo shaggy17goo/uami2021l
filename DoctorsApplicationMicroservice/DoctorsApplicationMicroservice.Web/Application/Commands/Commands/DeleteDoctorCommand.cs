@@ -6,7 +6,7 @@
     using System.Threading.Tasks;
 
     //wykorzystujemy interfejs wskaźnikowy ICommand do jawnego wskazania, że dana klasa jest komendą
-    public class PierdolTeRoboteCommand : ICommand
+    public class DeleteDoctorCommand : ICommand
     {
         public int doctorId { get; set; }
     }

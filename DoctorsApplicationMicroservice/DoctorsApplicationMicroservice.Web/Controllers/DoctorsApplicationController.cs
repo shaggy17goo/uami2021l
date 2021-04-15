@@ -9,18 +9,25 @@ using System.Threading.Tasks;
 namespace ExaminationRoomsSelector.Web.Controllers
 {
     using Application.Dtos;
+    using PatientsData.Web.Application.Commands;
 
     [ApiController]
     public class DoctorsApplicationController : ControllerBase
     {
         private readonly ILogger<DoctorsApplicationController> logger;
         private readonly IDoctorsApplicationQueriesHandler _doctorsApplicationQueriesHandler;
+        private readonly ICommandHandler<AddAppointmentCommand> _addAppointmentCommand;
+        private readonly ICommandHandler<AddPatientCommand> _addPatientCommand;
+        private readonly ICommandHandler<DeleteAppointmentCommand> _deleteAppointmentCommand;
 
 
-        public DoctorsApplicationController(ILogger<DoctorsApplicationController> logger, IDoctorsApplicationQueriesHandler doctorsApplicationQueriesHandler)
+        public DoctorsApplicationController(ILogger<DoctorsApplicationController> logger, IDoctorsApplicationQueriesHandler doctorsApplicationQueriesHandler, ICommandHandler<AddAppointmentCommand> addAppointmentCommand, ICommandHandler<AddPatientCommand> addPatientCommand, ICommandHandler<DeleteAppointmentCommand> deleteAppointmentCommand)
         {
             this.logger = logger;
             this._doctorsApplicationQueriesHandler = doctorsApplicationQueriesHandler;
+            _addAppointmentCommand = addAppointmentCommand;
+            _addPatientCommand = addPatientCommand;
+            _deleteAppointmentCommand = deleteAppointmentCommand;
         }
 
         // GET
@@ -28,29 +35,25 @@ namespace ExaminationRoomsSelector.Web.Controllers
         [HttpGet("appointmentsByDoctorId")]
         public async Task<List<AppointmentsWithPatientNameDto>> GetAppointmentsByDoctorId(int doctorId)
         {
-            return null;
-            //doctorsApplicationHandler.GetExaminationRoomsSelectionAsync();
+            return await _doctorsApplicationQueriesHandler.GetAppointmentsByDoctorId(doctorId);
         }
  
         [HttpGet("appointmentsByDoctorIdAndData")]
         public async Task<List<AppointmentsWithPatientNameDto>> GetAppointmentsByDoctorIdAndData(int doctorId, DateTime data)
         {
-            return null;
-            //doctorsApplicationHandler.GetExaminationRoomsSelectionAsync();
+            return await _doctorsApplicationQueriesHandler.GetAppointmentsByDoctorIdAndData(doctorId, data);
         }
         
         [HttpGet("patientsByDoctorId")]
         public async Task<List<PatientsShortDto>> GetPatientsByDoctorId(int doctorId)
         {
-            return null;
-            //doctorsApplicationHandler.GetExaminationRoomsSelectionAsync();
+            return await _doctorsApplicationQueriesHandler.GetPatientsByDoctorId(doctorId);
         }
         
         [HttpGet("patientById")]
-        public async Task<List<PatientDto>> GetPatientById(int patientId)
+        public async Task<PatientDto> GetPatientById(int patientId)
         {
-            return null;
-            //doctorsApplicationHandler.GetExaminationRoomsSelectionAsync();
+            return await _doctorsApplicationQueriesHandler.GetPatientById(patientId);
         }
         
         // end GET
@@ -59,29 +62,30 @@ namespace ExaminationRoomsSelector.Web.Controllers
         // POST
         
         [HttpPost("addPatient")]
-        public async Task AddPatient([FromBody] PatientDto patientDto)
+        public void AddPatient([FromBody] AddPatientCommand command)
         {
-            //await _doctorsApplicationHandler.addDoctor(doctorAdd);
+            _addPatientCommand.Handle(command);
         }
         
         
         [HttpPost("addAppointment")]
-        public async Task AddAppointment([FromBody] AppointmentDto appointmentDto)
+        public void AddAppointment([FromBody] AddAppointmentCommand command)
         {
-            //await _doctorsApplicationHandler.addDoctor(doctorAdd);
+            _addAppointmentCommand.Handle(command);
+
         }
         
         [HttpPost("deleteAppointment")]
-        public async Task DeleteAppointment([FromBody] int appointmentId)
+        public void DeleteAppointment([FromBody] DeleteAppointmentCommand command)
         {
-            //await _doctorsApplicationHandler.addDoctor(doctorAdd);
+            _deleteAppointmentCommand.Handle(command);
         }
         
         
         [HttpPost("pierdolTeRobote")]
-        public async Task PierdolTeRobote([FromBody] int doctorId)
+        public void DeleteDoctor([FromBody] int doctorId)
         {
-            //await _doctorsApplicationHandler.addDoctor(doctorAdd);
+            throw new NotImplementedException();
         }
 
     }
