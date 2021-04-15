@@ -24,24 +24,40 @@ namespace ExaminationRoomsSelector.Web.Application.DataServiceClients
         }
 
 
-        public Task<IEnumerable<AppointmentDto>> GetAllAsync()
+        public async Task<IEnumerable<AppointmentDto>> GetAllAsync()
         {
-            throw new System.NotImplementedException();
+            const string requestUri = "https://localhost:44392/listAppointments";
+
+            await using var responseStream = await _serviceClient.GetData(requestUri);
+
+            return await JsonSerializer.DeserializeAsync<IEnumerable<AppointmentDto>>(responseStream, _options);
         }
 
-        public Task<IEnumerable<AppointmentDto>> GetAppointmentByDoctorId(int doctorId)
+        public async Task<IEnumerable<AppointmentDto>> GetAppointmentByDoctorId(int doctorId)
         {
-            throw new System.NotImplementedException();
+            var requestUri = $"https://localhost:44392/getAppointmentByDoctorId?doctorId={doctorId}";
+
+            await using var responseStream = await _serviceClient.GetData(requestUri);
+
+            return await JsonSerializer.DeserializeAsync<IEnumerable<AppointmentDto>>(responseStream, _options);
         }
 
-        public Task<IEnumerable<AppointmentDto>> GetAppointmentByPatientId(int patientId)
+        public async Task<IEnumerable<AppointmentDto>> GetAppointmentByPatientId(int patientId)
         {
-            throw new System.NotImplementedException();
+            var requestUri = $"https://localhost:44392/getAppointmentByPatientId?patientId={patientId}";
+
+            await using var responseStream = await _serviceClient.GetData(requestUri);
+
+            return await JsonSerializer.DeserializeAsync<IEnumerable<AppointmentDto>>(responseStream, _options);
         }
 
-        public Task<AppointmentDto> GetAppointmentById(int appointmentId)
+        public async Task<AppointmentDto> GetAppointmentById(int appointmentId)
         {
-            throw new System.NotImplementedException();
+            var requestUri = $"https://localhost:44392/getAppointmentById?appointmentId={appointmentId}";
+
+            await using var responseStream = await _serviceClient.GetData(requestUri);
+
+            return await JsonSerializer.DeserializeAsync<AppointmentDto>(responseStream, _options);
         }
 
         public void AddAppointment(AddAppointmentCommand appointmentCommand)
