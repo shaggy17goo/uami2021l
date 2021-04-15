@@ -8,7 +8,7 @@ namespace PatientsData.Web.Application.Commands
     using System.Threading.Tasks;
 
     //"handler" komendy tworzenia gabinetu
-    public class DoctorsApplicationCommandsHandler : ICommandHandler<AddPatientCommand>, ICommandHandler<DeletePatientCommand>
+    public class DoctorsApplicationCommandsHandler : ICommandHandler<AddPatientCommand>, ICommandHandler<DeleteAppointmentCommand>, ICommandHandler<AddAppointmentCommand>, ICommandHandler<PierdolTeRoboteCommand>
     {
         private readonly IDoctorServiceClient _doctorServiceClient;
         private readonly IPatientServiceClient _patientServiceClient;
@@ -16,13 +16,23 @@ namespace PatientsData.Web.Application.Commands
         
         public void Handle(AddPatientCommand command)
         {
-            patientsRepository.AddPatientAsync(new Patient(0,command.PESEL,command.name,command.surname,
-                command.sex,command.birthDate,command.city,command.street,command.houseNr));
+            //patientsRepository.AddPatientAsync(new Patient(0,command.PESEL,command.name,command.surname,
+                //command.sex,command.birthDate,command.city,command.street,command.houseNr));
         }
         
-        public void Handle(DeletePatientCommand command)
+        public void Handle(DeleteAppointmentCommand command)
         {
-            patientsRepository.DeletePatientAsync(command.patientId, command.PESEL);
+            //patientsRepository.DeletePatientAsync(command.appointmentId, command.PESEL);
+        }
+
+        public void Handle(AddAppointmentCommand command)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Handle(PierdolTeRoboteCommand command)
+        {
+            throw new NotImplementedException();
         }
     }
 }

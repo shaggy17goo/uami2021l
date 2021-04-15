@@ -16,6 +16,6 @@ namespace ExaminationRoomsSelector.Web.Application.DataServiceClients
         
         public void AddPatient([FromBody] AddPatientCommand patientCommand);
         
-        public void DeletePatient([FromBody] DeletePatientCommand patientCommand);
+        public void DeletePatient([FromBody] DeleteAppointmentCommand appointmentCommand);
     }
 }

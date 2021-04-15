@@ -36,7 +36,7 @@ namespace ExaminationRoomsSelector.Web.Application.DataServiceClients
             throw new System.NotImplementedException();
         }
 
-        public void DeletePatient(DeletePatientCommand patientCommand)
+        public void DeletePatient(DeleteAppointmentCommand appointmentCommand)
         {
             throw new System.NotImplementedException();
         }
