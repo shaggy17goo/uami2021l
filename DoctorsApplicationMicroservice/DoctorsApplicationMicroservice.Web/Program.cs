@@ -8,6 +8,7 @@ namespace ExaminationRoomsSelector.Web
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
+    using DoctorsApplicationMicroservice.Web;
 
     public class Program
     {

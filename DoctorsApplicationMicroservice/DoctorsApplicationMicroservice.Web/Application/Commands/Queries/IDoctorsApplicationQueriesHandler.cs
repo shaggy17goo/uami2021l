@@ -1,8 +1,7 @@
-﻿namespace ExaminationRoomsSelector.Web.Application.Queries
+﻿namespace DoctorsApplicationMicroservice.Web.Application.Commands.Queries
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
     using System.Threading.Tasks;
     using Dtos;
 

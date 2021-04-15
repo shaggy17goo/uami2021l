@@ -1,13 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
-
-namespace ExaminationRoomsSelector.Web.Application.DataServiceClients
+﻿namespace DoctorsApplicationMicroservice.Web.Application.DataServiceClients
 {
-    using ExaminationRoomsSelector.Web.Application.Dtos;
-    using System;
     using System.Collections.Generic;
-    using System.Linq;
     using System.Threading.Tasks;
-
+    using Dtos;
+    using Microsoft.AspNetCore.Mvc;
 
     public interface IDoctorServiceClient
     {

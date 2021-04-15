@@ -1,11 +1,11 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using ExaminationRoomsSelector.Web.Application.Dtos;
-using Microsoft.AspNetCore.Mvc;
-using PatientsData.Web.Application.Commands;
-
-namespace ExaminationRoomsSelector.Web.Application.DataServiceClients
+﻿namespace DoctorsApplicationMicroservice.Web.Application.DataServiceClients
 {
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
+    using Commands.Commands;
+    using Dtos;
+    using Microsoft.AspNetCore.Mvc;
+
     public interface IPatientServiceClient
     {
         public Task<IEnumerable<PatientDto>> GetAllAsync();

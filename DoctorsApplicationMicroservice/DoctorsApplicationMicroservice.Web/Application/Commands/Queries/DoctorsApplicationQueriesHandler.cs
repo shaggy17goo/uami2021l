@@ -1,11 +1,9 @@
-﻿namespace ExaminationRoomsSelector.Web.Application.Queries
+﻿namespace DoctorsApplicationMicroservice.Web.Application.Commands.Queries
 {
-    using ExaminationRoomsSelector.Web.Application.DataServiceClients;
     using System;
-    using System.Collections;
     using System.Collections.Generic;
-    using System.Linq;
     using System.Threading.Tasks;
+    using DataServiceClients;
     using Dtos;
 
     public class DoctorsApplicationQueriesQueryHandler : IDoctorsApplicationQueriesHandler

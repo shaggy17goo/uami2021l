@@ -1,14 +1,7 @@
-﻿using System.Net.Http;
-using System.Text;
-using ExaminationRoomsSelector.Web.Application.DataServiceClients;
-using Newtonsoft.Json;
-
-namespace PatientsData.Web.Application.Commands
+﻿namespace DoctorsApplicationMicroservice.Web.Application.Commands.Commands
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Threading.Tasks;
+    using DataServiceClients;
 
     //"handler" komendy tworzenia gabinetu
     public class DoctorsApplicationCommandsHandler : ICommandHandler<AddPatientCommand>, ICommandHandler<DeleteAppointmentCommand>, ICommandHandler<AddAppointmentCommand>, ICommandHandler<DeleteDoctorCommand>

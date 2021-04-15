@@ -1,7 +1,7 @@
-﻿using System;
-
-namespace ExaminationRoomsSelector.Web.Application.Dtos
+﻿namespace DoctorsApplicationMicroservice.Web.Application.Dtos
 {
+    using System;
+
     public class AppointmentsWithPatientNameDto
     {
         public int appointmentId { get; set; }

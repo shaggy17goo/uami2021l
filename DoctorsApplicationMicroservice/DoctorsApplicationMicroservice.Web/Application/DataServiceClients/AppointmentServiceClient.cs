@@ -1,14 +1,11 @@
-﻿using System.Collections.Generic;
-using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
-using ExaminationRoomsSelector.Web.Application.Dtos;
-using PatientsData.Web.Application.Commands;
-
-namespace ExaminationRoomsSelector.Web.Application.DataServiceClients
+﻿namespace DoctorsApplicationMicroservice.Web.Application.DataServiceClients
 {
+    using System.Collections.Generic;
+    using System.Net.Http;
     using System.Text.Json;
-    using DoctorsApplicationMicroservice.Web.Application.DataServiceClients;
+    using System.Threading.Tasks;
+    using Commands.Commands;
+    using Dtos;
 
     public class AppointmentServiceClient : IAppointmentServiceClient
     {

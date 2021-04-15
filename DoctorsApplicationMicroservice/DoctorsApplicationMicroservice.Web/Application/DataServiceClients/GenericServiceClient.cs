@@ -7,7 +7,7 @@ namespace DoctorsApplicationMicroservice.Web.Application.DataServiceClients
     using System.IO;
     using System.Net.Http;
     using System.Threading.Tasks;
-    using PatientsData.Web.Application.Commands;
+    using Commands.Commands;
 
     public class GenericServiceClient
     {

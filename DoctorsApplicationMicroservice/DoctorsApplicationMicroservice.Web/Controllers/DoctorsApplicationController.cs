@@ -1,15 +1,13 @@
-﻿using ExaminationRoomsSelector.Web.Application.Queries;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace ExaminationRoomsSelector.Web.Controllers
+﻿namespace DoctorsApplicationMicroservice.Web.Controllers
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
+    using Application.Commands.Commands;
+    using Application.Commands.Queries;
     using Application.Dtos;
-    using PatientsData.Web.Application.Commands;
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.Extensions.Logging;
 
     [ApiController]
     public class DoctorsApplicationController : ControllerBase
