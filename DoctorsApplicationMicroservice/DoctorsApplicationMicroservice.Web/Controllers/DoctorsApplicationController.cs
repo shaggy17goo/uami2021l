@@ -14,9 +14,14 @@
     {
         private readonly ILogger<DoctorsApplicationController> logger;
         private readonly IDoctorsApplicationQueriesHandler _doctorsApplicationQueriesHandler;
+        
         private readonly ICommandHandler<AddAppointmentCommand> _addAppointmentCommand;
         private readonly ICommandHandler<AddPatientCommand> _addPatientCommand;
         private readonly ICommandHandler<DeleteAppointmentCommand> _deleteAppointmentCommand;
+        private readonly ICommandHandler<DeletePatientCommand> _deletePatientCommand;
+        private readonly ICommandHandler<DeleteDoctorCommand> _deleteDoctorComand;
+        
+
 
 
         public DoctorsApplicationController(ILogger<DoctorsApplicationController> logger, IDoctorsApplicationQueriesHandler doctorsApplicationQueriesHandler, ICommandHandler<AddAppointmentCommand> addAppointmentCommand, ICommandHandler<AddPatientCommand> addPatientCommand, ICommandHandler<DeleteAppointmentCommand> deleteAppointmentCommand)

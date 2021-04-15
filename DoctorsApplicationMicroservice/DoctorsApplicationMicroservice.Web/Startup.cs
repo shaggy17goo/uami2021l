@@ -1,3 +1,5 @@
+using DoctorsApplicationMicroservice.Web.Application.Commands.Commands;
+
 namespace DoctorsApplicationMicroservice.Web
 {
     using Application.Commands.Queries;
@@ -29,10 +31,20 @@ namespace DoctorsApplicationMicroservice.Web
             });
             services.AddHttpClient();
             services.AddTransient<IDoctorsApplicationQueriesHandler, DoctorsApplicationQueriesQueryHandler>();
+            
             services.AddTransient<IPatientServiceClient, PatientServiceClient>();
             services.AddTransient<IDoctorServiceClient, DoctorServiceClient>();
             services.AddTransient<IAppointmentServiceClient, AppointmentServiceClient>();
 
+            services.AddTransient<ICommandHandler<AddPatientCommand>, DoctorsApplicationCommandsHandler>();
+            services.AddTransient<ICommandHandler<AddAppointmentCommand>, DoctorsApplicationCommandsHandler>();
+            services.AddTransient<ICommandHandler<DeleteAppointmentCommand>, DoctorsApplicationCommandsHandler>();
+            services.AddTransient<ICommandHandler<DeleteDoctorCommand>, DoctorsApplicationCommandsHandler>();
+            services.AddTransient<ICommandHandler<DeletePatientCommand>, DoctorsApplicationCommandsHandler>();
+
+
+            
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
