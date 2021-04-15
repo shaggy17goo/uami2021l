@@ -5,13 +5,21 @@ using ExaminationRoomsSelector.Web.Application.Dtos;
 
 namespace ExaminationRoomsSelector.Web.Application.DataServiceClients
 {
+    using System.Text.Json;
+    using DoctorsApplicationMicroservice.Web.Application.DataServiceClients;
+
     public class AppointmentServiceClient : IAppointmentServiceClient
     {
-        public readonly IHttpClientFactory ClientFactory;
+        private readonly JsonSerializerOptions _options;
+        private readonly GenericServiceClient _serviceClient;
 
         public AppointmentServiceClient(IHttpClientFactory clientFactory)
         {
-            ClientFactory = clientFactory;
+            _options = new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true,
+            };
+            _serviceClient = new GenericServiceClient(clientFactory);
         }
 
 

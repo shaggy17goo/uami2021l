@@ -8,6 +8,7 @@
     using System.Text;
     using System.Text.Json;
     using System.Threading.Tasks;
+    using DoctorsApplicationMicroservice.Web.Application.DataServiceClients;
 
     public class DoctorServiceClient : IDoctorServiceClient
     {
@@ -25,21 +26,29 @@
 
         public async Task<IEnumerable<DoctorDto>> GetAllAsync()
         {
-            const string requestUri = "https://localhost:44392/doctors";
+            const string requestUri = "https://localhost:44393/doctors";
 
             await using var responseStream = await _serviceClient.GetData(requestUri);
 
             return await JsonSerializer.DeserializeAsync<IEnumerable<DoctorDto>>(responseStream, _options);
         }
         
-        public Task<IEnumerable<DoctorDto>> GetById(int doctorId)
+        public async Task<IEnumerable<DoctorDto>> GetById(int doctorId)
         {
-            throw new NotImplementedException();
+            var requestUri = $"https://localhost:44393/getDoctorById?doctorId={doctorId}";
+
+            await using var responseStream = await _serviceClient.GetData(requestUri);
+
+            return await JsonSerializer.DeserializeAsync<IEnumerable<DoctorDto>>(responseStream, _options);
         }
 
-        public Task<IEnumerable<DoctorDto>> GetByCertificationType(int certificationType)
+        public async Task<IEnumerable<DoctorDto>> GetByCertificationType(int certificationType)
         {
-            throw new NotImplementedException();
+            var requestUri = $"https://localhost:44393/getDoctorBySpecializations?certificationType={certificationType}";
+
+            await using var responseStream = await _serviceClient.GetData(requestUri);
+
+            return await JsonSerializer.DeserializeAsync<IEnumerable<DoctorDto>>(responseStream, _options);
         }
     }
 }
