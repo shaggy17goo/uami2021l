@@ -8,6 +8,9 @@ using PatientsData.Web.Application.Commands;
 
 namespace ExaminationRoomsSelector.Web.Application.DataServiceClients
 {
+    using System.Text.Json;
+    using DoctorsApplicationMicroservice.Web.Application.DataServiceClients;
+
     public class PatientServiceClient : IPatientServiceClient
     {
         private readonly JsonSerializerOptions _options;
@@ -21,19 +24,32 @@ namespace ExaminationRoomsSelector.Web.Application.DataServiceClients
             _serviceClient = new GenericServiceClient(clientFactory);
         }
 
-        public Task<IEnumerable<PatientDto>> GetAllAsync()
+        public async Task<IEnumerable<PatientDto>> GetAllAsync()
         {
-            throw new System.NotImplementedException();
+            const string requestUri = "https://localhost:44391/listPatients";
+
+            await using var responseStream = await _serviceClient.GetData(requestUri);
+
+            return await JsonSerializer.DeserializeAsync<IEnumerable<PatientDto>>(responseStream, _options);
+
         }
 
-        public Task<PatientDto> GetPatientById(int patientId)
+        public async Task<PatientDto> GetPatientById(int patientId)
         {
-            throw new System.NotImplementedException();
+            var requestUri = $"https://localhost:44391/getPatientById?patientId={patientId}";
+
+            await using var responseStream = await _serviceClient.GetData(requestUri);
+
+            return await JsonSerializer.DeserializeAsync<PatientDto>(responseStream, _options);
         }
 
-        public Task<PatientDto> GetPatientByPESEL(string PESEL)
+        public async Task<PatientDto> GetPatientByPESEL(string PESEL)
         {
-            throw new System.NotImplementedException();
+            var requestUri = $"https://localhost:44391/getPatientByPESEL?PESEL={PESEL}";
+
+            await using var responseStream = await _serviceClient.GetData(requestUri);
+
+            return await JsonSerializer.DeserializeAsync<PatientDto>(responseStream, _options);
         }
 
         public void AddPatient(AddPatientCommand addPatientCommand)

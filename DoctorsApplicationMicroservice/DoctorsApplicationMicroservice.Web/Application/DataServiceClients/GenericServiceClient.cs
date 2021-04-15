@@ -7,6 +7,7 @@ namespace DoctorsApplicationMicroservice.Web.Application.DataServiceClients
     using System.IO;
     using System.Net.Http;
     using System.Threading.Tasks;
+    using PatientsData.Web.Application.Commands;
 
     public class GenericServiceClient
     {
@@ -14,8 +15,7 @@ namespace DoctorsApplicationMicroservice.Web.Application.DataServiceClients
 
         public GenericServiceClient(IHttpClientFactory clientFactory)
         {
-            this._clientFactory = clientFactory;
-
+            _clientFactory = clientFactory;
         }
         public async Task<Stream> GetData(string requestUri)
         {
@@ -30,12 +30,12 @@ namespace DoctorsApplicationMicroservice.Web.Application.DataServiceClients
             return responseStream;
         }
 
-        public async void PostData(string url, Object data)
+        public async void PostData(string url, ICommand command)
         {
-            var json = JsonSerializer.Serialize(data);
-            var toSend = new StringContent(json, Encoding.UTF8, "application/json");
+            var json = JsonSerializer.Serialize(command);
+            var data = new StringContent(json, Encoding.UTF8, "application/json");
             var client = _clientFactory.CreateClient();
-            await client.PostAsync(url, toSend);
+            await client.PostAsync(url, data);
         }
 
     }
