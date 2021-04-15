@@ -85,7 +85,7 @@
         }
         
         
-        [HttpPost("pierdolTeRobote")]
+        [HttpPost("deleteDoctor")]
         public void DeleteDoctor([FromBody] int doctorId)
         {
             throw new NotImplementedException();

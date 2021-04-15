@@ -26,9 +26,7 @@ namespace DoctorsApplicationMicroservice.Web.Application.DataServiceClients
         {
             const string requestUri = "https://localhost:44391/listPatients";
 
-            await using var responseStream = await _serviceClient.GetData(requestUri);
-
-            return await JsonSerializer.DeserializeAsync<IEnumerable<PatientDto>>(responseStream, _options);
+            return await _serviceClient.GetData<IEnumerable<PatientDto>>(requestUri);
 
         }
 
@@ -36,18 +34,14 @@ namespace DoctorsApplicationMicroservice.Web.Application.DataServiceClients
         {
             var requestUri = $"https://localhost:44391/getPatientById?patientId={patientId}";
 
-            await using var responseStream = await _serviceClient.GetData(requestUri);
-
-            return await JsonSerializer.DeserializeAsync<PatientDto>(responseStream, _options);
+            return await _serviceClient.GetData<PatientDto>(requestUri);
         }
 
-        public async Task<PatientDto> GetPatientByPESEL(string PESEL)
+        public async Task<PatientDto> GetPatientByPESEL(string pesel)
         {
-            var requestUri = $"https://localhost:44391/getPatientByPESEL?PESEL={PESEL}";
+            var requestUri = $"https://localhost:44391/getPatientByPESEL?PESEL={pesel}";
 
-            await using var responseStream = await _serviceClient.GetData(requestUri);
-
-            return await JsonSerializer.DeserializeAsync<PatientDto>(responseStream, _options);
+            return await _serviceClient.GetData<PatientDto>(requestUri);
         }
 
         public void AddPatient(AddPatientCommand addPatientCommand)

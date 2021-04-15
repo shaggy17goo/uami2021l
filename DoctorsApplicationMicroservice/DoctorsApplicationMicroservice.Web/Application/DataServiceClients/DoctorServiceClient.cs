@@ -24,27 +24,21 @@
         {
             const string requestUri = "https://localhost:44393/doctors";
 
-            await using var responseStream = await _serviceClient.GetData(requestUri);
-
-            return await JsonSerializer.DeserializeAsync<IEnumerable<DoctorDto>>(responseStream, _options);
+            return await _serviceClient.GetData<IEnumerable<DoctorDto>>(requestUri);
         }
         
         public async Task<IEnumerable<DoctorDto>> GetById(int doctorId)
         {
             var requestUri = $"https://localhost:44393/getDoctorById?doctorId={doctorId}";
 
-            await using var responseStream = await _serviceClient.GetData(requestUri);
-
-            return await JsonSerializer.DeserializeAsync<IEnumerable<DoctorDto>>(responseStream, _options);
+            return await _serviceClient.GetData<IEnumerable<DoctorDto>>(requestUri);
         }
 
         public async Task<IEnumerable<DoctorDto>> GetByCertificationType(int certificationType)
         {
             var requestUri = $"https://localhost:44393/getDoctorBySpecializations?certificationType={certificationType}";
 
-            await using var responseStream = await _serviceClient.GetData(requestUri);
-
-            return await JsonSerializer.DeserializeAsync<IEnumerable<DoctorDto>>(responseStream, _options);
+            return await _serviceClient.GetData<IEnumerable<DoctorDto>>(requestUri);
         }
     }
 }
