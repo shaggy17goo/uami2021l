@@ -2,6 +2,7 @@
 using System.Net.Http;
 using System.Threading.Tasks;
 using ExaminationRoomsSelector.Web.Application.Dtos;
+using PatientsData.Web.Application.Commands;
 
 namespace ExaminationRoomsSelector.Web.Application.DataServiceClients
 {
@@ -28,17 +29,27 @@ namespace ExaminationRoomsSelector.Web.Application.DataServiceClients
             throw new System.NotImplementedException();
         }
 
-        public Task<IEnumerable<AppointmentDto>> GetAllAppointmentsOfDoctor(int doctorId)
+        public Task<IEnumerable<AppointmentDto>> GetAppointmentByDoctorId(int doctorId)
         {
             throw new System.NotImplementedException();
         }
 
-        public Task<IEnumerable<AppointmentDto>> GetAllAppointmentsOfPatient(int patientId)
+        public Task<IEnumerable<AppointmentDto>> GetAppointmentByPatientId(int patientId)
         {
             throw new System.NotImplementedException();
         }
 
-        public Task<AppointmentDto> GetAppointmentById(int patientId)
+        public Task<AppointmentDto> GetAppointmentById(int appointmentId)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void AddAppointment(AddAppointmentCommand appointmentCommand)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void DeleteAppointment(DeleteAppointmentCommand appointmentCommand)
         {
             throw new System.NotImplementedException();
         }

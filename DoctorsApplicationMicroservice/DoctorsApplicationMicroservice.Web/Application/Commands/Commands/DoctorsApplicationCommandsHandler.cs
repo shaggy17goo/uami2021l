@@ -1,4 +1,7 @@
-﻿using ExaminationRoomsSelector.Web.Application.DataServiceClients;
+﻿using System.Net.Http;
+using System.Text;
+using ExaminationRoomsSelector.Web.Application.DataServiceClients;
+using Newtonsoft.Json;
 
 namespace PatientsData.Web.Application.Commands
 {
@@ -16,8 +19,7 @@ namespace PatientsData.Web.Application.Commands
         
         public void Handle(AddPatientCommand command)
         {
-            //patientsRepository.AddPatientAsync(new Patient(0,command.PESEL,command.name,command.surname,
-                //command.sex,command.birthDate,command.city,command.street,command.houseNr));
+            _patientServiceClient.AddPatient(command);
         }
         
         public void Handle(DeleteAppointmentCommand command)
