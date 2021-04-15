@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 using ExaminationRoomsSelector.Web.Application.Dtos;
 using PatientsData.Web.Application.Commands;
@@ -44,14 +45,16 @@ namespace ExaminationRoomsSelector.Web.Application.DataServiceClients
             throw new System.NotImplementedException();
         }
 
-        public void AddAppointment(AddAppointmentCommand appointmentCommand)
+        public void AddAppointment(AddAppointmentCommand addAppointmentCommand)
         {
-            throw new System.NotImplementedException();
+            const string url = "https://localhost:44392/addAppointment";
+            _serviceClient.PostData(url, addAppointmentCommand);
         }
 
-        public void DeleteAppointment(DeleteAppointmentCommand appointmentCommand)
+        public void DeleteAppointment(DeleteAppointmentCommand deleteAppointmentCommand)
         {
-            throw new System.NotImplementedException();
+            const string url = "https://localhost:44392/deleteAppointment";
+            _serviceClient.PostData(url, deleteAppointmentCommand);
         }
     }
 }

@@ -24,12 +24,11 @@ namespace PatientsData.Web.Application.Commands
         
         public void Handle(DeleteAppointmentCommand command)
         {
-            //patientsRepository.DeletePatientAsync(command.appointmentId, command.PESEL);
-        }
+            _appointmentServiceClient.DeleteAppointment(command);        }
 
         public void Handle(AddAppointmentCommand command)
         {
-            throw new NotImplementedException();
+            _appointmentServiceClient.AddAppointment(command);
         }
 
         public void Handle(PierdolTeRoboteCommand command)

@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Net.Http;
+using System.Text.Json;
 using System.Threading.Tasks;
+using DoctorsApplicationMicroservice.Web.Application.DataServiceClients;
 using ExaminationRoomsSelector.Web.Application.Dtos;
 using PatientsData.Web.Application.Commands;
 
@@ -8,13 +10,16 @@ namespace ExaminationRoomsSelector.Web.Application.DataServiceClients
 {
     public class PatientServiceClient : IPatientServiceClient
     {
-        public readonly IHttpClientFactory ClientFactory;
-
+        private readonly JsonSerializerOptions _options;
+        private readonly GenericServiceClient _serviceClient;
         public PatientServiceClient(IHttpClientFactory clientFactory)
         {
-            ClientFactory = clientFactory;
+            _options = new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true,
+            };
+            _serviceClient = new GenericServiceClient(clientFactory);
         }
-
 
         public Task<IEnumerable<PatientDto>> GetAllAsync()
         {
@@ -31,14 +36,16 @@ namespace ExaminationRoomsSelector.Web.Application.DataServiceClients
             throw new System.NotImplementedException();
         }
 
-        public void AddPatient(AddPatientCommand patientCommand)
+        public void AddPatient(AddPatientCommand addPatientCommand)
         {
-            throw new System.NotImplementedException();
+            const string url = "https://localhost:44391/addPatient";
+            _serviceClient.PostData(url, addPatientCommand);
         }
 
-        public void DeletePatient(DeletePatientCommand appointmentCommand)
+        public void DeletePatient(DeletePatientCommand deletePatientCommand)
         {
-            throw new System.NotImplementedException();
+            const string url = "https://localhost:44391/deletePatient";
+            _serviceClient.PostData(url, deletePatientCommand);
         }
         
     }

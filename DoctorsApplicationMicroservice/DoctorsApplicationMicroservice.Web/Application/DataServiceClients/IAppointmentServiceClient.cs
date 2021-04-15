@@ -20,10 +20,10 @@ namespace ExaminationRoomsSelector.Web.Application.DataServiceClients
         public  Task<AppointmentDto> GetAppointmentById([FromQuery] int appointmentId);
 
 
-        public void AddAppointment([FromBody] AddAppointmentCommand appointmentCommand);
+        public void AddAppointment([FromBody] AddAppointmentCommand addAppointmentCommand);
 
 
-        public void DeleteAppointment([FromBody] DeleteAppointmentCommand appointmentCommand);
+        public void DeleteAppointment([FromBody] DeleteAppointmentCommand deleteAppointmentCommand);
 
 
     }

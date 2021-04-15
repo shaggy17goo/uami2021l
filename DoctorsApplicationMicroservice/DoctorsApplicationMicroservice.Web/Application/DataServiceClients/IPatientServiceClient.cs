@@ -14,8 +14,8 @@ namespace ExaminationRoomsSelector.Web.Application.DataServiceClients
         
         public Task<PatientDto> GetPatientByPESEL([FromQuery] string PESEL);
         
-        public void AddPatient([FromBody] AddPatientCommand patientCommand);
+        public void AddPatient([FromBody] AddPatientCommand addPatientCommand);
         
-        public void DeletePatient([FromBody] DeletePatientCommand appointmentCommand);
+        public void DeletePatient([FromBody] DeletePatientCommand deletePatientCommand);
     }
 }
