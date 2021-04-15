@@ -30,7 +30,7 @@ namespace DoctorsApplicationMicroservice.Web.Application.DataServiceClients
             return responseStream;
         }
 
-        public async void PostData(string url, ICommand command)
+        public async void PostData(string url, object command)
         {
             var json = JsonSerializer.Serialize(command);
             var data = new StringContent(json, Encoding.UTF8, "application/json");
