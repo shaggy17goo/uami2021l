@@ -1,9 +1,11 @@
 ﻿namespace PatientsApplicationMicroservice.Application.Queries
 {
+    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
 
     using PatientsApplicationMicroservice.Application.DataServiceClients;
+    using PatientsApplicationMicroservice.Application.Dtos;
 
     public class DoctorsApplicationHandler : IDoctorsApplicationHandler
     {
@@ -14,9 +16,13 @@
             this.doctorsServiceClient = doctorsServiceClient;
         }
 
-        public async Task<int> GetDoctors()
+       public async Task<IEnumerable<DoctorDto>> GetDoctors()
         {
-            return (await doctorsServiceClient.GetAllDoctors()).Count();
+            return await doctorsServiceClient.GetAllDoctors();
+     }
+        public async Task<DoctorDto> GetDoctorById(int doctorId)
+        {
+            return await doctorsServiceClient.GetDoctorById(doctorId);
         }
     }
 }

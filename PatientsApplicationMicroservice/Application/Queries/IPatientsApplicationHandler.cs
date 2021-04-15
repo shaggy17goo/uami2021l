@@ -1,9 +1,11 @@
 ﻿namespace PatientsApplicationMicroservice.Application.Queries
 {
+    using PatientsApplicationMicroservice.Application.Dtos;
+    using System.Collections.Generic;
     using System.Threading.Tasks;
 
     public interface IPatientsApplicationHandler
     {
-        Task<int> GetPatients();
+        Task<PatientDto> GetPatientById(int patientId);
     }
 }

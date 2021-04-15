@@ -7,6 +7,6 @@
 
     public interface IPatientsServiceClient 
     {
-        Task<IEnumerable<PatientDto>> GetAllPatients();
+        Task<PatientDto> GetPatientById(int patientId);
     }
 }

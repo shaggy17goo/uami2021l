@@ -8,5 +8,6 @@
     public interface IDoctorsServiceClient
     {
         Task<IEnumerable<DoctorDto>> GetAllDoctors();
+        Task<DoctorDto> GetDoctorById(int id);
     }
 }

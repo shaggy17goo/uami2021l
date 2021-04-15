@@ -5,15 +5,16 @@
 
     public class DoctorDto
     {
-        public int Id { get; set; }
-        public string PESEL { get; set; }
-        public string Name { get; set; }
-        public string Surname { get; set; }
-        public string Sex { get; set; }
-        public DateTime BirthDate { get; set; }
-        public string City { get; set; }
-        public string Street { get; set; }
-        public string HouseNr { get; set; }
-        public IEnumerable<int> Certifications { get; set; }
+        public int id { get; set; }
+        public string pesel { get; set; }
+        public string name { get; set; }
+        public string surname { get; set; }
+        public string sex { get; set; }
+        public DateTime birthDate { get; set; }
+        public string city { get; set; }
+        public string street { get; set; }
+        public string houseNr { get; set; }
+        public List<int> certifications { get; set; }
+
     }
 }

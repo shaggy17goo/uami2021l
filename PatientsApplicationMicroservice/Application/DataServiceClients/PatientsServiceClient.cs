@@ -15,10 +15,10 @@
             this.clientFactory = clientFactory;
         }
 
-        public async Task<IEnumerable<PatientDto>> GetAllPatients()
+        public async Task<PatientDto> GetPatientById(int patientId)
         {
             var request = new HttpRequestMessage(HttpMethod.Get,
-           $"https://localhost:44392/listPatients");
+             string.Format("https://localhost:44391/getPatientById?patientId={0}",patientId));
             request.Headers.Add("Accept", "application/json");
 
             var client = clientFactory.CreateClient();
@@ -32,7 +32,7 @@
                 PropertyNameCaseInsensitive = true,
             };
 
-            return await JsonSerializer.DeserializeAsync<IEnumerable<PatientDto>>(responseStream, options);
+            return await JsonSerializer.DeserializeAsync<PatientDto>(responseStream, options);
         }
     }
 }
