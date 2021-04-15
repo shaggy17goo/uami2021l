@@ -11,31 +11,25 @@
 
     public class DoctorServiceClient : IDoctorServiceClient
     {
-        public readonly IHttpClientFactory ClientFactory;
+        private readonly JsonSerializerOptions _options;
+        private readonly GenericServiceClient _serviceClient;
         public DoctorServiceClient(IHttpClientFactory clientFactory)
         {
-            this.ClientFactory = clientFactory;
+            _options = new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true,
+            };
+            _serviceClient = new GenericServiceClient(clientFactory);
         }
         
 
         public async Task<IEnumerable<DoctorDto>> GetAllAsync()
         {
-            var request = new HttpRequestMessage(HttpMethod.Get,
-                $"https://localhost:44392/doctors");
-            request.Headers.Add("Accept", "application/json");
+            const string requestUri = "https://localhost:44392/doctors";
 
-            var client = ClientFactory.CreateClient();
+            await using var responseStream = await _serviceClient.GetData(requestUri);
 
-            var response = await client.SendAsync(request);
-
-            using var responseStream = await response.Content.ReadAsStreamAsync();
-
-            var options = new JsonSerializerOptions
-            {
-                PropertyNameCaseInsensitive = true,
-            };
-
-            return await JsonSerializer.DeserializeAsync<IEnumerable<DoctorDto>>(responseStream, options);
+            return await JsonSerializer.DeserializeAsync<IEnumerable<DoctorDto>>(responseStream, _options);
         }
         
         public Task<IEnumerable<DoctorDto>> GetById(int doctorId)
