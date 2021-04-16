@@ -19,9 +19,9 @@
         {
             return (await doctorsRepository.GetAllAsync()).Select(r=>r.Map());
         }
-        public async Task<IEnumerable<DoctorDto>> GetById(int doctorId)
+        public async Task<DoctorDto> GetById(int doctorId)
         {
-            return (await doctorsRepository.GetById(doctorId)).Select(r => r.Map());
+            return (await doctorsRepository.GetById(doctorId)).Map();
         }
 
         public async Task<IEnumerable<DoctorDto>> GetByCertificationType(int certificationType)

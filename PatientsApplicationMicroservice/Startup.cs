@@ -1,15 +1,14 @@
-namespace Doctors.Web
+namespace PatientsApplicationMicroservice.Controllers
 {
-    using Doctors.Domain.DoctorAggregate;
-    using Doctors.Infrastructure;
-    using Doctors.Web.Application;
-    using Doctors.Web.Application.Commands;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
     using Microsoft.OpenApi.Models;
+
+    using PatientsApplicationMicroservice.Application.DataServiceClients;
+    using PatientsApplicationMicroservice.Application.Queries;
 
     public class Startup
     {
@@ -23,22 +22,20 @@ namespace Doctors.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-           
+
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Doctors.Web", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "LaboratoriesInventory.Web", Version = "v1" });
             });
+            services.AddHttpClient();
+            services.AddTransient<IPatientsApplicationHandler, PatientsApplicationHandler>();
+            services.AddTransient<IPatientsServiceClient, PatientsServiceClient>();
+            services.AddTransient<IAppointmentsApplicationHandler, AppointmentsApplicationHandler>();
+            services.AddTransient<IAppointmentsServiceClient, AppointmentsServiceClient>();
+            services.AddTransient<IDoctorsApplicationHandler, DoctorsApplicationHandler>();
+            services.AddTransient<IDoctorsServiceClient, DoctorsServiceClient>();
 
-            /**
-             * A place where we decide what are used for added interfaces
-             * The following three lines in a moment, when we define a constructor which takes as a parameter one of following interfaces,
-             * framework will add to this an indicated implementation
-             **/
-            services.AddSingleton<IDoctorsRepository, DoctorsRepository>();
-            services.AddTransient<IDoctorQueriesHandler, DoctorQueriesHandler>();
-            services.AddTransient<ICommandHandler<AddDoctorCommand>, DoctorsCommandsHandler>();
-            services.AddTransient<ICommandHandler<DeleteDoctorCommand>, DoctorsCommandsHandler>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -48,7 +45,7 @@ namespace Doctors.Web
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Laboratories.Web v1"));
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "LaboratoriesInventory.Web v1"));
             }
 
             app.UseHttpsRedirection();

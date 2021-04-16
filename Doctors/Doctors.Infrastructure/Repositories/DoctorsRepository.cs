@@ -30,9 +30,9 @@
                     try
                     {
                         const string insertDoctorQuery = @"INSERT INTO Doctor (PESEL,Name,Surname,Sex,BirthDate,City,Street,HouseNr) VALUES (@PESEL,@name, @Surname, @Sex, @BirthDate, @City, @Street, @HouseNr);";
-                        
+
                         //using Dapper - package will make using database easier
-                        int doctorId = await dbConnection.QueryFirstAsync<int>(insertDoctorQuery + ";" + getAddedRowIdQueryQuery, new { PESEL = doctor.PESEL, name = doctor.Name, Surname = doctor.Surname, Sex= doctor.Sex, BirthDate=doctor.BirthDate, City = doctor.City, Street = doctor.Street, HouseNr = doctor.HouseNr }, transaction);  
+                        int doctorId = await dbConnection.QueryFirstAsync<int>(insertDoctorQuery + ";" + getAddedRowIdQueryQuery, new { PESEL = doctor.PESEL, name = doctor.Name, Surname = doctor.Surname, Sex = doctor.Sex, BirthDate = doctor.BirthDate, City = doctor.City, Street = doctor.Street, HouseNr = doctor.HouseNr }, transaction);
 
                         var certificationsIds = new List<int>();
 
@@ -43,7 +43,7 @@
                         const string insertDoctorCertificationQuery = @"INSERT INTO DoctorCertification (DoctorId, CertificationId) VALUES (@doctorId,@certificationId);";
                         foreach (var certifitionId in certificationsIds)
                             await dbConnection.QueryAsync(insertDoctorCertificationQuery, new { doctorId = doctorId, certificationId = certifitionId }, transaction);
-                      
+
                         transaction.Commit();
                     }
                     catch (Exception e)
@@ -64,34 +64,9 @@
                 //Dapper automatically opened connection, don't have to care about it
                 const string selectDoctorCertificationQuery = @"SELECT * FROM DoctorCertification";
 
-                var doctorsCertificates =  (await dbConnection.QueryAsync(selectDoctorCertificationQuery)).Select(x=> new { CertificationId = x.CertificationId, DoctorId = x.DoctorId });
-
-                const string selectDoctorQuery = @"SELECT * FROM Doctor";
-
-                var doctors = await dbConnection.QueryAsync<Doctor>(selectDoctorQuery);
-
-                const string selectCertificationsQuery = @"SELECT * FROM Certification";
-
-                var certifications = await dbConnection.QueryAsync<Certification>(selectCertificationsQuery);
-
-                foreach (var doctor in doctors)
-                {
-                    var certificationsIdForGivenDoctor = doctorsCertificates.Where(x => x.DoctorId == doctor.Id).Select(x=>x.CertificationId);
-                    var certificationsForGivenDoctor = certifications.Where(x => certificationsIdForGivenDoctor.Contains(x.CertificationId));
-                    doctor.AddCertifications(certificationsForGivenDoctor);
-                }
-                return doctors;
-            }
-        }
-        public async Task<IEnumerable<Doctor>> GetById(int doctorId)
-        {
-            using (var dbConnection = new SqlConnection(Constants.connectionString))
-            {
-                const string selectDoctorCertificationQuery = @"SELECT * FROM DoctorCertification";
-
                 var doctorsCertificates = (await dbConnection.QueryAsync(selectDoctorCertificationQuery)).Select(x => new { CertificationId = x.CertificationId, DoctorId = x.DoctorId });
 
-                 string selectDoctorQuery = String.Format(@"SELECT * FROM Doctor WHERE Id = {0}", doctorId);
+                const string selectDoctorQuery = @"SELECT * FROM Doctor";
 
                 var doctors = await dbConnection.QueryAsync<Doctor>(selectDoctorQuery);
 
@@ -106,6 +81,31 @@
                     doctor.AddCertifications(certificationsForGivenDoctor);
                 }
                 return doctors;
+            }
+        }
+        public async Task<Doctor> GetById(int doctorId)
+        {
+            using (var dbConnection = new SqlConnection(Constants.connectionString))
+            {
+                const string selectDoctorCertificationQuery = @"SELECT * FROM DoctorCertification";
+
+                var doctorsCertificates = (await dbConnection.QueryAsync(selectDoctorCertificationQuery)).Select(x => new { CertificationId = x.CertificationId, DoctorId = x.DoctorId });
+
+                string selectDoctorQuery = String.Format(@"SELECT * FROM Doctor WHERE Id = {0}", doctorId);
+
+                var doctors = await dbConnection.QueryAsync<Doctor>(selectDoctorQuery);
+
+                const string selectCertificationsQuery = @"SELECT * FROM Certification";
+
+                var certifications = await dbConnection.QueryAsync<Certification>(selectCertificationsQuery);
+
+                foreach (var doctor in doctors)
+                {
+                    var certificationsIdForGivenDoctor = doctorsCertificates.Where(x => x.DoctorId == doctor.Id).Select(x => x.CertificationId);
+                    var certificationsForGivenDoctor = certifications.Where(x => certificationsIdForGivenDoctor.Contains(x.CertificationId));
+                    doctor.AddCertifications(certificationsForGivenDoctor);
+                }
+                return doctors.First();
             }
         }
         public async Task<IEnumerable<Doctor>> GetByCertificationType(int certificationType)
@@ -133,5 +133,26 @@
                 return doctors;
             }
         }
+        public void DeleteDoctorById(int doctorId)
+        {
+            
+            using (var dbConnection = new SqlConnection(Constants.connectionString))
+            {
+                string deleteDoctor = String.Format(@"DELETE FROM Doctor WHERE Id = {0}", doctorId);
+                dbConnection.QueryAsync(deleteDoctor);
+            }
+            
+        }
+        public void DeleteCertificationById(int doctorId)
+        {
+
+         using (var dbConnection = new SqlConnection(Constants.connectionString))
+            {
+                string deleteDoctorCertifications = String.Format(@"DELETE * FROM DoctorCertification WHERE DoctorId = {0}", doctorId);
+                dbConnection.QueryAsync(deleteDoctorCertifications);
+            }
+
+        }
     }
 }
+

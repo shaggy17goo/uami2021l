@@ -7,7 +7,7 @@
     public interface IDoctorQueriesHandler
     {
         Task<IEnumerable<DoctorDto>> GetAllAsync();
-        Task<IEnumerable<DoctorDto>> GetById([FromQuery] int doctorId);
+        Task<DoctorDto> GetById([FromQuery] int doctorId);
         Task<IEnumerable<DoctorDto>> GetByCertificationType([FromQuery] int certificationType);
     }
 }
