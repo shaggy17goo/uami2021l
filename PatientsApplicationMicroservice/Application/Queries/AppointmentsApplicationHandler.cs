@@ -20,16 +20,34 @@ namespace PatientsApplicationMicroservice.Application.Queries
             this.doctorsServiceClient = doctorsServiceClient;
         }
 
-        public async Task<List<AppointmentWithNamesDto>> GetAppointmentsAsync(int patientId)
+        public async Task<List<AppointmentWithNamesDto>> GetAppointmentsHistory(int patientId)
         { 
             var appointments = await appointmentsServiceClient.GetAppointmentsByPatientId(patientId);
             List<AppointmentWithNamesDto> appointmentsWithNames = new();
             foreach (var appointment in appointments)
             {
-                var patient = await patientsServiceClient.GetPatientById(appointment.patientId);
-                var doctor = await doctorsServiceClient.GetDoctorById(appointment.doctorId);
-                appointmentsWithNames.Add(new AppointmentWithNamesDto(appointment.appointmentId,doctor.name, doctor.surname, patient.name, patient.surname, appointment.dateOfAppointment, appointment.description));
+                if (DateTime.Compare(appointment.dateOfAppointment, DateTime.Now) == -1)
+                {
+                    var patient = await patientsServiceClient.GetPatientById(appointment.patientId);
+                    var doctor = await doctorsServiceClient.GetDoctorById(appointment.doctorId);
+                    appointmentsWithNames.Add(new AppointmentWithNamesDto(appointment.appointmentId, doctor.name, doctor.surname, patient.name, patient.surname, appointment.dateOfAppointment, appointment.description));
+                }
         }
+            return appointmentsWithNames;
+        }
+        public async Task<List<AppointmentWithNamesDto>> GetFutureAppointments(int patientId)
+        {
+            var appointments = await appointmentsServiceClient.GetAppointmentsByPatientId(patientId);
+            List<AppointmentWithNamesDto> appointmentsWithNames = new();
+            foreach (var appointment in appointments)
+            {
+                if (DateTime.Compare(appointment.dateOfAppointment, DateTime.Now) == 1)
+                {
+                    var patient = await patientsServiceClient.GetPatientById(appointment.patientId);
+                    var doctor = await doctorsServiceClient.GetDoctorById(appointment.doctorId);
+                    appointmentsWithNames.Add(new AppointmentWithNamesDto(appointment.appointmentId, doctor.name, doctor.surname, patient.name, patient.surname, appointment.dateOfAppointment, appointment.description));
+                }
+            }
             return appointmentsWithNames;
         }
     }

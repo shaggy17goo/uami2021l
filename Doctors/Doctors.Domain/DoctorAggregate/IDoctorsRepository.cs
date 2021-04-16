@@ -7,7 +7,9 @@
     {
         Task<IEnumerable<Doctor>> GetAllAsync();
         Task<IEnumerable<Doctor>> GetByCertificationType(int certificationType);
-        Task<IEnumerable<Doctor>> GetById(int doctorId);
+        Task<Doctor> GetById(int doctorId);
         Task AddDoctorAsync(Doctor doctor);
+        void DeleteDoctorById(int doctorId);
+        void DeleteCertificationById(int doctorId);
     }
 }

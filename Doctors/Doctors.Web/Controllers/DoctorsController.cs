@@ -13,12 +13,14 @@
         private readonly ILogger<DoctorsController> logger;
         private readonly IDoctorQueriesHandler doctorQueriesHandler;
         private readonly ICommandHandler<AddDoctorCommand> addDoctorCommandHandler;
+        private readonly ICommandHandler<DeleteDoctorCommand> deleteDoctorCommandHandler;
 
-        public DoctorsController(ILogger<DoctorsController> logger, IDoctorQueriesHandler doctorQueriesHandler, ICommandHandler<AddDoctorCommand> addDoctorCommandHandler)
+        public DoctorsController(ILogger<DoctorsController> logger, IDoctorQueriesHandler doctorQueriesHandler, ICommandHandler<AddDoctorCommand> addDoctorCommandHandler, ICommandHandler<DeleteDoctorCommand> deleteDoctorCommandHandler)
         {
             this.logger = logger;
             this.doctorQueriesHandler = doctorQueriesHandler;
             this.addDoctorCommandHandler = addDoctorCommandHandler;
+            this.deleteDoctorCommandHandler = deleteDoctorCommandHandler;
     }
 
         [HttpGet("doctors")]
@@ -33,14 +35,20 @@
             return doctorQueriesHandler.GetByCertificationType(certificationType);
         }
         [HttpGet("getDoctorById")]
-        public async Task<IEnumerable<DoctorDto>> GetById([FromQuery] int doctorId)
+        public async Task<DoctorDto> GetById([FromQuery] int doctorId)
         {
             return await doctorQueriesHandler.GetById(doctorId);
         }
         [HttpPost("doctor")]
-        public void AddExaminationRoom([FromBody] AddDoctorCommand doctorCommand)
+        public void AddDoctor([FromBody] AddDoctorCommand doctorCommand)
         {
             addDoctorCommandHandler.Handle(doctorCommand);
         }
+        [HttpPost("doctor-delete")]
+        public void DeleteDoctor([FromQuery] DeleteDoctorCommand deleteDoctorCommand)
+        {
+            deleteDoctorCommandHandler.Handle(deleteDoctorCommand);
+        }
     }
 }
+

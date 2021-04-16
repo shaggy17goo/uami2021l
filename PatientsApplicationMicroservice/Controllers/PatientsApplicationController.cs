@@ -39,10 +39,15 @@
         {
             return await patientsApplicationHandler.GetPatientById(patientId);
         }
-        [HttpGet("appointments-data")]
-        public async Task<List<AppointmentWithNamesDto>> GetLaboratoryDiagnosticiansDetails2([FromQuery] int patientId)
+        [HttpGet("appointments-history")]
+        public async Task<List<AppointmentWithNamesDto>> GetAppointmentsHistoryByPatientId([FromQuery] int patientId)
         {
-            return await appointmentsApplicationHandler.GetAppointmentsAsync(patientId);
+            return await appointmentsApplicationHandler.GetAppointmentsHistory(patientId);
+        }
+        [HttpGet("future-appointments")]
+        public async Task<List<AppointmentWithNamesDto>> GetAppointmentsByPatientId([FromQuery] int patientId)
+        {
+            return await appointmentsApplicationHandler.GetFutureAppointments(patientId);
         }
     }
 }

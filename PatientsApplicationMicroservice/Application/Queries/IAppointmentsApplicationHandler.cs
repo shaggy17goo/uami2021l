@@ -8,6 +8,7 @@ namespace PatientsApplicationMicroservice.Application.Queries
 {
     public interface IAppointmentsApplicationHandler
     {
-        Task<List<AppointmentWithNamesDto>> GetAppointmentsAsync(int patientId);
+        Task<List<AppointmentWithNamesDto>> GetAppointmentsHistory(int patientId);
+        Task<List<AppointmentWithNamesDto>> GetFutureAppointments(int patientId);
     }
 }

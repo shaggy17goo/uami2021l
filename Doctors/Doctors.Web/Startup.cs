@@ -38,6 +38,7 @@ namespace Doctors.Web
             services.AddSingleton<IDoctorsRepository, DoctorsRepository>();
             services.AddTransient<IDoctorQueriesHandler, DoctorQueriesHandler>();
             services.AddTransient<ICommandHandler<AddDoctorCommand>, DoctorsCommandsHandler>();
+            services.AddTransient<ICommandHandler<DeleteDoctorCommand>, DoctorsCommandsHandler>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
