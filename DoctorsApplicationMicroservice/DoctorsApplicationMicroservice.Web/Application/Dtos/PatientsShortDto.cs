@@ -4,31 +4,31 @@
 
     public class PatientsShortDto
     {
-        public int patientId { get;  set; }
-        public string PESEL { get;  set; }
-        public string name { get;  set; }
-        public string surname { get;  set; }
-        public string sex { get; set; }
-        public DateTime birthDate { get;  set; }
+        public int PatientId { get;  set; }
+        public string Pesel { get;  set; }
+        public string Name { get;  set; }
+        public string Surname { get;  set; }
+        public string Sex { get; set; }
+        public DateTime BirthDate { get;  set; }
 
         public PatientsShortDto(int patientId, string pesel, string name, string surname, string sex, DateTime birthDate)
         {
-            this.patientId = patientId;
-            PESEL = pesel;
-            this.name = name;
-            this.surname = surname;
-            this.sex = sex;
-            this.birthDate = birthDate;
+            this.PatientId = patientId;
+            Pesel = pesel;
+            this.Name = name;
+            this.Surname = surname;
+            this.Sex = sex;
+            this.BirthDate = birthDate;
         }
         
         public PatientsShortDto(PatientDto patientDto)
         {
-            this.patientId = patientDto.patientId;
-            PESEL = patientDto.PESEL;
-            this.name = patientDto.name;
-            this.surname = patientDto.surname;
-            this.sex = patientDto.sex;
-            this.birthDate = patientDto.birthDate;
+            PatientId = patientDto.PatientId;
+            Pesel = patientDto.Pesel;
+            Name = patientDto.Name;
+            Surname = patientDto.Surname;
+            Sex = patientDto.Sex;
+            BirthDate = patientDto.BirthDate;
         }
         
         

@@ -13,7 +13,8 @@
         private readonly IAppointmentServiceClient _appointmentServiceClient;
 
 
-        public DoctorsApplicationQueriesQueryHandler(IDoctorServiceClient doctorServiceClient, IPatientServiceClient patientServiceClient, IAppointmentServiceClient appointmentServiceClient)
+        public DoctorsApplicationQueriesQueryHandler(IDoctorServiceClient doctorServiceClient,
+            IPatientServiceClient patientServiceClient, IAppointmentServiceClient appointmentServiceClient)
         {
             _patientServiceClient = patientServiceClient;
             _doctorServiceClient = doctorServiceClient;
@@ -27,25 +28,25 @@
             var result = new List<AppointmentsWithPatientNameDto>();
             foreach (var aD in doctorAppointments)
             {
-                var tempPatientDto = await _patientServiceClient.GetPatientById(aD.patientId);
-                result.Add(new AppointmentsWithPatientNameDto(aD.appointmentId, aD.doctorId, aD.patientId,
-                    aD.dateOfAppointment, aD.description, tempPatientDto.name, tempPatientDto.surname));
+                var tempPatientDto = await _patientServiceClient.GetPatientById(aD.PatientId);
+                result.Add(new AppointmentsWithPatientNameDto(aD.AppointmentId, aD.DoctorId, aD.PatientId,
+                    aD.DateOfAppointment, aD.Description, tempPatientDto.Name, tempPatientDto.Surname));
             }
 
             return result;
         }
 
-        public async Task<List<AppointmentsWithPatientNameDto>> GetAppointmentsByDoctorIdAndData(int doctorId, DateTime data)
+        public async Task<List<AppointmentsWithPatientNameDto>> GetAppointmentsByDoctorIdAndData(int doctorId,
+            DateTime data)
         {
             var doctorAppointments = await _appointmentServiceClient.GetAppointmentByDoctorId(doctorId);
             var result = new List<AppointmentsWithPatientNameDto>();
             foreach (var aD in doctorAppointments)
             {
-                if (data.Date != aD.dateOfAppointment.Date) continue;
-                var tempPatientDto = await _patientServiceClient.GetPatientById(aD.patientId);
-                result.Add(new AppointmentsWithPatientNameDto(aD.appointmentId, aD.doctorId, aD.patientId,
-                    aD.dateOfAppointment, aD.description, tempPatientDto.name, tempPatientDto.surname));
-
+                if (data.Date != aD.DateOfAppointment.Date) continue;
+                var tempPatientDto = await _patientServiceClient.GetPatientById(aD.PatientId);
+                result.Add(new AppointmentsWithPatientNameDto(aD.AppointmentId, aD.DoctorId, aD.PatientId,
+                    aD.DateOfAppointment, aD.Description, tempPatientDto.Name, tempPatientDto.Surname));
             }
 
             return result;
@@ -57,9 +58,8 @@
             var result = new List<PatientsShortDto>();
             foreach (var aD in doctorAppointments)
             {
-                var tempPatientDto = await _patientServiceClient.GetPatientById(aD.patientId);
+                var tempPatientDto = await _patientServiceClient.GetPatientById(aD.PatientId);
                 result.Add(new PatientsShortDto(tempPatientDto));
-
             }
 
             return result;
@@ -71,4 +71,3 @@
         }
     }
 }
-

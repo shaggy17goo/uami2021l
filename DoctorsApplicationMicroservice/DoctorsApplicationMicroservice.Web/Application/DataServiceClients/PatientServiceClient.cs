@@ -4,21 +4,15 @@ namespace DoctorsApplicationMicroservice.Web.Application.DataServiceClients
 {
     using System.Collections.Generic;
     using System.Net.Http;
-    using System.Text.Json;
     using System.Threading.Tasks;
     using Commands.Commands;
     using Dtos;
 
     public class PatientServiceClient : IPatientServiceClient
     {
-        private readonly JsonSerializerOptions _options;
         private readonly GenericServiceClient _serviceClient;
         public PatientServiceClient(IHttpClientFactory clientFactory)
         {
-            _options = new JsonSerializerOptions
-            {
-                PropertyNameCaseInsensitive = true,
-            };
             _serviceClient = new GenericServiceClient(clientFactory);
         }
 

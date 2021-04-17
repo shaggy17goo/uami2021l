@@ -1,16 +1,10 @@
-﻿using System;
+﻿using System.Net.Http;
 using System.Text;
 using System.Text.Json;
+using System.Threading.Tasks;
 
 namespace DoctorsApplicationMicroservice.Web.Application.DataServiceClients
 {
-    using System.Collections.Generic;
-    using System.IO;
-    using System.Net.Http;
-    using System.Threading.Tasks;
-    using Commands.Commands;
-    using Dtos;
-
     public class GenericServiceClient
     {
         private readonly IHttpClientFactory _clientFactory;
@@ -21,9 +15,10 @@ namespace DoctorsApplicationMicroservice.Web.Application.DataServiceClients
             _clientFactory = clientFactory;
             _options = new JsonSerializerOptions
             {
-                PropertyNameCaseInsensitive = true,
+                PropertyNameCaseInsensitive = true
             };
         }
+
         public async Task<T> GetData<T>(string requestUri)
         {
             var request = new HttpRequestMessage(HttpMethod.Get, requestUri);
@@ -45,6 +40,5 @@ namespace DoctorsApplicationMicroservice.Web.Application.DataServiceClients
             var client = _clientFactory.CreateClient();
             await client.PostAsync(url, data);
         }
-
     }
 }

@@ -3,6 +3,6 @@
     //wykorzystujemy interfejs wskaźnikowy ICommand do jawnego wskazania, że dana klasa jest komendą
     public class DeleteAppointmentCommand : ICommand
     {
-        public int appointmentId { get; set; }
+        public int AppointmentId { get; set; }
     }
 }
