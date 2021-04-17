@@ -7,7 +7,6 @@
     
     public class AddAppointmentCommand : ICommand
     {
-        public int appointmentId { get; set; }
         public int doctorId { get; set; }
         public int patientId { get; set; }
         public DateTime dateOfAppointment { get; set; }
