@@ -13,12 +13,12 @@
 
         public PatientsShortDto(int patientId, string pesel, string name, string surname, string sex, DateTime birthDate)
         {
-            this.PatientId = patientId;
+            PatientId = patientId;
             Pesel = pesel;
-            this.Name = name;
-            this.Surname = surname;
-            this.Sex = sex;
-            this.BirthDate = birthDate;
+            Name = name;
+            Surname = surname;
+            Sex = sex;
+            BirthDate = birthDate;
         }
         
         public PatientsShortDto(PatientDto patientDto)
