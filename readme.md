@@ -1,10 +1,10 @@
 # Repozytorium projektu UAMI
 
 ## Autorzy:
-- Grupa I:
+- **Grupa I:**
 	- Gryka Paweł
 	- Wawrzyńczak Michał
-- Grupa II:
+- **Grupa II:**
 	- Olszeski Jakub
 	- Wierzejska Izabela
 
