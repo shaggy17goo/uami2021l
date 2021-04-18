@@ -14,7 +14,7 @@ namespace PatientsData.Infrastructure
             int maxId;
             using (var dbConnection = new SqlConnection(Constants.ConnectionString))
             {
-                var getMaxIdQuery = @"SELECT NEXT VALUE FOR paitentIdSeq;";
+                var getMaxIdQuery = @"SELECT NEXT VALUE FOR patientIdSeq;";
 
                 maxId = dbConnection.QueryAsync<int>(getMaxIdQuery).Result.First();
 
