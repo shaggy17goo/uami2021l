@@ -11,6 +11,6 @@ namespace AppointmentsData.Domain.PatientAggregate
         Task<Appointment> GetAppointmentById(int appointmentId);
 
         public int AddAppointmentAsync(Appointment appointment);
-        public int DeleteAppointmentAsync(int commandAppointmentId);
+        public int DeleteAppointment(int commandAppointmentId);
     }
 }

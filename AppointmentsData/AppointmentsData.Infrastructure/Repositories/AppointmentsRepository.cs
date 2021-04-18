@@ -11,86 +11,72 @@ namespace AppointmentsData.Infrastructure.Repositories
     {
         public async Task<IEnumerable<Appointment>> ListAppointments()
         {
-            using (var dbConnection = new SqlConnection(Constants.ConnectionString))
-            {
-                var selectPatientsQuery = @"SELECT * FROM appointments";
+            await using var dbConnection = new SqlConnection(Constants.ConnectionString);
+            const string selectPatientsQuery = @"SELECT * FROM appointments";
 
-                var appointments = await dbConnection.QueryAsync<Appointment>(selectPatientsQuery);
+            var appointments = await dbConnection.QueryAsync<Appointment>(selectPatientsQuery);
 
-                return appointments;
-            }
+            return appointments;
         }
 
         public async Task<IEnumerable<Appointment>> ListDoctorAppointments(int doctorId)
         {
-            using (var dbConnection = new SqlConnection(Constants.ConnectionString))
-            {
-                var selectPatientsQuery = string.Format(@"SELECT * FROM appointments WHERE doctorId = {0}", doctorId);
+            await using var dbConnection = new SqlConnection(Constants.ConnectionString);
+            var selectPatientsQuery = $@"SELECT * FROM appointments WHERE doctorId = {doctorId}";
 
-                var appointments = await dbConnection.QueryAsync<Appointment>(selectPatientsQuery);
+            var appointments = await dbConnection.QueryAsync<Appointment>(selectPatientsQuery);
 
-                return appointments;
-            }
+            return appointments;
         }
 
         public async Task<IEnumerable<Appointment>> ListPatientAppointments(int patientId)
         {
-            using (var dbConnection = new SqlConnection(Constants.ConnectionString))
-            {
-                var selectPatientsQuery = string.Format(@"SELECT * FROM appointments WHERE patientId = {0}", patientId);
+            await using var dbConnection = new SqlConnection(Constants.ConnectionString);
+            var selectPatientsQuery = $@"SELECT * FROM appointments WHERE patientId = {patientId}";
 
-                var appointments = await dbConnection.QueryAsync<Appointment>(selectPatientsQuery);
+            var appointments = await dbConnection.QueryAsync<Appointment>(selectPatientsQuery);
 
-                return appointments;
-            }
+            return appointments;
         }
 
         public async Task<Appointment> GetAppointmentById(int appointmentId)
         {
-            using (var dbConnection = new SqlConnection(Constants.ConnectionString))
-            {
-                var selectPatientsQuery =
-                    string.Format(@"SELECT * FROM appointments WHERE appointmentId = {0}", appointmentId);
+            await using var dbConnection = new SqlConnection(Constants.ConnectionString);
+            var selectPatientsQuery = $@"SELECT * FROM appointments WHERE appointmentId = {appointmentId}";
 
-                var patient = await dbConnection.QueryAsync<Appointment>(selectPatientsQuery);
+            var patient = await dbConnection.QueryAsync<Appointment>(selectPatientsQuery);
 
-                return patient.First();
-            }
+            return patient.First();
         }
 
         public int AddAppointmentAsync(Appointment appointment)
         {
-            int maxId;
-            using (var dbConnection = new SqlConnection(Constants.ConnectionString))
-            {
-                const string getMaxIdQuery = @"SELECT NEXT VALUE FOR appointmentIdSeq;";
+            using var dbConnection = new SqlConnection(Constants.ConnectionString);
+            const string getMaxIdQuery = @"SELECT NEXT VALUE FOR appointmentIdSeq;";
 
-                maxId = dbConnection.QueryAsync<int>(getMaxIdQuery).Result.First();
+            var maxId = dbConnection.QueryAsync<int>(getMaxIdQuery).Result.First();
 
-                const string insertPatientQuery =
-                    @"INSERT INTO appointments (appointmentId, doctorId, patientId, dateOfAppointment, description)
+            const string insertPatientQuery =
+                @"INSERT INTO appointments (appointmentId, doctorId, patientId, dateOfAppointment, description)
                                                         VALUES (@appointmentId, @doctorId, @patientId, @dateOfAppointment, @description);";
 
-                dbConnection.QueryAsync(insertPatientQuery, new
-                {
-                    appointmentId = maxId, doctorId = appointment.DoctorId, patientId = appointment.PatientId,
-                    dateOfAppointment = appointment.DateOfAppointment,
-                    description = appointment.Description
-                });
-            }
+            dbConnection.QueryAsync(insertPatientQuery, new
+            {
+                appointmentId = maxId, doctorId = appointment.DoctorId, patientId = appointment.PatientId,
+                dateOfAppointment = appointment.DateOfAppointment,
+                description = appointment.Description
+            });
 
             return maxId;
         }
 
 
-        public int DeleteAppointmentAsync(int commandAppointmentId)
+        public int DeleteAppointment(int commandAppointmentId)
         {
-            using (var dbConnection = new SqlConnection(Constants.ConnectionString))
-            {
-                const string deleteAppointment = @"DELETE FROM appointments WHERE appointmentId=@appointmentId";
+            using var dbConnection = new SqlConnection(Constants.ConnectionString);
+            const string deleteAppointment = @"DELETE FROM appointments WHERE appointmentId=@appointmentId";
 
-                dbConnection.QueryAsync(deleteAppointment, new {appointmentId = commandAppointmentId});
-            }
+            dbConnection.Query(deleteAppointment, new {appointmentId = commandAppointmentId});
 
             return 0;
         }
