@@ -10,7 +10,7 @@ namespace PatientsData.Domain.PatientAggregate
         Task<Patient> GetPatientByPESEL(string PESEL);
 
 
-        void AddPatientAsync(Patient patient);
-        void DeletePatientAsync(int commandPatientId, string commandPesel);
+        public int AddPatientAsync(Patient patient);
+        public int DeletePatientAsync(int commandPatientId, string commandPesel);
     }
 }

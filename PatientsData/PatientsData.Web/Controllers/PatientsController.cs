@@ -46,15 +46,15 @@ namespace PatientsData.Web.Controllers
 
 
         [HttpPost("addPatient")]
-        public void AddPatient([FromBody] AddPatientCommand patientCommand)
+        public int AddPatient([FromBody] AddPatientCommand patientCommand)
         {
-            _addPatientCommandHandler.Handle(patientCommand);
+            return _addPatientCommandHandler.Handle(patientCommand);
         }
 
         [HttpPost("deletePatient")]
-        public void DeletePatient([FromBody] DeletePatientCommand patientCommand)
+        public int DeletePatient([FromBody] DeletePatientCommand patientCommand)
         {
-            _deletePatientCommandHandler.Handle(patientCommand);
+            return _deletePatientCommandHandler.Handle(patientCommand);
         }
     }
 }

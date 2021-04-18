@@ -9,13 +9,14 @@ namespace PatientsData.Infrastructure
 {
     public class PatientsRepository : IPatientsRepository
     {
-        public void AddPatientAsync(Patient patient)
+        public int AddPatientAsync(Patient patient)
         {
+            int maxId;
             using (var dbConnection = new SqlConnection(Constants.ConnectionString))
             {
-                var getMaxIdQuery = @"SELECT max(patientId) FROM patients";
+                var getMaxIdQuery = @"SELECT NEXT VALUE FOR paitentIdSeq;";
 
-                var maxId = dbConnection.QueryAsync<int>(getMaxIdQuery).Result.First();
+                maxId = dbConnection.QueryAsync<int>(getMaxIdQuery).Result.First();
 
                 const string insertPatientQuery =
                     @"INSERT INTO patients (patientId, PESEL, name, surname, sex, birthDate, city, street, houseNr)
@@ -28,6 +29,8 @@ namespace PatientsData.Infrastructure
                         patient.birthDate, patient.city, patient.street, patient.houseNr
                     });
             }
+
+            return maxId;
         }
 
         public async Task<IEnumerable<Patient>> listPatients()
@@ -66,7 +69,7 @@ namespace PatientsData.Infrastructure
             }
         }
 
-        public void DeletePatientAsync(int patientId, string pesel)
+        public int DeletePatientAsync(int patientId, string pesel)
         {
             using (var dbConnection = new SqlConnection(Constants.ConnectionString))
             {
@@ -74,6 +77,8 @@ namespace PatientsData.Infrastructure
 
                 dbConnection.QueryAsync(deletePatient, new {patientId, pesel});
             }
+
+            return 0;
         }
     }
 }
