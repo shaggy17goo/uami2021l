@@ -75,7 +75,7 @@ namespace PatientsData.Infrastructure
             {
                 var deletePatient = @"DELETE FROM patients WHERE patientId=@patientID AND pesel=@pesel";
 
-                dbConnection.QueryAsync(deletePatient, new {patientId, pesel});
+                dbConnection.Query(deletePatient, new {patientId, pesel});
             }
 
             return 0;
