@@ -1,7 +1,9 @@
-﻿using System.Net.Http;
+﻿using System;
+using System.Net.Http;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
+using JsonSerializer = System.Text.Json.JsonSerializer;
 
 namespace DoctorsApplicationMicroservice.Web.Application.DataServiceClients
 {
@@ -38,8 +40,17 @@ namespace DoctorsApplicationMicroservice.Web.Application.DataServiceClients
             var json = JsonSerializer.Serialize(command);
             var data = new StringContent(json, Encoding.UTF8, "application/json");
             var client = _clientFactory.CreateClient();
-            var responseStream = client.PostAsync(url, data).Result.Content;
-            var response = JsonSerializer.Deserialize<int>(responseStream.ToString() ?? string.Empty);
+            var httpResponse = client.PostAsync(url, data);
+            var responseString = httpResponse.Result.Content.ReadAsStringAsync().Result;
+            int response;
+            try
+            {
+                response = int.Parse(responseString);
+            }
+            catch (Exception)
+            {
+                return -1;
+            }
             return response;
         }
     }
