@@ -61,7 +61,7 @@ namespace PatientsData.Infrastructure
         {
             using (var dbConnection = new SqlConnection(Constants.ConnectionString))
             {
-                var selectPatientsQuery = string.Format(@"SELECT * FROM patients WHERE pesel = {0}", PESEL);
+                var selectPatientsQuery = string.Format(@"SELECT * FROM patients WHERE pesel = '{0}'", PESEL);
 
                 var patient = await dbConnection.QueryAsync<Patient>(selectPatientsQuery);
 
