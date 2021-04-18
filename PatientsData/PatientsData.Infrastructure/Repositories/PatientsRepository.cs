@@ -25,7 +25,7 @@ namespace PatientsData.Infrastructure
                 dbConnection.QueryAsync(insertPatientQuery,
                     new
                     {
-                        patientId = maxId + 1, patient.PESEL, patient.name, patient.surname, patient.sex,
+                        patientId = maxId, patient.PESEL, patient.name, patient.surname, patient.sex,
                         patient.birthDate, patient.city, patient.street, patient.houseNr
                     });
             }

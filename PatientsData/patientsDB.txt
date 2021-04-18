@@ -1,8 +1,8 @@
 
 -- Create sequences section -------------------------------------------------
 
-CREATE SEQUENCE [paitentIdSeq] AS bigint
- START WITH 1
+CREATE SEQUENCE [patientIdSeq] AS bigint
+ START WITH 301
  INCREMENT BY 1
  NO MINVALUE
  NO MAXVALUE
