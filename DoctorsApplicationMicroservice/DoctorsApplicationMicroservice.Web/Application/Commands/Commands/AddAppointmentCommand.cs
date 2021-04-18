@@ -5,10 +5,10 @@
     //wykorzystujemy interfejs wskaźnikowy ICommand do jawnego wskazania, że dana klasa jest komendą
     public class AddAppointmentCommand : ICommand
     {
-        public int appointmentId { get; set; }
-        public int doctorId { get; set; }
-        public int patientId { get; set; }
-        public DateTime dateOfAppointment { get; set; }
-        public string description { get; set; }
+        public int AppointmentId { get; set; }
+        public int DoctorId { get; set; }
+        public int PatientId { get; set; }
+        public DateTime DateOfAppointment { get; set; }
+        public string Description { get; set; }
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace DoctorsApplicationMicroservice.Web.Application.DataServiceClients
+﻿using DoctorsApplicationMicroservice.Web.Application.Commands.Commands;
+
+namespace DoctorsApplicationMicroservice.Web.Application.DataServiceClients
 {
     using System.Collections.Generic;
     using System.Net.Http;
@@ -39,6 +41,12 @@
             var requestUri = $"https://localhost:44393/getDoctorBySpecializations?certificationType={certificationType}";
 
             return await _serviceClient.GetData<IEnumerable<DoctorDto>>(requestUri);
+        }
+
+        public void DeleteDoctor(DeleteDoctorCommand deleteDoctorCommand)
+        {
+            const string url = "https://localhost:44393/doctor-delete";
+            _serviceClient.PostData(url, deleteDoctorCommand);
         }
     }
 }
