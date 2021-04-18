@@ -20,10 +20,10 @@
         public  Task<AppointmentDto> GetAppointmentById([FromQuery] int appointmentId);
 
 
-        public void AddAppointment([FromBody] AddAppointmentCommand addAppointmentCommand);
+        public int AddAppointment([FromBody] AddAppointmentCommand addAppointmentCommand);
 
 
-        public void DeleteAppointment([FromBody] DeleteAppointmentCommand deleteAppointmentCommand);
+        public int DeleteAppointment([FromBody] DeleteAppointmentCommand deleteAppointmentCommand);
 
 
     }

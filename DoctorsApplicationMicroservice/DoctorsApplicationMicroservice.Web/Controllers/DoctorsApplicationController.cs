@@ -60,23 +60,23 @@
         // POST
 
         [HttpPost("addPatient")]
-        public void AddPatient([FromBody] AddPatientCommand command)
+        public int AddPatient([FromBody] AddPatientCommand command)
         {
-            _addPatientCommand.Handle(command);
+            return _addPatientCommand.Handle(command);
         }
 
 
         [HttpPost("addAppointment")]
-        public void AddAppointment([FromBody] AddAppointmentCommand command)
+        public int AddAppointment([FromBody] AddAppointmentCommand command)
         {
-            _addAppointmentCommand.Handle(command);
+            return _addAppointmentCommand.Handle(command);
 
         }
 
         [HttpPost("deleteAppointment")]
-        public void DeleteAppointment([FromBody] DeleteAppointmentCommand command)
+        public int DeleteAppointment([FromBody] DeleteAppointmentCommand command)
         {
-            _deleteAppointmentCommand.Handle(command);
+            return _deleteAppointmentCommand.Handle(command);
         }
     }
 }

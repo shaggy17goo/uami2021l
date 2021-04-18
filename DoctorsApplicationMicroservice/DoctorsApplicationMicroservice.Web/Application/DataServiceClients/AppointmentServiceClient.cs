@@ -46,16 +46,16 @@
             return await _serviceClient.GetData<AppointmentDto>(requestUri);
         }
 
-        public void AddAppointment(AddAppointmentCommand addAppointmentCommand)
+        public int AddAppointment(AddAppointmentCommand addAppointmentCommand)
         {
             const string url = "https://localhost:44392/addAppointment";
-            _serviceClient.PostData(url, addAppointmentCommand);
+            return _serviceClient.PostData(url, addAppointmentCommand);
         }
 
-        public void DeleteAppointment(DeleteAppointmentCommand deleteAppointmentCommand)
+        public int DeleteAppointment(DeleteAppointmentCommand deleteAppointmentCommand)
         {
             const string url = "https://localhost:44392/deleteAppointment";
-            _serviceClient.PostData(url, deleteAppointmentCommand);
+            return _serviceClient.PostData(url, deleteAppointmentCommand);
         }
     }
 }

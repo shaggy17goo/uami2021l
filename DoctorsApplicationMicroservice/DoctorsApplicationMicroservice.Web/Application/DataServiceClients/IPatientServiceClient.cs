@@ -14,8 +14,8 @@
         
         public Task<PatientDto> GetPatientByPESEL([FromQuery] string PESEL);
         
-        public void AddPatient([FromBody] AddPatientCommand addPatientCommand);
+        public int AddPatient([FromBody] AddPatientCommand addPatientCommand);
         
-        public void DeletePatient([FromBody] DeletePatientCommand deletePatientCommand);
+        public int DeletePatient([FromBody] DeletePatientCommand deletePatientCommand);
     }
 }

@@ -33,12 +33,14 @@ namespace DoctorsApplicationMicroservice.Web.Application.DataServiceClients
             return await JsonSerializer.DeserializeAsync<T>(responseStream, _options);
         }
 
-        public async void PostData(string url, object command)
+        public int PostData(string url, object command)
         {
             var json = JsonSerializer.Serialize(command);
             var data = new StringContent(json, Encoding.UTF8, "application/json");
             var client = _clientFactory.CreateClient();
-            await client.PostAsync(url, data);
+            var responseStream = client.PostAsync(url, data).Result.Content;
+            var response = JsonSerializer.Deserialize<int>(responseStream.ToString() ?? string.Empty);
+            return response;
         }
     }
 }
