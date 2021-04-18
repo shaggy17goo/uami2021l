@@ -52,15 +52,15 @@ namespace AppointmentsData.Web.Controllers
         }
 
         [HttpPost("addAppointment")]
-        public void AddAppointment([FromBody] AddAppointmentCommand appointmentCommand)
+        public int AddAppointment([FromBody] AddAppointmentCommand appointmentCommand)
         {
-            _addAppointmentCommandHandler.Handle(appointmentCommand);
+            return _addAppointmentCommandHandler.Handle(appointmentCommand);
         }
 
         [HttpPost("deleteAppointment")]
-        public void DeleteAppointment([FromBody] DeleteAppointmentCommand appointmentCommand)
+        public int DeleteAppointment([FromBody] DeleteAppointmentCommand appointmentCommand)
         {
-            _deleteAppointmentCommandHandler.Handle(appointmentCommand);
+            return _deleteAppointmentCommandHandler.Handle(appointmentCommand);
         }
     }
 }

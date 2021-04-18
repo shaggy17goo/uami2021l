@@ -58,13 +58,14 @@ namespace AppointmentsData.Infrastructure.Repositories
             }
         }
 
-        public void AddAppointmentAsync(Appointment appointment)
+        public int AddAppointmentAsync(Appointment appointment)
         {
+            int maxId;
             using (var dbConnection = new SqlConnection(Constants.ConnectionString))
             {
-                const string getMaxIdQuery = @"SELECT max(appointmentId) FROM appointments";
+                const string getMaxIdQuery = @"SELECT NEXT VALUE FOR appointmentIdSeq;";
 
-                var maxId = dbConnection.QueryAsync<int>(getMaxIdQuery).Result.First();
+                maxId = dbConnection.QueryAsync<int>(getMaxIdQuery).Result.First();
 
                 const string insertPatientQuery =
                     @"INSERT INTO appointments (appointmentId, doctorId, patientId, dateOfAppointment, description)
@@ -72,15 +73,17 @@ namespace AppointmentsData.Infrastructure.Repositories
 
                 dbConnection.QueryAsync(insertPatientQuery, new
                 {
-                    appointmentId = maxId + 1, doctorId = appointment.DoctorId, patientId = appointment.PatientId,
+                    appointmentId = maxId, doctorId = appointment.DoctorId, patientId = appointment.PatientId,
                     dateOfAppointment = appointment.DateOfAppointment,
                     description = appointment.Description
                 });
             }
+
+            return maxId;
         }
 
 
-        public void DeleteAppointmentAsync(int commandAppointmentId)
+        public int DeleteAppointmentAsync(int commandAppointmentId)
         {
             using (var dbConnection = new SqlConnection(Constants.ConnectionString))
             {
@@ -88,6 +91,8 @@ namespace AppointmentsData.Infrastructure.Repositories
 
                 dbConnection.QueryAsync(deleteAppointment, new {appointmentId = commandAppointmentId});
             }
+
+            return 0;
         }
     }
 }
