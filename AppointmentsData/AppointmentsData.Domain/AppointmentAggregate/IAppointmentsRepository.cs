@@ -1,12 +1,8 @@
-﻿namespace AppointmentsData.Domain.PatientAggregate
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+
+namespace AppointmentsData.Domain.PatientAggregate
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
-
-
     public interface IAppointmentsRepository
     {
         Task<IEnumerable<Appointment>> ListAppointments();

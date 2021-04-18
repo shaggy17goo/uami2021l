@@ -1,24 +1,16 @@
+using AppointmentsData.Domain.PatientAggregate;
+using AppointmentsData.Infrastructure.Repositories;
+using AppointmentsData.Web.Application.Commands;
+using AppointmentsData.Web.Application.Queries;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Microsoft.OpenApi.Models;
+
 namespace AppointmentsData.Web
 {
-    using AppointmentsData.Domain;
-    using Domain.PatientAggregate;
-    using AppointmentsData.Infrastructure.Repositories;
-    using AppointmentsData.Web.Application.Queries;
-    using AppointmentsData.Web.Application.Commands;
-    using Microsoft.AspNetCore.Builder;
-    using Microsoft.AspNetCore.Hosting;
-    using Microsoft.AspNetCore.HttpsPolicy;
-    using Microsoft.AspNetCore.Mvc;
-    using Microsoft.Extensions.Configuration;
-    using Microsoft.Extensions.DependencyInjection;
-    using Microsoft.Extensions.Hosting;
-    using Microsoft.Extensions.Logging;
-    using Microsoft.OpenApi.Models;
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Threading.Tasks;
-
     public class Startup
     {
         public Startup(IConfiguration configuration)
@@ -31,11 +23,10 @@ namespace AppointmentsData.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-           
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Appointments.Web", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo {Title = "Appointments.Web", Version = "v1"});
             });
 
             //Miejsce, w którym określamy co ma się kryć za poszczególnymi interfejsami.
@@ -45,8 +36,6 @@ namespace AppointmentsData.Web
             services.AddTransient<IAppointmentsQueriesHandler, AppointmentsQueriesHandler>();
             services.AddTransient<ICommandHandler<AddAppointmentCommand>, AppointmentsCommandsHandler>();
             services.AddTransient<ICommandHandler<DeleteAppointmentCommand>, AppointmentsCommandsHandler>();
-
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -65,10 +54,7 @@ namespace AppointmentsData.Web
 
             app.UseAuthorization();
 
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
+            app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
         }
     }
 }

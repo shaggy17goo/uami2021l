@@ -1,31 +1,30 @@
-﻿
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using AppointmentsData.Domain.PatientAggregate;
+using AppointmentsData.Web.Application.Commands;
+using AppointmentsData.Web.Application.Queries;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
 namespace AppointmentsData.Web.Controllers
 {
-    using AppointmentsData.Domain.PatientAggregate;
-    using AppointmentsData.Web.Application.Queries;
-    using AppointmentsData.Web.Application.Commands;
-    using Microsoft.AspNetCore.Mvc;
-    using Microsoft.Extensions.Logging;
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Threading.Tasks;
-
     [ApiController]
     public class PatientsController : ControllerBase
     {
         private readonly ILogger<PatientsController> _logger;
         private readonly IAppointmentsQueriesHandler _appointmentsQueriesHandler;
-        private readonly ICommandHandler<AddAppointmentCommand> addAppointmentCommandHandler;
-        private readonly ICommandHandler<DeleteAppointmentCommand> deleteAppointmentCommandHandler;
+        private readonly ICommandHandler<AddAppointmentCommand> _addAppointmentCommandHandler;
+        private readonly ICommandHandler<DeleteAppointmentCommand> _deleteAppointmentCommandHandler;
 
-        public PatientsController(ILogger<PatientsController> logger, IAppointmentsQueriesHandler _appointmentsQueriesHandler, ICommandHandler<AddAppointmentCommand> addAppointmentCommandHandler, ICommandHandler<DeleteAppointmentCommand> deleteAppointmentCommandHandler )
+        public PatientsController(ILogger<PatientsController> logger,
+            IAppointmentsQueriesHandler appointmentsQueriesHandler,
+            ICommandHandler<AddAppointmentCommand> addAppointmentCommandHandler,
+            ICommandHandler<DeleteAppointmentCommand> deleteAppointmentCommandHandler)
         {
             _logger = logger;
-            this._appointmentsQueriesHandler = _appointmentsQueriesHandler;
-            this.addAppointmentCommandHandler = addAppointmentCommandHandler;
-            this.deleteAppointmentCommandHandler = deleteAppointmentCommandHandler;
+            _appointmentsQueriesHandler = appointmentsQueriesHandler;
+            _addAppointmentCommandHandler = addAppointmentCommandHandler;
+            _deleteAppointmentCommandHandler = deleteAppointmentCommandHandler;
         }
 
         [HttpGet("listAppointments")]
@@ -33,13 +32,13 @@ namespace AppointmentsData.Web.Controllers
         {
             return await _appointmentsQueriesHandler.GetAllAsync();
         }
-        
+
         [HttpGet("getAppointmentByDoctorId")]
         public async Task<IEnumerable<Appointment>> GetAppointmentByDoctorId([FromQuery] int doctorId)
         {
             return await _appointmentsQueriesHandler.GetAllAppointmentsOfDoctor(doctorId);
         }
-        
+
         [HttpGet("getAppointmentByPatientId")]
         public async Task<IEnumerable<Appointment>> GetAppointmentByPatientId([FromQuery] int patientId)
         {
@@ -55,13 +54,13 @@ namespace AppointmentsData.Web.Controllers
         [HttpPost("addAppointment")]
         public void AddAppointment([FromBody] AddAppointmentCommand appointmentCommand)
         {
-            addAppointmentCommandHandler.Handle(appointmentCommand);
+            _addAppointmentCommandHandler.Handle(appointmentCommand);
         }
-        
+
         [HttpPost("deleteAppointment")]
         public void DeleteAppointment([FromBody] DeleteAppointmentCommand appointmentCommand)
         {
-            deleteAppointmentCommandHandler.Handle(appointmentCommand);
+            _deleteAppointmentCommandHandler.Handle(appointmentCommand);
         }
     }
 }

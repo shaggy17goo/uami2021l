@@ -1,30 +1,28 @@
-﻿namespace AppointmentsData.Web.Application.Commands
-{
-    using Domain.PatientAggregate;
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Threading.Tasks;
+﻿using AppointmentsData.Domain.PatientAggregate;
 
+namespace AppointmentsData.Web.Application.Commands
+{
     //"handler" komendy tworzenia gabinetu
-    public class AppointmentsCommandsHandler : ICommandHandler<AddAppointmentCommand>, ICommandHandler<DeleteAppointmentCommand>
+    public class AppointmentsCommandsHandler : ICommandHandler<AddAppointmentCommand>,
+        ICommandHandler<DeleteAppointmentCommand>
     {
         private readonly IAppointmentsRepository _appointmentsRepository;
 
-        public AppointmentsCommandsHandler(IAppointmentsRepository appointmentsRepository) 
+        public AppointmentsCommandsHandler(IAppointmentsRepository appointmentsRepository)
         {
-            this._appointmentsRepository = appointmentsRepository;
+            _appointmentsRepository = appointmentsRepository;
         }
 
         public void Handle(AddAppointmentCommand command)
         {
-            _appointmentsRepository.AddAppointmentAsync(new Appointment(0,command.doctorId,command.patientId,command.dateOfAppointment,
-                command.description));
+            _appointmentsRepository.AddAppointmentAsync(new Appointment(0, command.DoctorId, command.PatientId,
+                command.DateOfAppointment,
+                command.Description));
         }
-        
+
         public void Handle(DeleteAppointmentCommand command)
         {
-            _appointmentsRepository.DeleteAppointmentAsync(command.appointmentId);
+            _appointmentsRepository.DeleteAppointmentAsync(command.AppointmentId);
         }
     }
 }

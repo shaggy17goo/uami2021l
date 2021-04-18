@@ -1,15 +1,12 @@
-﻿namespace AppointmentsData.Web.Application.Commands
+﻿using System;
+
+namespace AppointmentsData.Web.Application.Commands
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Threading.Tasks;
-    
     public class AddAppointmentCommand : ICommand
     {
-        public int doctorId { get; set; }
-        public int patientId { get; set; }
-        public DateTime dateOfAppointment { get; set; }
-        public string description { get; set; }
+        public int DoctorId { get; set; }
+        public int PatientId { get; set; }
+        public DateTime DateOfAppointment { get; set; }
+        public string Description { get; set; }
     }
 }
