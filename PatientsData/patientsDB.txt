@@ -1,20 +1,36 @@
-    -- Table patients
-    
-    CREATE TABLE [patients]
-    (
-     [patientId] Int NOT NULL,
-     [PESEL] Nvarchar(max) NULL,
-     [name] Nvarchar(max) NOT NULL,
-     [surname] Nvarchar(max) NOT NULL,
-     [sex] Nvarchar(max) NOT NULL,
-     [birthDate] Datetime2 NOT NULL,
-     [city] Nvarchar(max) NOT NULL,
-     [street] Nvarchar(max) NOT NULL,
-     [houseNr] Nvarchar(max) NOT NULL
-    )
-    go
-    
-    -- Add keys for table patients
-    
-    ALTER TABLE [patients] ADD CONSTRAINT [PK_patients] PRIMARY KEY ([patientId])
-    go
+
+-- Create sequences section -------------------------------------------------
+
+CREATE SEQUENCE [patientIdSeq] AS bigint
+ START WITH 301
+ INCREMENT BY 1
+ NO MINVALUE
+ NO MAXVALUE
+go
+
+-- Create tables section -------------------------------------------------
+
+-- Table patients
+
+CREATE TABLE [patients]
+(
+ [patientId] Int NOT NULL,
+ [PESEL] Nvarchar(max) NULL,
+ [name] Nvarchar(max) NOT NULL,
+ [surname] Nvarchar(max) NOT NULL,
+ [sex] Nvarchar(max) NOT NULL,
+ [birthDate] Datetime2 NOT NULL,
+ [city] Nvarchar(max) NOT NULL,
+ [street] Nvarchar(max) NOT NULL,
+ [houseNr] Nvarchar(max) NOT NULL
+)
+go
+
+-- Add keys for table patients
+
+ALTER TABLE [patients] ADD CONSTRAINT [PK_patients] PRIMARY KEY ([patientId])
+go
+
+
+
+

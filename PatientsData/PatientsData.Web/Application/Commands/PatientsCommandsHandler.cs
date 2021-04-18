@@ -12,15 +12,16 @@ namespace PatientsData.Web.Application.Commands
             _patientsRepository = patientsRepository;
         }
 
-        public void Handle(AddPatientCommand command)
+        public int Handle(AddPatientCommand command)
         {
-            _patientsRepository.AddPatientAsync(new Patient(0, command.PESEL, command.name, command.surname,
+            return _patientsRepository.AddPatientAsync(new Patient(0, command.PESEL, command.name, command.surname,
                 command.sex, command.birthDate, command.city, command.street, command.houseNr));
         }
 
-        public void Handle(DeletePatientCommand command)
+        public int Handle(DeletePatientCommand command)
         {
-            _patientsRepository.DeletePatientAsync(command.patientId, command.PESEL);
+            return _patientsRepository.DeletePatientAsync(command.patientId, command.PESEL);
+            
         }
     }
 }
