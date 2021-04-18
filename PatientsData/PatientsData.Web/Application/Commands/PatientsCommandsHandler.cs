@@ -1,30 +1,26 @@
-﻿namespace PatientsData.Web.Application.Commands
-{
-    using Domain.PatientAggregate;
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Threading.Tasks;
+﻿using PatientsData.Domain.PatientAggregate;
 
+namespace PatientsData.Web.Application.Commands
+{
     //"handler" komendy tworzenia gabinetu
     public class PatientsCommandsHandler : ICommandHandler<AddPatientCommand>, ICommandHandler<DeletePatientCommand>
     {
-        private readonly IPatientsRepository patientsRepository;
+        private readonly IPatientsRepository _patientsRepository;
 
-        public PatientsCommandsHandler(IPatientsRepository patientsRepository) 
+        public PatientsCommandsHandler(IPatientsRepository patientsRepository)
         {
-            this.patientsRepository = patientsRepository;
+            _patientsRepository = patientsRepository;
         }
 
         public void Handle(AddPatientCommand command)
         {
-            patientsRepository.AddPatientAsync(new Patient(0,command.PESEL,command.name,command.surname,
-                command.sex,command.birthDate,command.city,command.street,command.houseNr));
+            _patientsRepository.AddPatientAsync(new Patient(0, command.PESEL, command.name, command.surname,
+                command.sex, command.birthDate, command.city, command.street, command.houseNr));
         }
-        
+
         public void Handle(DeletePatientCommand command)
         {
-            patientsRepository.DeletePatientAsync(command.patientId, command.PESEL);
+            _patientsRepository.DeletePatientAsync(command.patientId, command.PESEL);
         }
     }
 }

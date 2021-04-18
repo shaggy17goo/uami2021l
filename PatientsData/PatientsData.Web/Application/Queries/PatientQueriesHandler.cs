@@ -1,33 +1,31 @@
-﻿namespace PatientsData.Web.Application
-{
-    using Domain.PatientAggregate;
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using PatientsData.Domain.PatientAggregate;
 
+namespace PatientsData.Web.Application
+{
     public class PatientQueriesHandler : IPatientQueriesHandler
     {
-        private readonly IPatientsRepository patientsRepository;
+        private readonly IPatientsRepository _patientsRepository;
 
         public PatientQueriesHandler(IPatientsRepository patientsRepository)
         {
-            this.patientsRepository = patientsRepository;
+            _patientsRepository = patientsRepository;
         }
 
         public Task<IEnumerable<Patient>> GetAllAsync()
         {
-            return patientsRepository.listPatients();
+            return _patientsRepository.listPatients();
         }
 
         public Task<Patient> GetPatientById(int patientId)
         {
-            return patientsRepository.GetPatientById(patientId);
+            return _patientsRepository.GetPatientById(patientId);
         }
 
         public Task<Patient> GetPatientByPESEL(string PESEL)
         {
-            return patientsRepository.GetPatientByPESEL(PESEL);
+            return _patientsRepository.GetPatientByPESEL(PESEL);
         }
     }
 }
