@@ -1,4 +1,5 @@
-﻿using System.Net.Http;
+﻿using System;
+using System.Net.Http;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -33,12 +34,23 @@ namespace DoctorsApplicationMicroservice.Web.Application.DataServiceClients
             return await JsonSerializer.DeserializeAsync<T>(responseStream, _options);
         }
 
-        public async void PostData(string url, object command)
+        public int PostData(string url, object command)
         {
             var json = JsonSerializer.Serialize(command);
             var data = new StringContent(json, Encoding.UTF8, "application/json");
             var client = _clientFactory.CreateClient();
-            await client.PostAsync(url, data);
+            var httpResponse = client.PostAsync(url, data);
+            var responseString = httpResponse.Result.Content.ReadAsStringAsync().Result;
+            int response;
+            try
+            {
+                response = int.Parse(responseString);
+            }
+            catch (Exception)
+            {
+                return -1;
+            }
+            return response;
         }
     }
 }

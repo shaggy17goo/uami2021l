@@ -38,16 +38,16 @@ namespace DoctorsApplicationMicroservice.Web.Application.DataServiceClients
             return await _serviceClient.GetData<PatientDto>(requestUri);
         }
 
-        public void AddPatient(AddPatientCommand addPatientCommand)
+        public int AddPatient(AddPatientCommand addPatientCommand)
         {
             const string url = "https://localhost:44391/addPatient";
-            _serviceClient.PostData(url, addPatientCommand);
+            return _serviceClient.PostData(url, addPatientCommand);
         }
 
-        public void DeletePatient(DeletePatientCommand deletePatientCommand)
+        public int DeletePatient(DeletePatientCommand deletePatientCommand)
         {
             const string url = "https://localhost:44391/deletePatient";
-            _serviceClient.PostData(url, deletePatientCommand);
+            return _serviceClient.PostData(url, deletePatientCommand);
         }
         
     }

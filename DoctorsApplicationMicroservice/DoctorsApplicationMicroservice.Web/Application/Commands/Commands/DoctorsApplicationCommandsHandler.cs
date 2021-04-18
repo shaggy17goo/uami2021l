@@ -17,26 +17,26 @@
             _appointmentServiceClient = appointmentServiceClient;
         }
 
-        public void Handle(AddPatientCommand command)
+        public int Handle(AddPatientCommand command)
         {
-            _patientServiceClient.AddPatient(command);
+            return _patientServiceClient.AddPatient(command);
         }
         
-        public void Handle(DeleteAppointmentCommand command)
+        public int Handle(DeleteAppointmentCommand command)
         {
-            _appointmentServiceClient.DeleteAppointment(command);        }
+            return _appointmentServiceClient.DeleteAppointment(command);        }
 
-        public void Handle(AddAppointmentCommand command)
+        public int Handle(AddAppointmentCommand command)
         {
-            _appointmentServiceClient.AddAppointment(command);
+            return _appointmentServiceClient.AddAppointment(command);
         }
 
-        public void Handle(DeleteDoctorCommand command)
+        public int Handle(DeleteDoctorCommand command)
         {
             throw new NotImplementedException();
         }
 
-        public void Handle(DeletePatientCommand command)
+        public int Handle(DeletePatientCommand command)
         {
             throw new NotImplementedException();
         }
