@@ -22,7 +22,7 @@ namespace AppointmentsData.Web.Application.Commands
 
         public int Handle(DeleteAppointmentCommand command)
         {
-            return _appointmentsRepository.DeleteAppointmentAsync(command.AppointmentId);
+            return _appointmentsRepository.DeleteAppointment(command.AppointmentId);
         }
     }
 }
