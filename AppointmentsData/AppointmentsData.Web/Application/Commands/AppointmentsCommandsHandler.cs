@@ -13,16 +13,16 @@ namespace AppointmentsData.Web.Application.Commands
             _appointmentsRepository = appointmentsRepository;
         }
 
-        public void Handle(AddAppointmentCommand command)
+        public int Handle(AddAppointmentCommand command)
         {
-            _appointmentsRepository.AddAppointmentAsync(new Appointment(0, command.DoctorId, command.PatientId,
+            return _appointmentsRepository.AddAppointmentAsync(new Appointment(0, command.DoctorId, command.PatientId,
                 command.DateOfAppointment,
                 command.Description));
         }
 
-        public void Handle(DeleteAppointmentCommand command)
+        public int Handle(DeleteAppointmentCommand command)
         {
-            _appointmentsRepository.DeleteAppointmentAsync(command.AppointmentId);
+            return _appointmentsRepository.DeleteAppointmentAsync(command.AppointmentId);
         }
     }
 }

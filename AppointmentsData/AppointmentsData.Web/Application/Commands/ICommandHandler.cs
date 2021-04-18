@@ -4,6 +4,6 @@
     //oznacza to, że jesli klasa będzie implementowala interfejs ICommandHandler<NazwaTypu> to będzie ona musiała implementować metodę Handle(NazwaTypu)
     public interface ICommandHandler<T> where T : ICommand
     {
-        void Handle(T command);
+        int Handle(T command);
     }
 }

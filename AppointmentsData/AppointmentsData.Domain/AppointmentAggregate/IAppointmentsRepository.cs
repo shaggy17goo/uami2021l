@@ -10,7 +10,7 @@ namespace AppointmentsData.Domain.PatientAggregate
         Task<IEnumerable<Appointment>> ListPatientAppointments(int patientId);
         Task<Appointment> GetAppointmentById(int appointmentId);
 
-        void AddAppointmentAsync(Appointment appointment);
-        void DeleteAppointmentAsync(int commandAppointmentId);
+        public int AddAppointmentAsync(Appointment appointment);
+        public int DeleteAppointmentAsync(int commandAppointmentId);
     }
 }
