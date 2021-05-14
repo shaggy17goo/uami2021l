@@ -38,7 +38,7 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <Grid x:Name="listPanel" Background="AliceBlue"  Grid.Row="0" Width="300">
+        <Grid x:Name="listPanel" Background="{ThemeResource SystemAltMediumColor}"  Grid.Row="0" Margin="-205,-20,-206,20">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
                 <RowDefinition Height="320" />
