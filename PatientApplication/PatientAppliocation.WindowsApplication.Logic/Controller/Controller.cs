@@ -34,5 +34,6 @@ namespace ZsutPw.Patterns.WindowsApplication.Controller
         }
 
         public IModel Model { get; }
+
     }
 }

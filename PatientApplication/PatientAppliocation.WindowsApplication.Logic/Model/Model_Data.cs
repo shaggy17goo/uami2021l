@@ -18,10 +18,10 @@ namespace ZsutPw.Patterns.WindowsApplication.Model
 {
     public partial class Model : IData
     {
-        private string searchText = "temp string";
+        private string searchText = "";
 
-        public PatientDto patientById;
-        public DoctorDto doctorById;
+        public List<PatientDto> patientById;
+        public List<DoctorDto> doctorById;
         
         private List<AppointmentWithNamesDto> appointmentsHistoryWithNamesDtoList = new List<AppointmentWithNamesDto>();
         private AppointmentWithNamesDto selectedAppointmentsHistoryWithNamesDtoDto;
@@ -48,7 +48,7 @@ namespace ZsutPw.Patterns.WindowsApplication.Model
             }
         }
         
-        public PatientDto PatientById
+        public List<PatientDto> PatientById
         {
             get => patientById;
             set
@@ -59,7 +59,7 @@ namespace ZsutPw.Patterns.WindowsApplication.Model
             }
         }
         
-        public DoctorDto DoctorById
+        public List<DoctorDto> DoctorById
         {
             get => doctorById;
             set
@@ -78,7 +78,7 @@ namespace ZsutPw.Patterns.WindowsApplication.Model
             {
                 appointmentsHistoryWithNamesDtoList = value;
 
-                RaisePropertyChanged("AppointmentWithNamesDtoList");
+                RaisePropertyChanged("AppointmentsHistoryWithNamesDtoList");
             }
         }
 

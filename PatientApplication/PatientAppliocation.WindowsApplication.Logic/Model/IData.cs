@@ -21,9 +21,9 @@ namespace ZsutPw.Patterns.WindowsApplication.Model
     {
         string SearchText { get; set; }
 
-        PatientDto PatientById{ get; }
+        List<PatientDto> PatientById{ get; }
         
-        DoctorDto DoctorById{ get; }
+        List<DoctorDto> DoctorById{ get; }
         
         List<AppointmentWithNamesDto> AppointmentsHistoryWithNamesDtoList { get; }
 

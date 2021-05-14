@@ -32,65 +32,21 @@
         </CommandBar>
     </Page.BottomAppBar>
 
-    <Grid x:Name="rootPanel" HorizontalAlignment="Center" VerticalAlignment="Center"
-          Background="{ThemeResource SystemAltMediumColor}"
-            Grid.Row="0"
-            Margin="-205,-20,-206,-020">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="430" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
+    <Grid>
+        <NavigationView x:Name="navView" Loaded="NavView_Loaded" SelectionChanged="NavView_SelectionChanged">
+            <NavigationView.MenuItems>
+                <NavigationViewItem Icon="Accept" Content= "List all doctors" Tag="page1"/>
+                <NavigationViewItem Icon="Account" Content= "Doctor by id" Tag="page2"/>
+                <NavigationViewItem Icon="Add" Content= "Patient by id" Tag="page3"/>
+                <NavigationViewItem Icon="AddFriend" Content= "Patient's appointments history" Tag="page4"/>
+                <NavigationViewItem Icon="AddFriend" Content= "Patient's future appointments" Tag="page5"/>
+            </NavigationView.MenuItems>
 
-        <Grid x:Name="listPanel" Background="{ThemeResource SystemAltMediumColor}"  Grid.Row="0" Margin="-205,-20,-206,-20">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
-                <RowDefinition Height="400" />
-            </Grid.RowDefinitions>
-
-            <StackPanel x:Name="examinationRoomDoctorPanel" Margin="4,0,4,4" Grid.RowSpan="3">
-                <TextBox Header="Patient id:" x:Name="searchTextBox" Text="{x:Bind Model.SearchText, Mode=TwoWay}" Margin="0,4,0,4" />
-                <ListView x:Name="examinationRoomDoctorDto" ItemsSource="{x:Bind Model.DoctorDtoList, Mode=OneWay}" ItemTemplate="{StaticResource ExaminationRoomDoctorDtoListViewTemplate}" SelectedItem="{x:Bind Model.SelectedDoctorDto, Mode=TwoWay}" Height="332" BorderThickness="1" BorderBrush="{ThemeResource SystemControlForegroundBaseMediumLowBrush}" />
-                <CommandBar x:Name="examinationRoomDoctorCommandBar" DefaultLabelPosition="Right" Background="Transparent" HorizontalAlignment="Left">
-                    <AppBarButton x:Name="doctorsDataButton" Icon="Filter" Label="doctors-data" Command="{x:Bind Controller.GetDoctorsCommand}" VerticalAlignment="Bottom" />
-                    <AppBarButton x:Name="doctorDataButton" Icon="Filter" Label="doctor-data" Command="{x:Bind Path=Controller.GetDoctorByIdCommand}" VerticalAlignment="Center" HorizontalAlignment="Center" />
-                    <AppBarButton x:Name="patientDataButton" Icon="Filter" Label="patient-data" Command="{x:Bind Path=Controller.GetPatientByIdCommand}" VerticalAlignment="Center" HorizontalAlignment="Center" />
-                    <AppBarButton x:Name="appointmentsHistoryButton" Icon="Filter" Label="appointments-history" Command="{x:Bind Path=Controller.GetAppointmentsHistoryCommand}" VerticalAlignment="Center" HorizontalAlignment="Center" />
-                    <AppBarButton x:Name="futureAppointmentsButton" Icon="Filter" Label="future-appointments" Command="{x:Bind Path=Controller.GetFutureAppointmentsCommand}" VerticalAlignment="Center" HorizontalAlignment="Center" />
-                </CommandBar>
-            </StackPanel>
-        </Grid>
-
-        <HyperlinkButton x:Name="zsutHyperlink" Content="ZSUT IT PW home page" NavigateUri="https://zsut.tele.pw.edu.pl/" Grid.Row="3" HorizontalAlignment="Center" />
-
-        <VisualStateManager.VisualStateGroups>
-            <VisualStateGroup x:Name="ApplicationViewStates">
-                <VisualState x:Name="map">
-                    <Storyboard>
-                        <DoubleAnimation Storyboard.TargetName="listPanel" Storyboard.TargetProperty="Opacity" To="0.0" Duration="0:0:2.0" />
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="listPanel" Storyboard.TargetProperty="Visibility">
-                            <DiscreteObjectKeyFrame KeyTime="0:0:2.0" Value="Collapsed"/>
-                        </ObjectAnimationUsingKeyFrames>
-                    </Storyboard>
-                </VisualState>
-
-                <VisualState x:Name="list">
-                    <Storyboard>
-                        <DoubleAnimation Storyboard.TargetName="listPanel" Storyboard.TargetProperty="Opacity" To="1.0" Duration="0:0:2.0" />
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="listPanel" Storyboard.TargetProperty="Visibility">
-                            <DiscreteObjectKeyFrame KeyTime="0" Value="Visible"/>
-                        </ObjectAnimationUsingKeyFrames>
-                    </Storyboard>
-                </VisualState>
-            </VisualStateGroup>
-        </VisualStateManager.VisualStateGroups>
-
-        <i:Interaction.Behaviors>
-            <icore:DataTriggerBehavior Binding="{Binding CurrentState, Mode=OneWay, Converter={StaticResource ApplicationStateConverter}}" ComparisonCondition="Equal" Value="Map">
-                <icore:GoToStateAction StateName="map" />
-            </icore:DataTriggerBehavior>
-            <icore:DataTriggerBehavior Binding="{Binding CurrentState, Mode=OneWay, Converter={StaticResource ApplicationStateConverter}}" ComparisonCondition="Equal" Value="List">
-                <icore:GoToStateAction StateName="list" />
-            </icore:DataTriggerBehavior>
-        </i:Interaction.Behaviors>
+            <ScrollViewer>
+                <Frame x:Name="ContentFrame"/>
+            </ScrollViewer>
+        </NavigationView>
     </Grid>
+    
+
 </Page>

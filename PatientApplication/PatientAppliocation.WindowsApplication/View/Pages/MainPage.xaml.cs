@@ -34,8 +34,9 @@ namespace ZsutPw.Patterns.WindowsApplication.View
   using ZsutPw.Patterns.WindowsApplication.Controller;
   using ZsutPw.Patterns.WindowsApplication.Model;
   using ZsutPw.Patterns.WindowsApplication.Utilities;
+  using ZsutPwPatterns.WindowsApplication.View.Pages;
 
-  public sealed partial class MainPage : Page
+    public sealed partial class MainPage : Page
   {
     public IData Model { get; private set; }
 
@@ -53,5 +54,40 @@ namespace ZsutPw.Patterns.WindowsApplication.View
 
       this.DataContext = this.Controller;
     }
+
+        private void NavView_Loaded(object sender, RoutedEventArgs e)
+        {
+            ContentFrame.Navigate(typeof(DoctorsDataPage));
+        }
+        
+        private void NavView_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
+        {
+            if (args.IsSettingsSelected)
+            {
+
+            }
+            else
+            {
+                NavigationViewItem item = args.SelectedItem as NavigationViewItem;
+                switch (item.Tag.ToString())
+                {
+                    case "page1":
+                        ContentFrame.Navigate(typeof(DoctorsDataPage));
+                        break;
+                    case "page2":
+                        ContentFrame.Navigate(typeof(DoctorDataPage));
+                        break;
+                    case "page3":
+                        ContentFrame.Navigate(typeof(PatientDataPage));
+                        break;
+                    case "page4":
+                        ContentFrame.Navigate(typeof(AppointmentsHistoryPage));
+                        break;
+                    case "page5":
+                        ContentFrame.Navigate(typeof(FutureAppointmentsPage));
+                        break;
+                }
+            }
+        }
     }
 }

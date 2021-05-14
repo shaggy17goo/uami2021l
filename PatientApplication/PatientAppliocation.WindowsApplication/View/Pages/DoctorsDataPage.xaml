@@ -1,0 +1,60 @@
+﻿<Page
+    x:Class="ZsutPwPatterns.WindowsApplication.View.Pages.DoctorsDataPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:ZsutPwPatterns.WindowsApplication.View.Pages"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    xmlns:i="using:Microsoft.Xaml.Interactivity"
+    xmlns:icore="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:model="using:ZsutPw.Patterns.WindowsApplication.Model"
+    xmlns:view="using:ZsutPw.Patterns.WindowsApplication.View"
+    xmlns:controller="using:ZsutPw.Patterns.WindowsApplication.Controller"
+    xmlns:converters="using:ZsutPw.Patterns.WindowsApplication.View"
+    xmlns:dto="using:ZsutPw.Patterns.WindowsApplication.Dto"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Page.Resources>
+        <controller:ApplicationStateConverter x:Key="ApplicationStateConverter" />
+        <converters:DoctorDtoConverter x:Key="ExaminationRoomDoctorDtoConverter" />
+
+        <DataTemplate x:Key="ExaminationRoomDoctorDtoListViewTemplate" x:DataType="dto:DoctorDto">
+            <TextBlock Text="{x:Bind Mode=OneTime, Converter={StaticResource ExaminationRoomDoctorDtoConverter}}" />
+        </DataTemplate>
+    </Page.Resources>
+
+    <Page.BottomAppBar>
+        <CommandBar IsOpen="True" IsSticky="False" Visibility="Visible">
+            <CommandBar.SecondaryCommands>
+                <AppBarButton Icon="Setting" Label="Settings" IsEnabled="False" />
+                <AppBarButton Icon="Help" Label="Help" />
+            </CommandBar.SecondaryCommands>
+        </CommandBar>
+    </Page.BottomAppBar>
+
+    <Grid x:Name="rootPanel" HorizontalAlignment="Center" VerticalAlignment="Center"
+          Background="{ThemeResource SystemAltMediumColor}"
+            Grid.Row="0"
+            Margin="-205,-20,-206,-020">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="430" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Grid x:Name="listPanel" Background="{ThemeResource SystemAltMediumColor}"  Grid.Row="0" Margin="-205,-20,-206,-20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="400" />
+            </Grid.RowDefinitions>
+
+            <StackPanel x:Name="examinationRoomDoctorPanel" Margin="4,0,4,4" Grid.RowSpan="3">
+                <CommandBar x:Name="examinationRoomDoctorCommandBar" DefaultLabelPosition="Right" Background="Transparent" HorizontalAlignment="Left">
+                    <AppBarButton x:Name="doctorsDataButton" Icon="Filter" Label="Download doctors data" Command="{x:Bind Controller.GetDoctorsCommand}" VerticalAlignment="Bottom" />
+                </CommandBar>
+                <ListView x:Name="examinationRoomDoctorDto" ItemsSource="{x:Bind Model.DoctorDtoList, Mode=OneWay}" ItemTemplate="{StaticResource ExaminationRoomDoctorDtoListViewTemplate}" SelectedItem="{x:Bind Model.SelectedDoctorDto, Mode=TwoWay}" Height="332" BorderThickness="1" BorderBrush="{ThemeResource SystemControlForegroundBaseMediumLowBrush}" />
+
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Page>

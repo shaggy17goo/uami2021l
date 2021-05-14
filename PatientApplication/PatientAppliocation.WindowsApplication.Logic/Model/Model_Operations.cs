@@ -15,6 +15,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ZsutPw.Patterns.WindowsApplication.Dto;
 
 namespace ZsutPw.Patterns.WindowsApplication.Model
 {
@@ -69,8 +70,8 @@ namespace ZsutPw.Patterns.WindowsApplication.Model
             try
             {
                 var doctor = networkClient.GetDoctorById(SearchText);
-
-                DoctorById = doctor;
+                List<DoctorDto> temp = new List<DoctorDto>{doctor};
+                DoctorById = temp;
             }
             catch (Exception)
             {
@@ -84,8 +85,8 @@ namespace ZsutPw.Patterns.WindowsApplication.Model
             try
             {
                 var patient = networkClient.GetPatientById(SearchText);
-
-                PatientById = patient;
+                List<PatientDto> temp = new List<PatientDto>{patient};
+                PatientById = temp;
             }
             catch (Exception)
             {
