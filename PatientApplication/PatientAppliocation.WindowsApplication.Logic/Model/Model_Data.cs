@@ -18,7 +18,7 @@ namespace ZsutPw.Patterns.WindowsApplication.Model
 {
     public partial class Model : IData
     {
-        private string searchText;
+        private string searchText = "temp string";
 
         public PatientDto patientById;
         public DoctorDto doctorById;

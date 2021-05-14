@@ -53,5 +53,5 @@ namespace ZsutPw.Patterns.WindowsApplication.View
 
       this.DataContext = this.Controller;
     }
-  }
+    }
 }

@@ -32,28 +32,35 @@
         </CommandBar>
     </Page.BottomAppBar>
 
-    <Grid x:Name="rootPanel" HorizontalAlignment="Center" VerticalAlignment="Center">
+    <Grid x:Name="rootPanel" HorizontalAlignment="Center" VerticalAlignment="Center"
+          Background="{ThemeResource SystemAltMediumColor}"
+            Grid.Row="0"
+            Margin="-205,-20,-206,-020">
         <Grid.RowDefinitions>
-            <RowDefinition Height="400" />
+            <RowDefinition Height="430" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <Grid x:Name="listPanel" Background="{ThemeResource SystemAltMediumColor}"  Grid.Row="0" Margin="-205,-20,-206,20">
+        <Grid x:Name="listPanel" Background="{ThemeResource SystemAltMediumColor}"  Grid.Row="0" Margin="-205,-20,-206,-20">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
-                <RowDefinition Height="320" />
+                <RowDefinition Height="400" />
             </Grid.RowDefinitions>
 
-            <StackPanel x:Name="examinationRoomDoctorPanel" Margin="4,0,4,4" Grid.RowSpan="2">
-                <TextBlock x:Name="examinationRoomDoctorText" Text="ExaminationRoomDoctor" Margin="0,4,0,4" />
+            <StackPanel x:Name="examinationRoomDoctorPanel" Margin="4,0,4,4" Grid.RowSpan="3">
+                <TextBox Header="Patient id:" x:Name="searchTextBox" Text="{x:Bind Model.SearchText, Mode=TwoWay}" Margin="0,4,0,4" />
                 <ListView x:Name="examinationRoomDoctorDto" ItemsSource="{x:Bind Model.DoctorDtoList, Mode=OneWay}" ItemTemplate="{StaticResource ExaminationRoomDoctorDtoListViewTemplate}" SelectedItem="{x:Bind Model.SelectedDoctorDto, Mode=TwoWay}" Height="332" BorderThickness="1" BorderBrush="{ThemeResource SystemControlForegroundBaseMediumLowBrush}" />
                 <CommandBar x:Name="examinationRoomDoctorCommandBar" DefaultLabelPosition="Right" Background="Transparent" HorizontalAlignment="Left">
-                    <AppBarButton x:Name="searchButton" Icon="Filter" Label="Load" Command="{x:Bind Controller.GetDoctorsCommand}" VerticalAlignment="Bottom" />
+                    <AppBarButton x:Name="doctorsDataButton" Icon="Filter" Label="doctors-data" Command="{x:Bind Controller.GetDoctorsCommand}" VerticalAlignment="Bottom" />
+                    <AppBarButton x:Name="doctorDataButton" Icon="Filter" Label="doctor-data" Command="{x:Bind Path=Controller.GetDoctorByIdCommand}" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                    <AppBarButton x:Name="patientDataButton" Icon="Filter" Label="patient-data" Command="{x:Bind Path=Controller.GetPatientByIdCommand}" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                    <AppBarButton x:Name="appointmentsHistoryButton" Icon="Filter" Label="appointments-history" Command="{x:Bind Path=Controller.GetAppointmentsHistoryCommand}" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                    <AppBarButton x:Name="futureAppointmentsButton" Icon="Filter" Label="future-appointments" Command="{x:Bind Path=Controller.GetFutureAppointmentsCommand}" VerticalAlignment="Center" HorizontalAlignment="Center" />
                 </CommandBar>
             </StackPanel>
         </Grid>
 
-        <HyperlinkButton x:Name="zsutHyperlink" Content="ZSUT IT PW home page" NavigateUri="https://zsut.tele.pw.edu.pl/" Grid.Row="1" HorizontalAlignment="Center" />
+        <HyperlinkButton x:Name="zsutHyperlink" Content="ZSUT IT PW home page" NavigateUri="https://zsut.tele.pw.edu.pl/" Grid.Row="3" HorizontalAlignment="Center" />
 
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup x:Name="ApplicationViewStates">
