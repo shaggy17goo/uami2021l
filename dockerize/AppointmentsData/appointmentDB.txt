@@ -1,0 +1,28 @@
+
+-- Create sequences section -------------------------------------------------
+
+CREATE SEQUENCE [appointmentIdSeq] AS bigint
+ START WITH 1
+ INCREMENT BY 1
+ NO MINVALUE
+ NO MAXVALUE
+go
+
+-- Create tables section -------------------------------------------------
+
+-- Table appointments
+
+CREATE TABLE [appointments]
+(
+ [appointmentId] Int NOT NULL,
+ [doctorId] Int NOT NULL,
+ [patientId] Int NOT NULL,
+ [dateOfAppointment] Datetime2 NOT NULL,
+ [description] Nvarchar(max) NOT NULL
+)
+go
+
+-- Add keys for table appointments
+
+ALTER TABLE [appointments] ADD CONSTRAINT [PK_appointments] PRIMARY KEY ([appointmentId])
+go

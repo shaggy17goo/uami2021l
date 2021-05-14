@@ -1,0 +1,65 @@
+version: "3.9"
+
+networks:
+  int_network:
+
+services:
+  patients_data:
+    image: shaggy17goo/uaim:patients_data
+    ports:
+      - "8081:80"
+    networks:
+      - int_network
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+  appointments_data:
+    image: shaggy17goo/uaim:appointments_data
+    ports:
+      - "8082:80"
+    networks:
+      - int_network
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+  doctors_data:
+    image: shaggy17goo/uaim:doctors_data
+    ports:
+      - "8083:80"
+    networks:
+      - int_network
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+  patient_microservice:
+    image: shaggy17goo/uaim:patient_microservice
+    ports:
+      - "8084:80"
+    networks:
+      - int_network
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: any
+    depends_on:
+      - patients_data
+      - appointments_data
+      - doctors_data
+  doctor_microservice:
+    image: shaggy17goo/uaim:doctor_microservice
+    ports:
+      - "8085:80"
+    networks:
+      - int_network
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: any
+    depends_on:
+      - patients_data
+      - appointments_data
+      - doctors_data
+
