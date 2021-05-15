@@ -18,11 +18,11 @@ namespace ZsutPw.Patterns.WindowsApplication.Model
   using System.Diagnostics;
   using System.Linq;
   using System.Threading.Tasks;
-  using ZsutPwPatterns.WindowsApplication.Logic.Model.Data;
+  using ZsutPw.Patterns.WindowsApplication.Model.Data;
 
     public interface INetwork
   {
-    AppointmentsWithPatientNameDto[ ] GetAppointmentsByDoctorId( string doctorId );
+    AppointmentsWithPatientNameDto[] GetAppointmentsByDoctorId( string doctorId );
     AppointmentsWithPatientNameDto[] GetAppointmentsByDoctorIdAndData(string doctorId, string data);
     PatientsShortDto[] GetPatientsByDoctorId(string doctorId);
     PatientDto GetPatientById(string patientId);

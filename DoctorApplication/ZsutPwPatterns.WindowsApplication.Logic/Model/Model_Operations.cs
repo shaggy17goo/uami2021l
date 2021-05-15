@@ -18,7 +18,7 @@ namespace ZsutPw.Patterns.WindowsApplication.Model
   using System.Linq;
   using System.Text;
   using System.Threading.Tasks;
-
+    using ZsutPw.Patterns.WindowsApplication.Model.Data;
   public partial class Model : IOperations
   {
     public void LoadAppointmentsByDoctorId()
@@ -43,9 +43,9 @@ namespace ZsutPw.Patterns.WindowsApplication.Model
 
             try
             {
-                var appointments = networkClient.GetAppointmentsByDoctorId(searchText);
+                var appointments = networkClient.GetAppointmentsByDoctorId(SearchText);
 
-                appointmentsByDoctorId = appointments.ToList();
+                AppointmentsByDoctorId = appointments.ToList();
             }
             catch (Exception)
             {
@@ -57,9 +57,9 @@ namespace ZsutPw.Patterns.WindowsApplication.Model
 
             try
             {
-                var appointments = networkClient.GetAppointmentsByDoctorIdAndData(searchText, searchText);
+                var appointments = networkClient.GetAppointmentsByDoctorIdAndData(SearchText, VisitDate);
 
-                appointmentsByDoctorIdAndData = appointments.ToList();
+                AppointmentsByDoctorIdAndData = appointments.ToList();
             }
             catch (Exception)
             {
@@ -71,12 +71,14 @@ namespace ZsutPw.Patterns.WindowsApplication.Model
 
             try
             {
-                var patients = networkClient.GetPatientsByDoctorId(searchText);
+                var patients = networkClient.GetPatientsByDoctorId(SearchText);
 
-                patientsByDoctorId = patients.ToList();
+                PatientsByDoctorId = patients.ToList();
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                string ExceptionMess = e.Message;
+
             }
         }
     private void LoadPatientByIdTask()
@@ -85,9 +87,9 @@ namespace ZsutPw.Patterns.WindowsApplication.Model
 
             try
             {
-                var patient = networkClient.GetPatientById(searchText);
+                var patient = networkClient.GetPatientById(SearchText);
 
-                patientById = patient;
+                PatientById = patient;
             }
             catch (Exception)
             {

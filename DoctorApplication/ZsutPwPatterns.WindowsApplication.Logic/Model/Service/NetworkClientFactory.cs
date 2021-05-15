@@ -24,10 +24,10 @@ namespace ZsutPw.Patterns.WindowsApplication.Model
     public static INetwork GetNetworkClient( )
     {
 
-      const string serviceHost = "localhost";
-      const int servicePort = 44394;
+            const string serviceHost = "localhost";
+            const int servicePort = 44394;
 
-      return new NetworkClient( serviceHost, servicePort );
+            return new NetworkClient( serviceHost, servicePort );
 
     }
   }

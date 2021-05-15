@@ -32,7 +32,11 @@ namespace ZsutPw.Patterns.WindowsApplication.Controller
 
       this.SearchNodesCommand = new ControllerCommand( this.SearchNodes );
 
-      this.ShowListCommand = new ControllerCommand( this.ShowList );
+     this.GetAppointmentsByDoctorIdCommand = new ControllerCommand(this.GetAppointmentsByDoctorId);
+
+     this.GetPatientsByDoctorIdCommand = new ControllerCommand(this.GetPatientsByDoctorId);
+
+     this.ShowListCommand = new ControllerCommand( this.ShowList );
 
       this.ShowMapCommand = new ControllerCommand( this.ShowMap );
     }

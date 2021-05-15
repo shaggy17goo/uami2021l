@@ -1,5 +1,5 @@
 ﻿
-namespace ZsutPwPatterns.WindowsApplication.Logic.Model.Data
+namespace ZsutPw.Patterns.WindowsApplication.Model
 {
     using System;
 
@@ -8,9 +8,9 @@ namespace ZsutPwPatterns.WindowsApplication.Logic.Model.Data
         public int AppointmentId { get; set; }
         public int DoctorId { get; set; }
         public int PatientId { get; set; }
-        public DateTime DateOfAppointment { get; set; }
+        public string DateOfAppointment { get; set; }
         public string Description { get; set; }
-        public AppointmentDto(int appointmentId, int doctorId, int patientId, DateTime dateOfAppointment, string description)
+        public AppointmentDto(int appointmentId, int doctorId, int patientId, string dateOfAppointment, string description)
         {
             AppointmentId = appointmentId;
             DoctorId = doctorId;

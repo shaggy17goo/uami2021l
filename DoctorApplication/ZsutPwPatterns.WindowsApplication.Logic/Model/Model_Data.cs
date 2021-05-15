@@ -18,7 +18,7 @@ namespace ZsutPw.Patterns.WindowsApplication.Model
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
-    using ZsutPwPatterns.WindowsApplication.Logic.Model.Data;
+    using ZsutPw.Patterns.WindowsApplication.Model.Data;
 
     public partial class Model : IData
     {
@@ -32,19 +32,43 @@ namespace ZsutPw.Patterns.WindowsApplication.Model
                 this.RaisePropertyChanged("SearchText");
             }
         }
-        private string searchText;
+        public string VisitDate
+        {
+            get { return this.visitDate; }
+            set
+            {
+                this.visitDate = value;
+
+                this.RaisePropertyChanged("visitDate");
+            }
+        }
+
+        private string searchText ="";
+        private string visitDate;
         private List<AppointmentsWithPatientNameDto> appointmentsByDoctorId = new List<AppointmentsWithPatientNameDto>();
+        private AppointmentsWithPatientNameDto selectedAppoitment;
         private List<AppointmentsWithPatientNameDto> appointmentsByDoctorIdAndData = new List<AppointmentsWithPatientNameDto>();
         private List<PatientsShortDto> patientsByDoctorId = new List<PatientsShortDto>();
         private PatientDto patientById;
+        private PatientsShortDto selectedPatientsByDoctorId;
         public List<AppointmentsWithPatientNameDto> AppointmentsByDoctorId
         {
             get { return appointmentsByDoctorId; }
-            set
+           private set
             {
                 appointmentsByDoctorId = value;
 
                 RaisePropertyChanged("AppointmentsByDoctorId");
+            }
+        }
+        public AppointmentsWithPatientNameDto SelectedAppointment
+        {
+            get { return selectedAppoitment; }
+            set
+            {
+                selectedAppoitment = value;
+
+                RaisePropertyChanged("SelectedAppointment");
             }
         }
         public List<AppointmentsWithPatientNameDto> AppointmentsByDoctorIdAndData 
@@ -76,6 +100,16 @@ namespace ZsutPw.Patterns.WindowsApplication.Model
 
                 RaisePropertyChanged("PatientById");
             }
+        }
+        public PatientsShortDto SelectedPatientsByDoctorId
+        {
+            get { return selectedPatientsByDoctorId; }
+            set
+            {
+                 selectedPatientsByDoctorId = value;
+
+                RaisePropertyChanged("SelectedPatientsByDoctorId");
+}
         }
 
     }

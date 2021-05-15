@@ -20,7 +20,7 @@ namespace ZsutPw.Patterns.WindowsApplication.Model
     using System.Threading.Tasks;
 
     using System.Net.Http;
-    using ZsutPwPatterns.WindowsApplication.Logic.Model.Data;
+    using ZsutPw.Patterns.WindowsApplication.Model.Data;
 
     public class NetworkClient : INetwork
     {
@@ -37,7 +37,7 @@ namespace ZsutPw.Patterns.WindowsApplication.Model
         {
             string callUri = String.Format("appointmentsByDoctorId?doctorId={0}", doctorId);
 
-            AppointmentsWithPatientNameDto[] appointments = serviceClient.CallWebService<AppointmentsWithPatientNameDto[]>(HttpMethod.Get, callUri);
+            AppointmentsWithPatientNameDto[] appointments = serviceClient.CallWebService<AppointmentsWithPatientNameDto[ ]>(HttpMethod.Get, callUri);
 
             return appointments;
         }

@@ -37,16 +37,30 @@ namespace ZsutPw.Patterns.WindowsApplication.Controller
 
     public ICommand SearchNodesCommand { get; private set; }
 
+    public ICommand GetAppointmentsByDoctorIdCommand { get; private set; }
+
+    public ICommand GetPatientsByDoctorIdCommand { get; private set; }
+
     public ICommand ShowListCommand { get; private set; }
 
     public ICommand ShowMapCommand { get; private set; }
 
     private void SearchNodes( )
     {
-      this.Model.LoadAppointmentsByDoctorId( );
+      this.Model.LoadAppointmentsByDoctorId();
     }
 
-    private void ShowList( )
+    private void GetAppointmentsByDoctorId()
+    {
+        this.Model.LoadAppointmentsByDoctorId();
+    }
+
+    private void GetPatientsByDoctorId()
+        {
+            this.Model.LoadPatientsByDoctorId();
+        }
+
+        private void ShowList( )
     {
       switch( this.CurrentState )
       {

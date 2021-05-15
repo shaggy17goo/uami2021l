@@ -1,4 +1,4 @@
-﻿namespace ZsutPwPatterns.WindowsApplication.Logic.Model.Data
+﻿namespace ZsutPw.Patterns.WindowsApplication.Model
 {
     using System;
 

@@ -20,14 +20,16 @@ namespace ZsutPw.Patterns.WindowsApplication.Model
   using System.Threading.Tasks;
 
   using System.ComponentModel;
-    using ZsutPwPatterns.WindowsApplication.Logic.Model.Data;
+    using ZsutPw.Patterns.WindowsApplication.Model.Data;
 
     public interface IData : INotifyPropertyChanged
   {
     string SearchText { get; set; }
     PatientDto PatientById { get; }
     List<PatientsShortDto> PatientsByDoctorId { get; }
+    PatientsShortDto SelectedPatientsByDoctorId { get; set; }
     List<AppointmentsWithPatientNameDto> AppointmentsByDoctorIdAndData { get; }
+    AppointmentsWithPatientNameDto SelectedAppointment { get; set; }
     List<AppointmentsWithPatientNameDto> AppointmentsByDoctorId { get; }
   }
 }

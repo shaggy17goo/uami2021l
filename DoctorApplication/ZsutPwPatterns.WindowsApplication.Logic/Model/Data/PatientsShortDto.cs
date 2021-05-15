@@ -1,4 +1,4 @@
-﻿namespace ZsutPwPatterns.WindowsApplication.Logic.Model.Data
+﻿namespace ZsutPw.Patterns.WindowsApplication.Model.Data
 {
     using System;
 
@@ -21,15 +21,7 @@
             BirthDate = birthDate;
         }
 
-        public PatientsShortDto(PatientDto patientDto)
-        {
-            PatientId = patientDto.PatientId;
-            Pesel = patientDto.Pesel;
-            Name = patientDto.Name;
-            Surname = patientDto.Surname;
-            Sex = patientDto.Sex;
-            BirthDate = patientDto.BirthDate;
-        }
+ 
 
 
     }

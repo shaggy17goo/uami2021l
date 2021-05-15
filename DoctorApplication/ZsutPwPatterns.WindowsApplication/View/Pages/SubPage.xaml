@@ -10,13 +10,89 @@
     xmlns:model="using:ZsutPw.Patterns.WindowsApplication.Model"
     xmlns:view="using:ZsutPw.Patterns.WindowsApplication.View"
     xmlns:controller="using:ZsutPw.Patterns.WindowsApplication.Controller"
+    xmlns:converter="using:ZsutPw.Patterns.WindowsApplication.View.Converters"
+    xmlns:data="using:ZsutPw.Patterns.WindowsApplication.Model.Data"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid x:Name="root" HorizontalAlignment="Center" VerticalAlignment="Center" Height="979" RenderTransformOrigin="0.5,0.5" Width="1508">
+    <Page.Resources>
+        <controller:ApplicationStateConverter x:Key="ApplicationStateConverter" />
+        <converter:PatientDtoConverter x:Key="PatientDtoConverter" />
 
-        <Grid x:Name="grid" Background="Black"/>
-        <HyperlinkButton x:Name="button" Click="HyperlinkButton_Click"
-    Content="Return to Main Page" Width="165" Foreground="White" 
-    Background="Transparent" Height="115" HorizontalAlignment="Center"/>
+        <DataTemplate x:Key="PatientsViewTemplate" x:DataType="data:PatientsShortDto">
+            <TextBlock Text="{x:Bind Mode=OneTime, Converter={StaticResource PatientDtoConverter}}" />
+        </DataTemplate>
+    </Page.Resources>
+
+    <Page.BottomAppBar>
+        <CommandBar IsOpen="True" IsSticky="False" Visibility="Visible">
+            <AppBarButton Icon="List" Label="List" Command="{x:Bind Controller.ShowListCommand}" />
+            <AppBarButton Icon="Map" Label="Map" Command="{x:Bind Controller.ShowMapCommand}" />
+            <CommandBar.SecondaryCommands>
+                <AppBarButton Icon="Setting" Label="Settings" IsEnabled="False" />
+                <AppBarButton Icon="Help" Label="Help" />
+            </CommandBar.SecondaryCommands>
+        </CommandBar>
+    </Page.BottomAppBar>
+
+    <Grid x:Name="rootPanel" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="400" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Grid x:Name="listPanel" Background="Gray"  Grid.Row="0" Width="300">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="320" />
+            </Grid.RowDefinitions>
+
+            <StackPanel x:Name="nodeSearchPanel" Grid.Row="0" Orientation="Horizontal" Margin="4">
+                <TextBox x:Name="searchText" Header="Text to search:" Text="{x:Bind Model.SearchText, Mode=TwoWay}" Width="200" VerticalAlignment="Bottom" />
+                <AppBarButton x:Name="searchButton" Icon="Filter" Label="Search" Command="{x:Bind Controller.GetPatientsByDoctorIdCommand}" VerticalAlignment="Bottom" />
+            </StackPanel>
+
+            <StackPanel x:Name="nodePanel" Grid.Row="1" Margin="4">
+                <TextBlock x:Name="nodeText" Text="Nodes" Margin="0,4,0,4" />
+                <ListView x:Name="nodeList" ItemsSource="{x:Bind Model.PatientsByDoctorId, Mode=OneWay}" ItemTemplate="{StaticResource PatientsViewTemplate}" SelectedItem="{x:Bind Model.SelectedPatientsByDoctorId, Mode=TwoWay}" Height="240" BorderThickness="1" BorderBrush="{ThemeResource SystemControlForegroundBaseMediumLowBrush}" />
+                <CommandBar x:Name="nodeCommandBar" DefaultLabelPosition="Right" Background="Transparent" HorizontalAlignment="Left">
+                    <AppBarButton Icon="Add" Label="Add" />
+                    <AppBarButton Icon="View" Label="View" />
+                    <AppBarButton Icon="Edit" Label="Edit" />
+                </CommandBar>
+            </StackPanel>
+        </Grid>
+
+        <HyperlinkButton x:Name="zsutHyperlink" Content="ZSUT IT PW home page" NavigateUri="https://zsut.tele.pw.edu.pl/" Grid.Row="1" HorizontalAlignment="Center" />
+
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="ApplicationViewStates">
+                <VisualState x:Name="map">
+                    <Storyboard>
+                        <DoubleAnimation Storyboard.TargetName="listPanel" Storyboard.TargetProperty="Opacity" To="0.0" Duration="0:0:2.0" />
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="listPanel" Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0:0:2.0" Value="Collapsed"/>
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+
+                <VisualState x:Name="list">
+                    <Storyboard>
+                        <DoubleAnimation Storyboard.TargetName="listPanel" Storyboard.TargetProperty="Opacity" To="1.0" Duration="0:0:2.0" />
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="listPanel" Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="Visible"/>
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+
+        <i:Interaction.Behaviors>
+            <icore:DataTriggerBehavior Binding="{Binding CurrentState, Mode=OneWay, Converter={StaticResource ApplicationStateConverter}}" ComparisonCondition="Equal" Value="Map">
+                <icore:GoToStateAction StateName="map" />
+            </icore:DataTriggerBehavior>
+            <icore:DataTriggerBehavior Binding="{Binding CurrentState, Mode=OneWay, Converter={StaticResource ApplicationStateConverter}}" ComparisonCondition="Equal" Value="List">
+                <icore:GoToStateAction StateName="list" />
+            </icore:DataTriggerBehavior>
+        </i:Interaction.Behaviors>
     </Grid>
 </Page>

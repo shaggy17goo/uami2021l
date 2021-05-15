@@ -34,8 +34,10 @@ namespace ZsutPw.Patterns.WindowsApplication.View
   using ZsutPw.Patterns.WindowsApplication.Controller;
   using ZsutPw.Patterns.WindowsApplication.Model;
   using ZsutPw.Patterns.WindowsApplication.Utilities;
+  using ZsutPw.Patterns.WindowsApplication.View.Converters;
 
-  public sealed partial class MainPage : Page
+
+    public sealed partial class MainPage : Page
   {
     public IData Model { get; private set; }
 
@@ -56,7 +58,7 @@ namespace ZsutPw.Patterns.WindowsApplication.View
 
         private void zsutHyperlink_Click(object sender, RoutedEventArgs e)
         {
-
+            this.Frame.Navigate(typeof(SubPage));
         }
 
         private void HyperlinkButton_Click(object sender, RoutedEventArgs e)
