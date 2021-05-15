@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Source>C:\Users\michal\Desktop\uami2021l_projekt\PatientApplication\PatientAppliocation.WindowsApplication\View\Pages\Assets\Square44x44Logo.scale-200.png</Source>
+    <SmallTileSource>C:\Users\michal\Desktop\uami2021l_projekt\PatientApplication\PatientAppliocation.WindowsApplication\View\Pages\Assets\Square44x44Logo.scale-200.png</SmallTileSource>
+    <MediumTileSource>C:\Users\michal\Desktop\uami2021l_projekt\PatientApplication\PatientAppliocation.WindowsApplication\View\Pages\Assets\Square44x44Logo.scale-200.png</MediumTileSource>
+    <WideTileSource>C:\Users\michal\Desktop\uami2021l_projekt\PatientApplication\PatientAppliocation.WindowsApplication\View\Pages\Assets\Square44x44Logo.scale-200.png</WideTileSource>
+    <LargeTileSource>C:\Users\michal\Desktop\uami2021l_projekt\PatientApplication\PatientAppliocation.WindowsApplication\View\Pages\Assets\Square44x44Logo.scale-200.png</LargeTileSource>
+    <AppIconSource>C:\Users\michal\Desktop\uami2021l_projekt\PatientApplication\PatientAppliocation.WindowsApplication\View\Pages\Assets\Square44x44Logo.scale-200.png</AppIconSource>
+    <SplashScreenSource>C:\Users\michal\Desktop\uami2021l_projekt\PatientApplication\PatientAppliocation.WindowsApplication\View\Pages\Assets\Square44x44Logo.scale-200.png</SplashScreenSource>
+    <PackageLogoSource>C:\Users\michal\Desktop\uami2021l_projekt\PatientApplication\PatientAppliocation.WindowsApplication\View\Pages\Assets\Square44x44Logo.scale-200.png</PackageLogoSource>
+  </PropertyGroup>
+</Project>

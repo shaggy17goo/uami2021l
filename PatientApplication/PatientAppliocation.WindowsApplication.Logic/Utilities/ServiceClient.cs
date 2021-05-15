@@ -48,7 +48,7 @@ namespace ZsutPw.Patterns.WindowsApplication.Model
         
         public async Task<string> CallWebService(HttpMethod httpMethod, string callUri)
         {
-            var httpUri = string.Format("https://{0}:{1}/{2}", serviceHost, servicePort, callUri);
+            var httpUri = string.Format("http://{0}:{1}/{2}", serviceHost, servicePort, callUri);
 
             var httpRequestMessage = new HttpRequestMessage(httpMethod, httpUri);
 
