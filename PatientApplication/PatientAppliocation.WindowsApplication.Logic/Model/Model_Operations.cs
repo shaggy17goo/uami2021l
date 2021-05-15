@@ -125,5 +125,3 @@ namespace ZsutPw.Patterns.WindowsApplication.Model
 
     }
 }
-
-

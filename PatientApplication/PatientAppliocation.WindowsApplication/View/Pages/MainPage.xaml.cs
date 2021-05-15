@@ -46,7 +46,7 @@ namespace ZsutPw.Patterns.WindowsApplication.View
     {
       this.InitializeComponent();
 
-      IEventDispatcher dispatcher = new EventDispatcher( ) as IEventDispatcher;
+      var dispatcher = new EventDispatcher( ) as IEventDispatcher;
 
       this.Controller = ControllerFactory.GetController( dispatcher );
 

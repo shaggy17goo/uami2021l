@@ -13,5 +13,18 @@
         public string city { get; set; }
         public string street { get; set; }
         public string houseNr { get; set; }
+        
+        public PatientDto(string name, string surname)
+        {
+            this.patientId = 0;
+            this.PESEL = "9372509327502";
+            this.name = name;
+            this.surname = surname;
+            this.sex = "M";
+            this.birthDate = DateTime.Now;
+            this.city = "city";
+            this.street = "street";
+            this.houseNr = "houseNr";
+        }
     }
 }
