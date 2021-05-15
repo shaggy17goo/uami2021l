@@ -259,9 +259,9 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\PatientAppliocation.WindowsApplication.Logic\PatientWindowsApp.WindowsApplication.Logic.csproj">
-      <Project>{afd063cd-787d-445e-87bd-295d5f0f7fa6}</Project>
-      <Name>PatientWindowsApp.WindowsApplication.Logic</Name>
+    <ProjectReference Include="..\PatientAppliocation.WindowsApplication.Logic\PatientAppliocation.WindowsApplication.Logic.csproj">
+      <Project>{7d6c9ef9-8ab7-434f-a38a-3321a7753472}</Project>
+      <Name>PatientAppliocation.WindowsApplication.Logic</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
