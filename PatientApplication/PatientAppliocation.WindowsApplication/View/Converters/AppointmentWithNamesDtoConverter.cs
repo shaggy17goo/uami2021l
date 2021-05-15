@@ -16,7 +16,7 @@ namespace ZsutPw.Patterns.WindowsApplication.View
         {
             var appointmentWithNamesDto = (AppointmentWithNamesDto) value;
 
-            return string.Format("{0} at {1}", appointmentWithNamesDto.doctorName, appointmentWithNamesDto.patientName);
+            return string.Format("[Appointment] Patient: {0} {1}, Doctor: {2} {3}, Date: {4}, Description: {5}", appointmentWithNamesDto.patientName, appointmentWithNamesDto.patientSurname, appointmentWithNamesDto.doctorName, appointmentWithNamesDto.doctorSurname, appointmentWithNamesDto.dateOfAppointment, appointmentWithNamesDto.description);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)

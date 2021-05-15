@@ -15,7 +15,13 @@
         {
             DoctorDto doctorDto= (DoctorDto)value;
 
-            return String.Format("{0},{1}", doctorDto.name, doctorDto.surname);
+            var certString = "";
+            foreach(int cert in doctorDto.certifications)
+            {
+                certString += $"{cert}, ";
+            }
+            certString = certString.Remove(certString.Length - 2);
+            return String.Format("[Doctor] Name: {0}, Surname: {1}, Certifications: {2}", doctorDto.name, doctorDto.surname, certString);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)

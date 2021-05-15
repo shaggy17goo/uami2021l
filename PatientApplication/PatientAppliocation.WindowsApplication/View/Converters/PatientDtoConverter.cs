@@ -16,7 +16,7 @@ namespace ZsutPw.Patterns.WindowsApplication.View
         {
             var patient = (PatientDto) value;
 
-            return string.Format("{0} at {1}", patient.name, patient.surname);
+            return string.Format("[Patient] Name: {0}, Surname: {1}, PESEL: {2}, Birthdate: {3}", patient.name, patient.surname, patient.PESEL, patient.birthDate);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
