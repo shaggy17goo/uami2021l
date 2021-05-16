@@ -5,7 +5,7 @@
     //wykorzystujemy interfejs wskaźnikowy ICommand do jawnego wskazania, że dana klasa jest komendą
     public class AddPatientCommand : ICommand
     {
-        public string PESEL { get;  set; }
+        public string Pesel { get;  set; }
         public string Name { get;  set; }
         public string Surname { get;  set; }
         public string Sex { get; set; }

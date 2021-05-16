@@ -24,15 +24,6 @@
         </DataTemplate>
     </Page.Resources>
 
-    <Page.BottomAppBar>
-        <CommandBar IsOpen="True" IsSticky="False" Visibility="Visible">
-            <CommandBar.SecondaryCommands>
-                <AppBarButton Icon="Setting" Label="Settings" IsEnabled="False" />
-                <AppBarButton Icon="Help" Label="Help" />
-            </CommandBar.SecondaryCommands>
-        </CommandBar>
-    </Page.BottomAppBar>
-
     <Grid x:Name="rootPanel" HorizontalAlignment="Center" VerticalAlignment="Center"
           Background="{ThemeResource SystemAltMediumColor}"
             Grid.Row="0"
@@ -51,7 +42,7 @@
             <StackPanel x:Name="historyAppointmentsDataPanel" Margin="4,0,4,4" Grid.RowSpan="3">
                 <TextBox Header="Patient id:" x:Name="searchTextBox" Text="{x:Bind Model.SearchText, Mode=TwoWay}" Margin="0,4,0,4" />
                 <CommandBar x:Name="historyAppointmentsDataCommandBar" DefaultLabelPosition="Right" Background="Transparent" HorizontalAlignment="Left">
-                    <AppBarButton x:Name="historyAppointmentsDataButton" Icon="Filter" Label="Show future appointments by id" Command="{x:Bind Controller.GetAppointmentsHistoryCommand}" VerticalAlignment="Bottom" />
+                    <AppBarButton x:Name="historyAppointmentsDataButton" Icon="Download" Label="Show appointments history by id" Command="{x:Bind Controller.GetAppointmentsHistoryCommand}" VerticalAlignment="Bottom" />
                 </CommandBar>
                 <ListView x:Name="examinationRoomDoctorDto" ItemsSource="{x:Bind Model.AppointmentsHistoryWithNamesDtoList, Mode=OneWay}" ItemTemplate="{StaticResource AppointmentWithNamesDtoInfoViewTemplate}" SelectedItem="{x:Bind Model.SelectedDoctorDto, Mode=TwoWay}" Height="332" BorderThickness="1" BorderBrush="{ThemeResource SystemControlForegroundBaseMediumLowBrush}" />
 

@@ -144,9 +144,6 @@
     <Compile Include="View\Pages\PatientDataPage.xaml.cs">
       <DependentUpon>PatientDataPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Pages\SubPage.xaml.cs">
-      <DependentUpon>SubPage.xaml</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -239,10 +236,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="View\Pages\PatientDataPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\Pages\SubPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

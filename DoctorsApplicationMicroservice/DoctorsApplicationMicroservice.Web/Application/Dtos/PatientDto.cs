@@ -4,7 +4,7 @@
 
     public class PatientDto
     {
-        public int PatientId { get;  set; }
+        public int Id { get;  set; }
         public string Pesel { get;  set; }
         public string Name { get;  set; }
         public string Surname { get;  set; }
@@ -14,9 +14,9 @@
         public string Street { get;  set; }
         public string HouseNr { get;  set; }
 
-        public PatientDto(int patientId, string pesel, string name, string surname, string sex, DateTime birthDate, string city, string street, string houseNr)
+        public PatientDto(int id, string pesel, string name, string surname, string sex, DateTime birthDate, string city, string street, string houseNr)
         {
-            PatientId = patientId;
+            Id = id;
             Pesel = pesel;
             Name = name;
             Surname = surname;
@@ -25,6 +25,19 @@
             City = city;
             Street = street;
             HouseNr = houseNr;
+        }
+        
+        public PatientDto(int id, string name, string surname, string pesel)
+        {
+            Id = id;
+            Name = name;
+            Surname = surname;
+            Pesel = pesel;
+            Sex = "M";
+            BirthDate = DateTime.Now;
+            City = "City";
+            Street = "Street";
+            HouseNr = "1";
         }
     }
 }

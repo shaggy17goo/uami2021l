@@ -14,32 +14,14 @@
     xmlns:dto="using:ZsutPw.Patterns.WindowsApplication.Dto"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Page.Resources>
-        <controller:ApplicationStateConverter x:Key="ApplicationStateConverter" />
-        <converters:DoctorDtoConverter x:Key="ExaminationRoomDoctorDtoConverter" />
-
-        <DataTemplate x:Key="ExaminationRoomDoctorDtoListViewTemplate" x:DataType="dto:DoctorDto">
-            <TextBlock Text="{x:Bind Mode=OneTime, Converter={StaticResource ExaminationRoomDoctorDtoConverter}}" />
-        </DataTemplate>
-    </Page.Resources>
-
-    <Page.BottomAppBar>
-        <CommandBar IsOpen="True" IsSticky="False" Visibility="Visible">
-            <CommandBar.SecondaryCommands>
-                <AppBarButton Icon="Setting" Label="Settings" IsEnabled="False" />
-                <AppBarButton Icon="Help" Label="Help" />
-            </CommandBar.SecondaryCommands>
-        </CommandBar>
-    </Page.BottomAppBar>
-
     <Grid>
         <NavigationView x:Name="navView" Loaded="NavView_Loaded" SelectionChanged="NavView_SelectionChanged">
             <NavigationView.MenuItems>
-                <NavigationViewItem Icon="Accept" Content= "List all doctors" Tag="page1"/>
-                <NavigationViewItem Icon="Account" Content= "Doctor by id" Tag="page2"/>
-                <NavigationViewItem Icon="Add" Content= "Patient by id" Tag="page3"/>
-                <NavigationViewItem Icon="AddFriend" Content= "Patient's appointments history" Tag="page4"/>
-                <NavigationViewItem Icon="AddFriend" Content= "Patient's future appointments" Tag="page5"/>
+                <NavigationViewItem Icon="AllApps" Content= "List all doctors" Tag="page1"/>
+                <NavigationViewItem Icon="Contact2" Content= "Doctor by id" Tag="page2"/>
+                <NavigationViewItem Icon="ContactInfo" Content= "Patient by id" Tag="page3"/>
+                <NavigationViewItem Icon="Clock" Content= "Patient's appointments history" Tag="page4"/>
+                <NavigationViewItem Icon="Bullets" Content= "Patient's future appointments" Tag="page5"/>
             </NavigationView.MenuItems>
 
             <ScrollViewer>
