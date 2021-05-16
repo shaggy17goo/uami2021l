@@ -20,7 +20,7 @@ namespace PatientsApplicationMicroservice.Application.DataServiceClients
         public async Task<IEnumerable<AppointmentDto>> GetAppointmentsByPatientId(int patientId)
         {
             var request = new HttpRequestMessage(HttpMethod.Get,
-                string.Format("{0}getAppointmentByPatientId?patientId={0}", host, patientId));
+                string.Format("{0}getAppointmentByPatientId?patientId={1}", host, patientId));
             request.Headers.Add("Accept", "application/json");
 
             var client = clientFactory.CreateClient();

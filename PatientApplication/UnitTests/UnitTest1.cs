@@ -25,14 +25,14 @@ namespace UnitTests
         [Test]
         public void TestGetDoctorById()
         {
-            Controller.Model.SearchText = "0";
+            Controller.Model.SearchText = "9";
             var testCommand = Controller.GetDoctorByIdCommand;
             if (testCommand.CanExecute(null))
             {
                 testCommand.Execute(null);
             }
             else Assert.Fail();
-            Thread.Sleep(1000);
+            Thread.Sleep(3000);
             var temp = Controller.Model.DoctorById;
             Assert.AreEqual(Controller.Model.DoctorById.Count,1);
         }
@@ -40,14 +40,14 @@ namespace UnitTests
         [Test]
         public void TestGetPatientById()
         {
-            Controller.Model.SearchText = "0";
+            Controller.Model.SearchText = "9";
             var testCommand = Controller.GetPatientByIdCommand;
             if (testCommand.CanExecute(null))
             {
                 testCommand.Execute(null);
             }
             else Assert.Fail();
-            Thread.Sleep(1000);
+            Thread.Sleep(3000);
             Assert.AreEqual(Controller.Model.PatientById.Count,1);
         }
         
