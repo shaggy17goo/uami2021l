@@ -34,16 +34,19 @@
         {
             return doctorQueriesHandler.GetByCertificationType(certificationType);
         }
+
         [HttpGet("getDoctorById")]
         public async Task<DoctorDto> GetById([FromQuery] int doctorId)
         {
             return await doctorQueriesHandler.GetById(doctorId);
         }
+
         [HttpPost("doctor")]
         public void AddDoctor([FromBody] AddDoctorCommand doctorCommand)
         {
             addDoctorCommandHandler.Handle(doctorCommand);
         }
+
         [HttpPost("doctor-delete")]
         public void DeleteDoctor([FromQuery] DeleteDoctorCommand deleteDoctorCommand)
         {

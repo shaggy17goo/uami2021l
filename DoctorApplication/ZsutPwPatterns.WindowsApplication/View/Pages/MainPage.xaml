@@ -1,0 +1,44 @@
+﻿<Page
+    x:Class="ZsutPw.Patterns.WindowsApplication.View.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    xmlns:i="using:Microsoft.Xaml.Interactivity"
+    xmlns:icore="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:model="using:ZsutPw.Patterns.WindowsApplication.Model"
+    xmlns:view="using:ZsutPw.Patterns.WindowsApplication.View"
+    xmlns:controller="using:ZsutPw.Patterns.WindowsApplication.Controller"
+    xmlns:converter="using:ZsutPw.Patterns.WindowsApplication.View.Converters"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" d:DesignWidth="1958" d:DesignHeight="1488">
+
+    <Page.BottomAppBar>
+        <CommandBar IsOpen="True" IsSticky="False" Visibility="Visible">
+            <CommandBar.SecondaryCommands>
+                <AppBarButton Icon="Setting" Label="Settings" IsEnabled="False" />
+                <AppBarButton Icon="Help" Label="Help" />
+            </CommandBar.SecondaryCommands>
+        </CommandBar>
+    </Page.BottomAppBar>
+
+    <Grid>
+        <NavigationView x:Name="navView" Loaded="NavView_Loaded" SelectionChanged="NavView_SelectionChanged">
+            <NavigationView.MenuItems>
+                <NavigationViewItem Icon="GoToStart" Content= "Strona Główna" Tag="home"/>
+                <NavigationViewItem Icon="Calendar" Content= "Terminarz" Tag="timetable"/>
+                <NavigationViewItem Icon="Contact" Content= "Pacjenci" Tag="patients"/>
+                <NavigationViewItem Icon="ContactInfo" Content= "Wizyty" Tag="appointments"/>
+            </NavigationView.MenuItems>
+
+            <ScrollViewer HorizontalScrollBarVisibility="Auto" 
+                  VerticalScrollBarVisibility="Auto"
+                          Background="#5E5E5E">
+                <Frame x:Name="ContentFrame">
+
+                </Frame>
+            </ScrollViewer>
+        </NavigationView>
+    </Grid>
+
+</Page>
