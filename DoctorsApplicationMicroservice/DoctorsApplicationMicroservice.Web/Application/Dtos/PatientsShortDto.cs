@@ -23,7 +23,7 @@
         
         public PatientsShortDto(PatientDto patientDto)
         {
-            PatientId = patientDto.PatientId;
+            PatientId = patientDto.Id;
             Pesel = patientDto.Pesel;
             Name = patientDto.Name;
             Surname = patientDto.Surname;

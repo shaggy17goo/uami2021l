@@ -1,0 +1,52 @@
+﻿<Page
+    x:Class="ZsutPwPatterns.WindowsApplication.View.Pages.DoctorDataPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:ZsutPwPatterns.WindowsApplication.View.Pages"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    xmlns:i="using:Microsoft.Xaml.Interactivity"
+    xmlns:icore="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:model="using:ZsutPw.Patterns.WindowsApplication.Model"
+    xmlns:view="using:ZsutPw.Patterns.WindowsApplication.View"
+    xmlns:controller="using:ZsutPw.Patterns.WindowsApplication.Controller"
+    xmlns:converters="using:ZsutPw.Patterns.WindowsApplication.View"
+    xmlns:dto="using:ZsutPw.Patterns.WindowsApplication.Dto"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Page.Resources>
+        <controller:ApplicationStateConverter x:Key="ApplicationStateConverter" />
+        <converters:DoctorDtoConverter x:Key="DoctorDtoConverter" />
+
+        <DataTemplate x:Key="DoctorDtoInfoViewTemplate" x:DataType="dto:DoctorDto">
+            <TextBlock Text="{x:Bind Mode=OneTime, Converter={StaticResource DoctorDtoConverter}}" />
+        </DataTemplate>
+    </Page.Resources>
+
+    <Grid x:Name="rootPanel" HorizontalAlignment="Center" VerticalAlignment="Center"
+          Background="{ThemeResource SystemAltMediumColor}"
+            Grid.Row="0"
+            Margin="-205,-20,-206,-020">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="430" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Grid x:Name="listPanel" Background="{ThemeResource SystemAltMediumColor}"  Grid.Row="0" Margin="-205,-20,-206,-20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="400" />
+            </Grid.RowDefinitions>
+
+            <StackPanel x:Name="examinationRoomDoctorPanel" Margin="4,0,4,4" Grid.RowSpan="3">
+                <TextBox Header="Doctor id:" x:Name="searchTextBox" Text="{x:Bind Model.SearchText, Mode=TwoWay}" Margin="0,4,0,4" />
+                <CommandBar x:Name="examinationRoomDoctorCommandBar" DefaultLabelPosition="Right" Background="Transparent" HorizontalAlignment="Left">
+                    <AppBarButton x:Name="doctorsDataButton" Icon="Download" Label="Show doctor data by id" Command="{x:Bind Path=Controller.GetDoctorByIdCommand}" VerticalAlignment="Bottom" />
+                </CommandBar>
+                <ListView x:Name="doctorDto" ItemsSource="{x:Bind Model.DoctorById, Mode=OneWay}" ItemTemplate="{StaticResource DoctorDtoInfoViewTemplate}" SelectedItem="{x:Bind Model.SelectedDoctorDto, Mode=TwoWay}" Height="332" BorderThickness="1" BorderBrush="{ThemeResource SystemControlForegroundBaseMediumLowBrush}" />
+
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Page>
