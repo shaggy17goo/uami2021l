@@ -2,6 +2,7 @@
 
 namespace DoctorsApplicationMicroservice.Web.Application.DataServiceClients
 {
+    using System;
     using System.Collections.Generic;
     using System.Net.Http;
     using System.Threading.Tasks;
@@ -21,7 +22,7 @@ namespace DoctorsApplicationMicroservice.Web.Application.DataServiceClients
 
         public async Task<IEnumerable<PatientDto>> GetAllAsync()
         {
-            const string requestUri = host +"listPatients";
+            string requestUri = String.Format("{0}listPatients", host);
 
             return await _serviceClient.GetData<IEnumerable<PatientDto>>(requestUri);
 
@@ -29,28 +30,28 @@ namespace DoctorsApplicationMicroservice.Web.Application.DataServiceClients
 
         public async Task<PatientDto> GetPatientById(int patientId)
         {
-            var requestUri = host + $"getPatientById?patientId={patientId}";
+            string requestUri = String.Format("{0}getPatientById?patientId={1}", host, patientId);
 
             return await _serviceClient.GetData<PatientDto>(requestUri);
         }
 
         public async Task<PatientDto> GetPatientByPESEL(string pesel)
         {
-            var requestUri = host + $"getPatientByPESEL?PESEL={pesel}";
+            string requestUri = String.Format("{0}getPatientByPESEL?PESEL={1}", host, pesel);
 
             return await _serviceClient.GetData<PatientDto>(requestUri);
         }
 
         public int AddPatient(AddPatientCommand addPatientCommand)
         {
-            const string url = host + "addPatient";
-            return _serviceClient.PostData(url, addPatientCommand);
+            string requestUri = String.Format("{0}addPatient", host);
+            return _serviceClient.PostData(requestUri, addPatientCommand);
         }
 
         public int DeletePatient(DeletePatientCommand deletePatientCommand)
         {
-            const string url = host + "deletePatient";
-            return _serviceClient.PostData(url, deletePatientCommand);
+            string requestUri = String.Format("{0}deletePatient", host);
+            return _serviceClient.PostData(requestUri, deletePatientCommand);
         }
         
     }

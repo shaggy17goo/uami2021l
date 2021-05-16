@@ -57,7 +57,7 @@ namespace DoctorsApplicationMicroservice.Web
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "LaboratoriesInventory.Web v1"));
             }
 
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
 
             app.UseRouting();
 

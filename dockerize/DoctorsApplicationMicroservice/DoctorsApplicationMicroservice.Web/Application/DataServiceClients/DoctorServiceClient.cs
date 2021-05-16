@@ -2,6 +2,7 @@
 
 namespace DoctorsApplicationMicroservice.Web.Application.DataServiceClients
 {
+    using System;
     using System.Collections.Generic;
     using System.Net.Http;
     using System.Text.Json;
@@ -26,29 +27,30 @@ namespace DoctorsApplicationMicroservice.Web.Application.DataServiceClients
 
         public async Task<IEnumerable<DoctorDto>> GetAllAsync()
         {
-            const string requestUri = host + "doctors";
+            string requestUri = String.Format("{0}doctors", host);
 
             return await _serviceClient.GetData<IEnumerable<DoctorDto>>(requestUri);
         }
         
         public async Task<IEnumerable<DoctorDto>> GetById(int doctorId)
         {
-            var requestUri = host + $"getDoctorById?doctorId={doctorId}";
+            string requestUri = String.Format("{0}getDoctorById?doctorId={1}", host,doctorId);
 
             return await _serviceClient.GetData<IEnumerable<DoctorDto>>(requestUri);
         }
 
         public async Task<IEnumerable<DoctorDto>> GetByCertificationType(int certificationType)
         {
-            var requestUri = host + $"getDoctorBySpecializations?certificationType={certificationType}";
+            string requestUri = String.Format("{0}getDoctorBySpecializations?certificationType={1}", host, certificationType);
 
             return await _serviceClient.GetData<IEnumerable<DoctorDto>>(requestUri);
         }
 
         public void DeleteDoctor(DeleteDoctorCommand deleteDoctorCommand)
         {
-            const string url = host + "doctor-delete";
-            _serviceClient.PostData(url, deleteDoctorCommand);
+            string requestUri = String.Format("{0}doctor-delete", host);
+
+            _serviceClient.PostData(requestUri, deleteDoctorCommand);
         }
     }
 }
