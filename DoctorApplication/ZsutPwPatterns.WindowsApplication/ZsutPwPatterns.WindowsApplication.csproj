@@ -121,8 +121,8 @@
     </Compile>
     <Compile Include="Utilities\EventDispatcher.cs" />
     <Compile Include="View\Converters\AppointmentsConverter.cs" />
-    <Compile Include="View\Converters\DoctorDto.cs" />
     <Compile Include="View\Converters\PatientDtoConverter.cs" />
+    <Compile Include="View\Converters\PatientShortDtoConverter.cs" />
     <Compile Include="View\Pages\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>

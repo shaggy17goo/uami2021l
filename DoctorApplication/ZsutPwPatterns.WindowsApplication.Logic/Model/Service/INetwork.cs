@@ -23,8 +23,11 @@ namespace ZsutPw.Patterns.WindowsApplication.Model
     public interface INetwork
   {
     AppointmentsWithPatientNameDto[] GetAppointmentsByDoctorId( string doctorId );
-    AppointmentsWithPatientNameDto[] GetAppointmentsByDoctorIdAndData(string doctorId, string data);
+    AppointmentsWithPatientNameDto[] GetAppointmentsByDoctorIdAndData(string doctorId, string date);
     PatientsShortDto[] GetPatientsByDoctorId(string doctorId);
     PatientDto GetPatientById(string patientId);
+    void DeleteAppointment(string appointmentId);
+    void AddAppointment(string doctorId, string patientId, string dateOfAppointment, string description);
+    void AddPatient (string pesel, string name, string surname, string sex, string birthdate, string city, string street, string houseNr);
   }
 }

@@ -39,18 +39,150 @@ namespace ZsutPw.Patterns.WindowsApplication.Model
             {
                 this.visitDate = value;
 
-                this.RaisePropertyChanged("visitDate");
+                this.RaisePropertyChanged("VisitDate");
             }
         }
+        public string Pesel
+        {
+            get { return this.pesel; }
+            set
+            {
+                this.pesel = value;
 
+                this.RaisePropertyChanged("Pesel");
+            }
+        }
+        public string Name
+        {
+            get { return this.name; }
+            set
+            {
+                this.name = value;
+
+                this.RaisePropertyChanged("Name");
+            }
+        }
+        public string Surname
+        {
+            get { return this.surname; }
+            set
+            {
+                this.surname = value;
+
+                this.RaisePropertyChanged("Surname");
+            }
+        }
+        public string Sex
+        {
+            get { return this.sex; }
+            set
+            {
+                this.sex = value;
+
+                this.RaisePropertyChanged("Sex");
+            }
+        }
+        public string BirthDate
+        {
+            get { return this.birthDate; }
+            set
+            {
+                this.birthDate = value;
+
+                this.RaisePropertyChanged("BirthDate");
+            }
+        }
+        public string City
+        {
+            get { return this.city; }
+            set
+            {
+                this.city = value;
+
+                this.RaisePropertyChanged("City");
+            }
+        }
+        public string Street
+        {
+            get { return this.street; }
+            set
+            {
+                this.street = value;
+
+                this.RaisePropertyChanged("Street");
+            }
+        }
+        public string HouseNr
+        {
+            get { return this.houseNr; }
+            set
+            {
+                this.houseNr = value;
+
+                this.RaisePropertyChanged("HouseNr");
+            }
+        }
+        public string DoctorId
+        {
+            get { return this.doctorId; }
+            set
+            {
+                this.doctorId = value;
+
+                this.RaisePropertyChanged("DoctorId");
+            }
+        }
+        public string PatientId
+        {
+            get { return this.patientId; }
+            set
+            {
+                this.patientId = value;
+
+                this.RaisePropertyChanged("PatientId");
+            }
+        }
+        public string DateOfAppointment
+        {
+            get { return this.dateOfAppointment; }
+            set
+            {
+                this.dateOfAppointment = value;
+
+                this.RaisePropertyChanged("DateOfAppointment");
+            }
+        }
+        public string Description
+        {
+            get { return this.description; }
+            set
+            {
+                this.description = value;
+
+                this.RaisePropertyChanged("Description");
+            }
+        }
+        private string pesel;
+        private string name;
+        private string surname;
+        private string sex;
+        private string birthDate;
+        private string city;
+        private string street;
+        private string houseNr;
+        private string doctorId;
+        private string patientId;
+        private string dateOfAppointment;
+        private string description;
         private string searchText ="";
         private string visitDate;
         private List<AppointmentsWithPatientNameDto> appointmentsByDoctorId = new List<AppointmentsWithPatientNameDto>();
-        private AppointmentsWithPatientNameDto selectedAppoitment;
+        private AppointmentsWithPatientNameDto selectedAppoitmentByDoctorId;
         private List<AppointmentsWithPatientNameDto> appointmentsByDoctorIdAndData = new List<AppointmentsWithPatientNameDto>();
+        private AppointmentsWithPatientNameDto selectedAppointmentByDoctorIdAndData;
         private List<PatientsShortDto> patientsByDoctorId = new List<PatientsShortDto>();
-        private PatientDto patientById;
         private PatientsShortDto selectedPatientsByDoctorId;
+        private PatientDto patientById;
         public List<AppointmentsWithPatientNameDto> AppointmentsByDoctorId
         {
             get { return appointmentsByDoctorId; }
@@ -61,14 +193,24 @@ namespace ZsutPw.Patterns.WindowsApplication.Model
                 RaisePropertyChanged("AppointmentsByDoctorId");
             }
         }
-        public AppointmentsWithPatientNameDto SelectedAppointment
+        public AppointmentsWithPatientNameDto SelectedAppointmentByDoctorId
         {
-            get { return selectedAppoitment; }
+            get { return selectedAppoitmentByDoctorId; }
             set
             {
-                selectedAppoitment = value;
+                selectedAppoitmentByDoctorId = value;
 
-                RaisePropertyChanged("SelectedAppointment");
+                RaisePropertyChanged("SelectedAppointmentByDoctorId");
+            }
+        }
+        public AppointmentsWithPatientNameDto SelectedAppointmentByDoctorIdAndData
+        {
+            get { return selectedAppointmentByDoctorIdAndData; }
+            set
+            {
+                selectedAppointmentByDoctorIdAndData = value;
+
+                RaisePropertyChanged("SelectedAppointmentByDoctorIdAndData");
             }
         }
         public List<AppointmentsWithPatientNameDto> AppointmentsByDoctorIdAndData 

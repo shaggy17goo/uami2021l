@@ -1,5 +1,5 @@
 ﻿
-namespace ZsutPw.Patterns.WindowsApplication.Model
+namespace ZsutPw.Patterns.WindowsApplication.Model.Data
 {
     using System;
 

@@ -13,7 +13,7 @@ namespace ZsutPw.Patterns.WindowsApplication.View.Converters
         public object Convert(object value, Type targetType, object parameter, string language)
         {
             var appointmentDto = (AppointmentsWithPatientNameDto) value;
-            return string.Format("Patient {0}, appointment with doctor {1}", appointmentDto.PatientId, appointmentDto.DoctorId);
+            return string.Format("Appointment date: {0} with patient {1} {2}", appointmentDto.DateOfAppointment, appointmentDto.PatientName, appointmentDto.PatientSurname);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)

@@ -21,6 +21,7 @@ namespace ZsutPw.Patterns.WindowsApplication.Model
 
     using System.Net.Http;
     using ZsutPw.Patterns.WindowsApplication.Model.Data;
+    using System.Text;
 
     public class NetworkClient : INetwork
     {
@@ -42,9 +43,9 @@ namespace ZsutPw.Patterns.WindowsApplication.Model
             return appointments;
         }
 
-        public AppointmentsWithPatientNameDto[] GetAppointmentsByDoctorIdAndData(string doctorId, string data)
+        public AppointmentsWithPatientNameDto[] GetAppointmentsByDoctorIdAndData(string doctorId, string date)
         {
-            string callUri = String.Format("appointmentsByDoctorIdAndData?doctorId={0}&data={1}", doctorId, data);
+            string callUri = String.Format("appointmentsByDoctorIdAndData?doctorId={0}&data={1}", doctorId, date);
 
             AppointmentsWithPatientNameDto[] appointments = serviceClient.CallWebService<AppointmentsWithPatientNameDto[]>(HttpMethod.Get, callUri);
 
@@ -67,5 +68,24 @@ namespace ZsutPw.Patterns.WindowsApplication.Model
 
             return patient;
         }
+        public void DeleteAppointment(string appointmentId)
+        {
+            string callUri = "deleteAppointment";
+            string myJson = "{\"appointmentId\":"+appointmentId+"}";
+            serviceClient.CallWebService(HttpMethod.Post, callUri, myJson).Wait();
+        }
+        public void AddAppointment (string doctorId, string patientId, string dateOfAppointment, string description)
+        {
+            string callUri = "addAppointment";
+            string myJson = "{\"doctorId\":" + doctorId + ", \"patientId\":" + patientId + ", \"dateOfAppointment\": \"" + dateOfAppointment + "\", \"description\":\"" + description + "\"}";
+            serviceClient.CallWebService(HttpMethod.Post, callUri, myJson).Wait();
+        }
+        public void AddPatient (string pesel, string name, string surname, string sex, string birthdate, string city, string street, string houseNr)
+        {
+            string callUri = "addPatient";
+            string myJson = "{\"pesel\": \"" + pesel + "\", \"name\":\"" + name + "\", \"surname\":\"" + surname + "\", \"sex\":\"" + sex + "\", \"birthDate\":\"" + birthdate + "\", \"city\":\"" + city + "\", \"street\":\"" + street + "\", \"houseNr\":\"" + houseNr +"\"}";
+            serviceClient.CallWebService(HttpMethod.Post, callUri, myJson).Wait();
+        }
     }
+
 }

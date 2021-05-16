@@ -22,8 +22,11 @@ namespace ZsutPw.Patterns.WindowsApplication.Model
   public interface IOperations
   {
     void LoadAppointmentsByDoctorId();
-    void LoadAppointmentsByDoctorIdAndData();
+    void LoadAppointmentsByDoctorIdAndDate();
     void LoadPatientsByDoctorId();
     void LoadPatientById();
+    void DeleteAppointment();
+    void AddAppointment();
+    void AddPatient();
     }
 }

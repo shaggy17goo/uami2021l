@@ -30,11 +30,20 @@ namespace ZsutPw.Patterns.WindowsApplication.Controller
 
     ApplicationState CurrentState { get; }
 
-    ICommand SearchNodesCommand { get; }
 
     ICommand GetAppointmentsByDoctorIdCommand { get; }
 
+    ICommand GetAppointmentsByDoctorIdAndDateCommand { get; }
+
     ICommand GetPatientsByDoctorIdCommand { get; }
+
+    ICommand GetPatientByIdCommand { get; }
+
+    ICommand DeleteAppointmentCommand { get; }
+
+    ICommand AddAppointmentCommand { get; }
+
+    ICommand AddPatientCommand { get; }
 
     ICommand ShowListCommand { get; }
 

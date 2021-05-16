@@ -16,10 +16,10 @@
 
     <Page.Resources>
         <controller:ApplicationStateConverter x:Key="ApplicationStateConverter" />
-        <converter:PatientDtoConverter x:Key="PatientDtoConverter" />
+        <converter:PatientShortDtoConverter x:Key="PatientShortDtoConverter" />
 
         <DataTemplate x:Key="PatientsViewTemplate" x:DataType="data:PatientsShortDto">
-            <TextBlock Text="{x:Bind Mode=OneTime, Converter={StaticResource PatientDtoConverter}}" />
+            <TextBlock Text="{x:Bind Mode=OneTime, Converter={StaticResource PatientShortDtoConverter}}" />
         </DataTemplate>
     </Page.Resources>
 
@@ -48,7 +48,7 @@
 
             <StackPanel x:Name="nodeSearchPanel" Grid.Row="0" Orientation="Horizontal" Margin="4">
                 <TextBox x:Name="searchText" Header="Text to search:" Text="{x:Bind Model.SearchText, Mode=TwoWay}" Width="200" VerticalAlignment="Bottom" />
-                <AppBarButton x:Name="searchButton" Icon="Filter" Label="Search" Command="{x:Bind Controller.GetPatientsByDoctorIdCommand}" VerticalAlignment="Bottom" />
+                <AppBarButton x:Name="searchButton" Icon="Filter" Label="Search" Command="{x:Bind Controller.AddPatientCommand}" VerticalAlignment="Bottom" />
             </StackPanel>
 
             <StackPanel x:Name="nodePanel" Grid.Row="1" Margin="4">
@@ -63,6 +63,16 @@
         </Grid>
 
         <HyperlinkButton x:Name="zsutHyperlink" Content="ZSUT IT PW home page" NavigateUri="https://zsut.tele.pw.edu.pl/" Grid.Row="1" HorizontalAlignment="Center" />
+        <Grid Background ="Gray" Margin="-223,-11,305,-127" Grid.RowSpan="2">
+            <TextBox  Header="pesel:" HorizontalAlignment="Left" Height="46" Margin="14,11,0,0" Text="{x:Bind Model.Pesel, Mode=TwoWay}"  TextWrapping="Wrap" VerticalAlignment="Top" Width="174"/>
+            <TextBox Header="name:"  HorizontalAlignment="Left" Height="58" Margin="14,62,0,0" Text="{x:Bind Model.Name, Mode=TwoWay}"  TextWrapping="Wrap" VerticalAlignment="Top" Width="174"/>
+            <TextBox Header="surname" HorizontalAlignment="Left" Height="54" Margin="14,125,0,0" Text="{x:Bind Model.Surname, Mode=TwoWay}"  TextWrapping="Wrap" VerticalAlignment="Top" Width="174"/>
+            <TextBox Header="sex:" HorizontalAlignment="Left" Height="55" Margin="14,184,0,0" Text="{x:Bind Model.Sex, Mode=TwoWay}"  TextWrapping="Wrap" VerticalAlignment="Top" Width="174"/>
+            <TextBox Header="birthDate:" HorizontalAlignment="Left" Height="60" Margin="14,259,0,0" Text="{x:Bind Model.BirthDate, Mode=TwoWay}" TextWrapping="Wrap" VerticalAlignment="Top" Width="174"/>
+            <TextBox Header="city:" HorizontalAlignment="Left" Height="69" Margin="14,324,0,0" Text="{x:Bind Model.City, Mode=TwoWay}" TextWrapping="Wrap" VerticalAlignment="Top" Width="174"/>
+            <TextBox Header="street:"  HorizontalAlignment="Left" Height="65" Margin="14,398,0,0" Text="{x:Bind Model.Street, Mode=TwoWay}" TextWrapping="Wrap" VerticalAlignment="Top" Width="174"/>
+            <TextBox Header="houseNr:" HorizontalAlignment="Left" Height="61" Margin="14,468,0,0" Text="{x:Bind Model.HouseNr, Mode=TwoWay}" TextWrapping="Wrap" VerticalAlignment="Top" Width="174"/>
+        </Grid>
 
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup x:Name="ApplicationViewStates">

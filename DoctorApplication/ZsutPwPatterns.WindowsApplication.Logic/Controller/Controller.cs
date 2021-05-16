@@ -13,11 +13,7 @@
 
 namespace ZsutPw.Patterns.WindowsApplication.Controller
 {
-  using System;
-  using System.Collections.Generic;
-  using System.Diagnostics;
-  using System.Linq;
-  using System.Threading.Tasks;
+
 
   using ZsutPw.Patterns.WindowsApplication.Model;
   using ZsutPw.Patterns.WindowsApplication.Utilities;
@@ -28,17 +24,26 @@ namespace ZsutPw.Patterns.WindowsApplication.Controller
 
     public Controller( IEventDispatcher dispatcher, IModel model ) : base( dispatcher )
     {
-      this.Model = model;
+     Model = model;
 
-      this.SearchNodesCommand = new ControllerCommand( this.SearchNodes );
 
-     this.GetAppointmentsByDoctorIdCommand = new ControllerCommand(this.GetAppointmentsByDoctorId);
+     GetAppointmentsByDoctorIdCommand = new ControllerCommand(GetAppointmentsByDoctorId);
 
-     this.GetPatientsByDoctorIdCommand = new ControllerCommand(this.GetPatientsByDoctorId);
+     GetPatientsByDoctorIdCommand = new ControllerCommand(GetPatientsByDoctorId);
 
-     this.ShowListCommand = new ControllerCommand( this.ShowList );
+     GetAppointmentsByDoctorIdAndDateCommand = new ControllerCommand(GetAppointmentsByDoctorIdAndDate);
 
-      this.ShowMapCommand = new ControllerCommand( this.ShowMap );
+     GetPatientByIdCommand = new ControllerCommand(GetPatientById);
+
+     DeleteAppointmentCommand = new ControllerCommand(DeleteAppointment);
+
+    AddAppointmentCommand = new ControllerCommand(AddAppointment);
+
+    AddPatientCommand = new ControllerCommand(AddPatient);
+
+    ShowListCommand = new ControllerCommand( this.ShowList );
+
+     ShowMapCommand = new ControllerCommand( this.ShowMap );
     }
   }
 }

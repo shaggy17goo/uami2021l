@@ -25,7 +25,7 @@ namespace ZsutPw.Patterns.WindowsApplication.Model
         {
             Task.Run(() => LoadAppointmentsByDoctorIdTask());
         }
-    public void LoadAppointmentsByDoctorIdAndData()
+    public void LoadAppointmentsByDoctorIdAndDate()
         {
             Task.Run(() => LoadAppointmentsByDoctorIdAndDataTask());
         }
@@ -37,7 +37,64 @@ namespace ZsutPw.Patterns.WindowsApplication.Model
         {
             Task.Run(() => LoadPatientByIdTask());
         }
-    private void LoadAppointmentsByDoctorIdTask()
+    public void DeleteAppointment()
+        {
+            Task.Run(() => DeleteAppointmentTask());
+        }
+    public void AddAppointment()
+        {
+            Task.Run(() => AddAppointmentTask());
+        }
+    public void AddPatient()
+        {
+            Task.Run(() => AddPatientTask());
+        }
+
+        private void AddPatientTask()
+        {
+            var networkClient = NetworkClientFactory.GetNetworkClient();
+
+            try
+            {
+                networkClient.AddPatient(Pesel, Name, Surname, Sex, BirthDate, City, Street, HouseNr);
+
+            }
+            catch (Exception e)
+            {
+                string mess = e.Message;
+            }
+        }
+        private void AddAppointmentTask()
+        {
+            var networkClient = NetworkClientFactory.GetNetworkClient();
+
+            try
+            {
+                networkClient.AddAppointment(DoctorId, PatientId, DateOfAppointment, Description);
+
+            }
+            catch (Exception e)
+            {
+                string mess = e.Message;
+            }
+        }
+
+        private void DeleteAppointmentTask()
+        {
+            var networkClient = NetworkClientFactory.GetNetworkClient();
+
+            try
+            {
+                networkClient.DeleteAppointment(SearchText);
+
+            }
+            catch (Exception e)
+            {
+                string mess = e.Message;
+            }
+        }
+
+        private void LoadAppointmentsByDoctorIdTask()
         {
             var networkClient = NetworkClientFactory.GetNetworkClient();
 

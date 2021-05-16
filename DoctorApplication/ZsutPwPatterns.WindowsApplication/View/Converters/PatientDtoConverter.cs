@@ -12,8 +12,8 @@ namespace ZsutPw.Patterns.WindowsApplication.View.Converters
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            var patientDto = (PatientsShortDto)value;
-            return string.Format("Patient {0}, Name: {1}, Surname: {2}", patientDto.PatientId, patientDto.Name, patientDto.Surname);
+            var patientDto = (PatientDto)value;
+            return string.Format("{0} {1}", patientDto.Name, patientDto.Surname);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)

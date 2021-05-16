@@ -22,6 +22,7 @@ namespace ZsutPw.Patterns.WindowsApplication.Model
   using System.Net.Http;
   using System.Text.Json;
     using Newtonsoft.Json;
+    using System.Text;
 
     public class ServiceClient
     {
@@ -58,6 +59,24 @@ namespace ZsutPw.Patterns.WindowsApplication.Model
             var httpRequestMessage = new HttpRequestMessage(httpMethod, httpUri);
 
             httpClient.DefaultRequestHeaders.Add("Accept", "application/json");
+
+            var httpResponseMessage = await httpClient.SendAsync(httpRequestMessage).ConfigureAwait(false);
+
+            httpResponseMessage.EnsureSuccessStatusCode();
+
+            var httpResponseContent = await httpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
+
+            return httpResponseContent;
+        }
+        public async Task<string> CallWebService(HttpMethod httpMethod, string callUri, string myJson)
+        {
+            var httpUri = string.Format("https://{0}:{1}/{2}", serviceHost, servicePort, callUri);
+
+            var httpRequestMessage = new HttpRequestMessage(httpMethod, httpUri);
+
+            httpClient.DefaultRequestHeaders.Add("Accept", "application/json");
+
+            httpRequestMessage.Content = new StringContent(myJson, Encoding.UTF8, "application/json");
 
             var httpResponseMessage = await httpClient.SendAsync(httpRequestMessage).ConfigureAwait(false);
 

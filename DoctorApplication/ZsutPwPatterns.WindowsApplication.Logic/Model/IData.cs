@@ -25,11 +25,25 @@ namespace ZsutPw.Patterns.WindowsApplication.Model
     public interface IData : INotifyPropertyChanged
   {
     string SearchText { get; set; }
-    PatientDto PatientById { get; }
+    string VisitDate { get; set; }
+    string Pesel { get; set; }
+        string Name { get; set; }
+        string Surname { get; set; }
+        string Sex { get; set; }
+        string BirthDate { get; set; }
+        string City { get; set; }
+        string Street { get; set; }
+        string HouseNr { get; set; }
+        string DoctorId { get; set; }
+        string PatientId { get; set; }
+        string DateOfAppointment { get; set; }
+        string Description { get; set; }
+        PatientDto PatientById { get; }
     List<PatientsShortDto> PatientsByDoctorId { get; }
     PatientsShortDto SelectedPatientsByDoctorId { get; set; }
     List<AppointmentsWithPatientNameDto> AppointmentsByDoctorIdAndData { get; }
-    AppointmentsWithPatientNameDto SelectedAppointment { get; set; }
+    AppointmentsWithPatientNameDto SelectedAppointmentByDoctorIdAndData { get; set; }
     List<AppointmentsWithPatientNameDto> AppointmentsByDoctorId { get; }
-  }
+    AppointmentsWithPatientNameDto SelectedAppointmentByDoctorId{ get; set; }
+    }
 }
