@@ -1,5 +1,6 @@
 ﻿namespace DoctorsApplicationMicroservice.Web.Application.DataServiceClients
 {
+    using System;
     using System.Collections.Generic;
     using System.Net.Http;
     using System.Text.Json;
@@ -20,7 +21,7 @@
 
         public async Task<IEnumerable<AppointmentDto>> GetAllAsync()
         {
-            const string requestUri = host + "listAppointments";
+            string requestUri = String.Format("{0}listAppointments", host);
 
             return await _serviceClient.GetData<IEnumerable<AppointmentDto>>(requestUri);
             
@@ -28,35 +29,36 @@
 
         public async Task<IEnumerable<AppointmentDto>> GetAppointmentByDoctorId(int doctorId)
         {
-            var requestUri = host + $"getAppointmentByDoctorId?doctorId={doctorId}";
-            
+            string requestUri = String.Format("{0}getAppointmentByDoctorId?doctorId={1}", host,doctorId);
+
             return await _serviceClient.GetData<IEnumerable<AppointmentDto>>(requestUri);
         }
 
         public async Task<IEnumerable<AppointmentDto>> GetAppointmentByPatientId(int patientId)
         {
-            var requestUri = host + $"getAppointmentByPatientId?patientId={patientId}";
+            string requestUri = String.Format("{0}getAppointmentByPatientId?patientId={1}", host,patientId);
 
             return await _serviceClient.GetData<IEnumerable<AppointmentDto>>(requestUri);
         }
 
         public async Task<AppointmentDto> GetAppointmentById(int appointmentId)
         {
-            var requestUri = host + $"getAppointmentById?appointmentId={appointmentId}";
+            string requestUri = String.Format("{0}getAppointmentById?appointmentId={1}", host, appointmentId);
 
             return await _serviceClient.GetData<AppointmentDto>(requestUri);
         }
 
         public int AddAppointment(AddAppointmentCommand addAppointmentCommand)
         {
-            const string url = host + "addAppointment";
-            return _serviceClient.PostData(url, addAppointmentCommand);
+            string requestUri = String.Format("{0}addAppointment", host);
+
+            return _serviceClient.PostData(requestUri, addAppointmentCommand);
         }
 
         public int DeleteAppointment(DeleteAppointmentCommand deleteAppointmentCommand)
         {
-            const string url = host + "deleteAppointment";
-            return _serviceClient.PostData(url, deleteAppointmentCommand);
+            string requestUri = String.Format("{0}deleteAppointment", host);
+            return _serviceClient.PostData(requestUri, deleteAppointmentCommand);
         }
     }
 }
