@@ -13,9 +13,32 @@
     xmlns:converter="using:ZsutPw.Patterns.WindowsApplication.View.Converters"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" d:DesignWidth="1958" d:DesignHeight="1488">
 
-  
+    <Page.BottomAppBar>
+        <CommandBar IsOpen="True" IsSticky="False" Visibility="Visible">
+            <CommandBar.SecondaryCommands>
+                <AppBarButton Icon="Setting" Label="Settings" IsEnabled="False" />
+                <AppBarButton Icon="Help" Label="Help" />
+            </CommandBar.SecondaryCommands>
+        </CommandBar>
+    </Page.BottomAppBar>
 
-        <HyperlinkButton x:Name="zsutHyperlink" Foreground="White" Content="ZSUT IT PW home page" NavigateUri="https://zsut.tele.pw.edu.pl/" Grid.Row="1" HorizontalAlignment="Center" Click="zsutHyperlink_Click" />
+    <Grid>
+        <NavigationView x:Name="navView" Loaded="NavView_Loaded" SelectionChanged="NavView_SelectionChanged">
+            <NavigationView.MenuItems>
+                <NavigationViewItem Icon="GoToStart" Content= "Strona Główna" Tag="home"/>
+                <NavigationViewItem Icon="Calendar" Content= "Terminarz" Tag="timetable"/>
+                <NavigationViewItem Icon="Contact" Content= "Pacjenci" Tag="patients"/>
+                <NavigationViewItem Icon="ContactInfo" Content= "Wizyty" Tag="appointments"/>
+            </NavigationView.MenuItems>
 
+            <ScrollViewer HorizontalScrollBarVisibility="Auto" 
+                  VerticalScrollBarVisibility="Auto"
+                          Background="#5E5E5E">
+                <Frame x:Name="ContentFrame">
+
+                </Frame>
+            </ScrollViewer>
+        </NavigationView>
+    </Grid>
 
 </Page>

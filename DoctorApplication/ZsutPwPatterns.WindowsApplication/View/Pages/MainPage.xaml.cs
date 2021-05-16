@@ -56,14 +56,48 @@ namespace ZsutPw.Patterns.WindowsApplication.View
       this.DataContext = this.Controller;
     }
 
-        private void zsutHyperlink_Click(object sender, RoutedEventArgs e)
+        private void ToPatients_Click(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(SubPage));
+            this.Frame.Navigate(typeof(Patients));
+        }
+        private void ToTimetable_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(Timetable));
+        }
+        private void ToAppointments_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(Appointments));
         }
 
-        private void HyperlinkButton_Click(object sender, RoutedEventArgs e)
+        private void NavView_Loaded(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(SubPage));
+            ContentFrame.Navigate(typeof(HomePage));
+        }
+        private void NavView_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
+        {
+            if (args.IsSettingsSelected)
+            {
+
+            }
+            else
+            {
+                NavigationViewItem item = args.SelectedItem as NavigationViewItem;
+                switch (item.Tag.ToString())
+                {
+                    case "home":
+                        ContentFrame.Navigate(typeof(HomePage));
+                        break;
+                    case "timetable":
+                        ContentFrame.Navigate(typeof(Timetable));
+                        break;
+                    case "patients":
+                        ContentFrame.Navigate(typeof(Patients));
+                        break;
+                    case "appointments":
+                        ContentFrame.Navigate(typeof(Appointments));
+                        break;
+                }
+            }
         }
     }
 }
