@@ -37,7 +37,7 @@ containerize:
     - master
   before_script:
     - docker info
-    - docker login -u $REGISTRY_USER --password-stdin $REGISTRY_PASSWORD
+    - docker login -u $REGISTRY_USER -p $REGISTRY_PASSWORD
   script:
     - docker build -t shaggy17goo/uaim:patients_data k8s/PatientsData
     - docker push shaggy17goo/uaim:patients_data
