@@ -50,5 +50,7 @@ deploy:
     - master
   script:
     - kubectl apply -f kubectl.yaml
+    - kubectl rollout restart deployment appointments-data
+
 
 
