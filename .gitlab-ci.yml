@@ -29,10 +29,10 @@ trigger-DoctorsApplicationMicroservice:
     - changes:
         - k8s/DoctorsApplicationMicroservice/**/*
 
-trigger-DoctorsWebApp:
+trigger-PatientWebApp:
   stage: trigger
   trigger:
-    include: k8s/WebApp/.gitlab-ci.yml
+    include: k8s/PatientWebApp/.gitlab-ci.yml
     strategy: depend
   rules:
     - changes:
