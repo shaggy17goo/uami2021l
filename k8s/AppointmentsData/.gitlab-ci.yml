@@ -46,8 +46,9 @@ deploy:
   stage: deploy
   tags:
     - all
-  script:
-    - kubectl apply -f kubectl.yaml
   only:
     - master
+  script:
+    - kubectl apply -f kubectl.yaml
+
 
