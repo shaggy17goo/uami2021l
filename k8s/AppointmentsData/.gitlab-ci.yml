@@ -48,8 +48,13 @@ deploy:
     - all
   only:
     - master
+  before_script:
+    - export KUBECONFIG=$(mktemp)
+    - echo ${K8S_CONFIG} | base64 -d > ${KUBECONFIG}
   script:
-    - echo "a"
+    - kubectl apply -f kubectl.yaml
+    - kubectl rollout restart deployment appointments-data
+
 
 
 
