@@ -5,7 +5,7 @@
     <AssemblyName>BlazorServer</AssemblyName>
     <RootNamespace>BlazorServer</RootNamespace>
     <UserSecretsId>5ea87fc5-2577-4313-90c2-ff65c3451f86</UserSecretsId>
-    <DockerDefaultTargetOS>Windows</DockerDefaultTargetOS>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
   </PropertyGroup>
 
   <ItemGroup>

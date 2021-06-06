@@ -1,7 +1,7 @@
 variables:
   OBJECTS_DIRECTORY: 'obj'
   NUGET_PACKAGES_DIRECTORY: '.nuget'
-  SOURCE_CODE_PATH: 'Doctors'
+  SOURCE_CODE_PATH: 'k8s/DoctorsApplicationMicroservice'
 
 cache:
   key: ${CI_JOB_NAME}
