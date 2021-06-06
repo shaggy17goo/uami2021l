@@ -43,7 +43,7 @@ containerize:
     - docker push shaggy17goo/uaim:appointments_data
     
 deploy:
-  stage: deploy
+  stage: all
   image:
     name: bitnami/kubectl
     entrypoint: [ "" ]
