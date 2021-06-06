@@ -1,0 +1,43 @@
+variables:
+  OBJECTS_DIRECTORY: 'obj'
+  NUGET_PACKAGES_DIRECTORY: '.nuget'
+  SOURCE_CODE_PATH: 'k8s/PatientsApplicationMicroservice'
+
+cache:
+  key: ${CI_JOB_NAME}
+  paths:
+    - $SOURCE_CODE_PATH/$OBJECTS_DIRECTORY/*/project.assets.json
+    - $SOURCE_CODE_PATH/$OBJECTS_DIRECTORY/*/*.csproj.nuget.*
+    - $SOURCE_CODE_PATH/$NUGET_PACKAGES_DIRECTORY
+  policy: pull-push
+
+default:
+  before_script:
+    - cd $SOURCE_CODE_PATH
+
+stages:
+  - build
+  - containerize
+  - deploy
+
+build:
+  stage: build
+  image: mcr.microsoft.com/dotnet/sdk:5.0
+  tags:
+    - all
+  script:
+    - dotnet restore
+    - dotnet build -c Release
+
+containerize:
+  stage: containerize
+  tags:
+    - all
+  only:
+    - master
+  before_script:
+    - docker info
+    - docker login -u $REGISTRY_USER -p $REGISTRY_PASSWORD
+  script:
+    - docker build -t shaggy17goo/uaim:doctor_microservice k8s/PatientsApplicationMicroservice
+    - docker push shaggy17goo/uaim:patient_microservice

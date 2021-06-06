@@ -11,6 +11,15 @@ trigger-PatientsData:
     - changes:
         - k8s/PatientsData/**/*
 
+trigger-Doctors:
+  stage: trigger
+  trigger:
+    include: k8s/Doctors/.gitlab-ci.yml
+    strategy: depend
+  rules:
+    - changes:
+        - k8s/Doctors/**/*
+        
 trigger-AppointmentsData:
   stage: trigger
   trigger:
@@ -28,6 +37,15 @@ trigger-DoctorsApplicationMicroservice:
   rules:
     - changes:
         - k8s/DoctorsApplicationMicroservice/**/*
+        
+trigger-DoctorsApplicationMicroservice:
+  stage: trigger
+  trigger:
+    include: k8s/PatientsApplicationMicroservice/.gitlab-ci.yml
+    strategy: depend
+  rules:
+    - changes:
+        - k8s/PatientsApplicationMicroservice/**/*
 
 trigger-PatientWebApp:
   stage: trigger
@@ -37,6 +55,7 @@ trigger-PatientWebApp:
   rules:
     - changes:
         - k8s/PatientWebApp/**/*
+
 
 deploy:
   stage: deploy

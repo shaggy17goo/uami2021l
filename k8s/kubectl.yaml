@@ -1,0 +1,215 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: doctors-data
+  labels:
+    app: doctors-data
+    tier: dataservice
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: doctors-data
+  template:
+    metadata:
+      labels:
+        app: doctors-data
+        tier: dataservice
+    spec:
+      containers:
+      - name: doctors-data
+        image: shaggy17goo/uaim:doctors_data
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
+      imagePullSecrets:
+      - name: docker-secret
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: doctors-datarest
+  labels:
+    app: doctors-datarest
+    tier: dataservice
+spec:
+  selector:
+    app: doctors-data
+  type: ClusterIP
+  ports:
+  - port: 80
+    targetPort: 80
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: appointments-data
+  labels:
+    app: appointments-data
+    tier: dataservice
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: appointments-data
+  template:
+    metadata:
+      labels:
+        app: appointments-data
+        tier: dataservice
+    spec:
+      containers:
+      - name: appointments-data
+        image: shaggy17goo/uaim:appointments_data
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
+      imagePullSecrets:
+      - name: docker-secret
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: appointments-datarest
+  labels:
+    app: appointments-datarest
+    tier: dataservice
+spec:
+  selector:
+    app: appointments-data
+  type: ClusterIP
+  ports:
+  - port: 80
+    targetPort: 80
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: patients-data
+  labels:
+    app: patients-data
+    tier: dataservice
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: patients-data
+  template:
+    metadata:
+      labels:
+        app: patients-data
+        tier: dataservice
+    spec:
+      containers:
+      - name: patients-data
+        image: shaggy17goo/uaim:patients_data
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
+      imagePullSecrets:
+      - name: docker-secret
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: patients-datarest
+  labels:
+    app: patients-datarest
+    tier: dataservice
+spec:
+  selector:
+    app: doctors-data
+  type: ClusterIP
+  ports:
+  - port: 80
+    targetPort: 80
+---
+
+
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-webservice
+  labels:
+    app: app-webservice
+    tier: appservice
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: app-webservice
+  template:
+    metadata:
+      labels:
+        app: app-webservice
+        tier: backend
+    spec:
+      containers:
+      - name: app-webservicerest
+        image: atomaszewski/application:webservicerest_linux
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
+      imagePullSecrets:
+      - name: docker-secret
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: app-webservicerest
+  labels:
+    app: app-webservicerest
+    tier: appservice
+spec:
+  selector:
+    app: app-webservice
+  type: NodePort
+  ports:
+  - port: 80
+    nodePort: 30081
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webapplication  
+  labels:
+    app: webapplication
+    tier: webapp
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: webapplication
+  template:
+    metadata:
+      labels:
+        app: webapplication
+        tier: webapp
+    spec:
+      containers:
+      - name: webapplicationblazorserver
+        image: atomaszewski/application:webapplicationblazorserver_linux
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
+      imagePullSecrets:
+      - name: docker-secret
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: webapplicationblazorserver
+  labels:
+    app: webapplicationblazorserver
+    tier: webapp
+spec:
+  selector:
+    app: webapplication
+  type: NodePort
+  ports:
+  - port: 80
+    nodePort: 30080
+
