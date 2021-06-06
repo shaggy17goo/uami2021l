@@ -1,5 +1,6 @@
 stages:
   - trigger
+  - deploy
 
 trigger-PatientsData:
   stage: trigger
@@ -9,3 +10,13 @@ trigger-PatientsData:
   rules:
     - changes:
         - k8s/PatientsData/**/*
+
+deploy:
+  stage: deploy
+  tags:
+    - all
+  only:
+    - master
+  script:
+    - echo "test"
+
