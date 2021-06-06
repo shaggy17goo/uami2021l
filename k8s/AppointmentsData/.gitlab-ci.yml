@@ -49,7 +49,7 @@ deploy:
   only:
     - master
   script:
-    - kubectl apply -f kubectl.yaml
+    - kubectl apply -f k8s/AppointmentsData/kubectl.yaml
     - kubectl rollout restart deployment appointments-data
 
 
