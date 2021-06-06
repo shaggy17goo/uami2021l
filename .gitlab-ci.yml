@@ -57,12 +57,4 @@ trigger-PatientWebApp:
         - k8s/PatientWebApp/**/*
 
 
-deploy:
-  stage: deploy
-  tags:
-    - all
-  only:
-    - master
-  script:
-    - echo "test"
 

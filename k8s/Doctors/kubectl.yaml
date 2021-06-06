@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: doctors-data
+  labels:
+    app: doctors-data
+    tier: dataservice
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: doctors-data
+  template:
+    metadata:
+      labels:
+        app: doctors-data
+        tier: dataservice
+    spec:
+      containers:
+      - name: doctors-data
+        image: shaggy17goo/uaim:doctors_data
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: doctors-datarest
+  labels:
+    app: doctors-datarest
+    tier: dataservice
+spec:
+  selector:
+    app: doctors-data
+  type: ClusterIP
+  ports:
+  - port: 80
+    targetPort: 80
+---

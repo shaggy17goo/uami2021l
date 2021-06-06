@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: doctor-microservice
+  labels:
+    app: doctor-microservice
+    tier: appservice
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: doctor-microservice
+  template:
+    metadata:
+      labels:
+        app: doctor-microservice
+        tier: backend
+    spec:
+      containers:
+      - name: doctor-microservice
+        image: shaggy17goo/uaim:doctor_microservice
+        imagePullPolicy: Always
+        ports:
+            - containerPort: 80
+        env:
+            - name: DOCTORS_HOST
+              value: http://doctors-datarest:80/
+            - name: PATIENTS_HOST
+              value: http://patients-datarest:80/
+            - name: APPOINTMENTS_HOST
+              value: http://appointments-datarest:80/
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: doctor-microservicerest
+  labels:
+    app: doctor-microservicerest
+    tier: appservice
+spec:
+  selector:
+    app: doctor-microservice
+  type: NodePort
+  ports:
+  - port: 80
+    nodePort: 30082
+---

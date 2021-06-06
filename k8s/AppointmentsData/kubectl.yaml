@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: appointments-data
+  labels:
+    app: appointments-data
+    tier: dataservice
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: appointments-data
+  template:
+    metadata:
+      labels:
+        app: appointments-data
+        tier: dataservice
+    spec:
+      containers:
+      - name: appointments-data
+        image: shaggy17goo/uaim:appointments_data
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: appointments-datarest
+  labels:
+    app: appointments-datarest
+    tier: dataservice
+spec:
+  selector:
+    app: appointments-data
+  type: ClusterIP
+  ports:
+  - port: 80
+    targetPort: 80
+---
