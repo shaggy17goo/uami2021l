@@ -75,4 +75,23 @@ services:
       - patients-data
       - appointments-data
       - doctors-data
+      
+  patient-web-app:
+    image: shaggy17goo/uaim:patient_webapp
+    environment:
+     - SERVICE_HOST=patient-microservice
+     - SERVICE_PORT=80
+    ports:
+      - "8086:80"
+    networks:
+      - int_network
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: any
+    depends_on:
+      - patients-data
+      - appointments-data
+      - doctors-data
+
 
