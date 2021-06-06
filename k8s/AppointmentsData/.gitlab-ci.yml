@@ -44,9 +44,6 @@ containerize:
     
 deploy:
   stage: deploy
-  image:
-    name: bitnami/kubectl
-    entrypoint: [ "" ]
   tags:
     - all
   script:
