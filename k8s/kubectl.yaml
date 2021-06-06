@@ -132,84 +132,148 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: app-webservice
+  name: patient-microservice
   labels:
-    app: app-webservice
+    app: patient-microservice
     tier: appservice
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: app-webservice
+      app: patient-microservice
   template:
     metadata:
       labels:
-        app: app-webservice
+        app: patient-microservice
         tier: backend
     spec:
       containers:
-      - name: app-webservicerest
-        image: atomaszewski/application:webservicerest_linux
+      - name: patient-microservice
+        image: shaggy17goo/uaim:patient_microservice
         imagePullPolicy: Always
         ports:
-        - containerPort: 80
+            - containerPort: 80
+        env:
+            - name: DOCTORS_HOST
+              value: http://doctors-datarest:80/
+            - name: PATIENTS_HOST
+              value: http://patients-datarest:80/
+            - name: APPOINTMENTS_HOST
+              value: http://appointments-datarest:80/
       imagePullSecrets:
       - name: docker-secret
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: app-webservicerest
+  name: patient-microservicerest
   labels:
-    app: app-webservicerest
+    app: patient-microservicerest
     tier: appservice
 spec:
   selector:
-    app: app-webservice
+    app: patient-microservice
   type: NodePort
   ports:
   - port: 80
     nodePort: 30081
 ---
+
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: webapplication  
+  name: doctor-microservice
   labels:
-    app: webapplication
-    tier: webapp
+    app: doctor-microservice
+    tier: appservice
 spec:
-  replicas: 2
+  replicas: 3
   selector:
     matchLabels:
-      app: webapplication
+      app: doctor-microservice
   template:
     metadata:
       labels:
-        app: webapplication
-        tier: webapp
+        app: doctor-microservice
+        tier: backend
     spec:
       containers:
-      - name: webapplicationblazorserver
-        image: atomaszewski/application:webapplicationblazorserver_linux
+      - name: doctor-microservice
+        image: shaggy17goo/uaim:doctor_microservice
         imagePullPolicy: Always
         ports:
-        - containerPort: 80
+            - containerPort: 80
+        env:
+            - name: DOCTORS_HOST
+              value: http://doctors-datarest:80/
+            - name: PATIENTS_HOST
+              value: http://patients-datarest:80/
+            - name: APPOINTMENTS_HOST
+              value: http://appointments-datarest:80/
       imagePullSecrets:
       - name: docker-secret
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: webapplicationblazorserver
+  name: doctor-microservicerest
   labels:
-    app: webapplicationblazorserver
-    tier: webapp
+    app: doctor-microservicerest
+    tier: appservice
 spec:
   selector:
-    app: webapplication
+    app: doctor-microservice
   type: NodePort
   ports:
   - port: 80
-    nodePort: 30080
+    nodePort: 30082
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: patient-web-app  
+  labels:
+    app: patient-web-app
+    tier: webapp
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: patient-web-app
+  template:
+    metadata:
+      labels:
+        app: patient-web-app
+        tier: webapp
+    spec:
+      containers:
+      - name: patient-web-app
+        image: shaggy17goo/uaim:patient_webapp
+        imagePullPolicy: Always
+        ports:
+            - containerPort: 80
+        env:
+            - name: SERVICE_HOST
+              value: patient-microservicerest
+            - name: SERVICE_PORT
+              value: 80
+      imagePullSecrets:
+      - name: docker-secret
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: patient-web-apprest
+  labels:
+    app: patient-web-apprest
+    tier: webapp
+spec:
+  selector:
+    app: patient-web-app
+  type: NodePort
+  ports:
+  - port: 80
+    nodePort: 30083
 
