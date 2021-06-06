@@ -17,6 +17,7 @@ default:
 
 stages:
   - build
+  - test
   - containerize
   - deploy
 
@@ -28,6 +29,15 @@ build:
   script:
     - dotnet restore
     - dotnet build -c Release
+
+test:
+  stage: test
+  image: mcr.microsoft.com/dotnet/sdk:5.0
+  tags:
+    - integration
+  script:
+    - dotnet restore
+    - dotnet test
 
 containerize:
   stage: containerize
