@@ -38,7 +38,7 @@ trigger-DoctorsApplicationMicroservice:
     - changes:
         - k8s/DoctorsApplicationMicroservice/**/*
         
-trigger-DoctorsApplicationMicroservice:
+trigger-PatientsApplicationMicroservice:
   stage: trigger
   trigger:
     include: k8s/PatientsApplicationMicroservice/.gitlab-ci.yml
