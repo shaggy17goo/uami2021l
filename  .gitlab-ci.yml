@@ -2,14 +2,14 @@ stages:
   - trigger
   - deploy
 
-trigger-Doctors:
+trigger-PatientsData:
   stage: trigger
   trigger:
-    include: Doctors/.gitlab-ci.yml
+    include: PatientsData/.gitlab-ci.yml
     strategy: depend
   rules:
     - changes:
-        - Doctors/**/*
+        - PatientsData/**/*
 
 deploy:
   stage: deploy
