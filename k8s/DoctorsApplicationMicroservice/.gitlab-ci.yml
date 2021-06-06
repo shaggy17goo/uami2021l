@@ -51,3 +51,16 @@ containerize:
   script:
     - docker build -t shaggy17goo/uaim:doctor_microservice k8s/DoctorsApplicationMicroservice
     - docker push shaggy17goo/uaim:doctor_microservice
+
+deploy:
+  stage: deploy
+  tags:
+    - all
+  only:
+    - master
+  before_script:
+    - export KUBECONFIG=$(mktemp)
+    - echo ${K8S_CONFIG} | base64 -d > ${KUBECONFIG}
+  script:
+    - kubectl apply -f k8s/DoctorsApplicationMicroservice/kubectl.yaml
+    - kubectl rollout restart deployment doctor-microservice

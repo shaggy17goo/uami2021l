@@ -52,3 +52,17 @@ containerize:
     - docker build -t shaggy17goo/uaim:doctors_data k8s/Doctors
     - docker push shaggy17goo/uaim:doctors_data
 
+deploy:
+  stage: deploy
+  tags:
+    - all
+  only:
+    - master
+  before_script:
+    - export KUBECONFIG=$(mktemp)
+    - echo ${K8S_CONFIG} | base64 -d > ${KUBECONFIG}
+  script:
+    - kubectl apply -f k8s/Doctors/kubectl.yaml
+    - kubectl rollout restart deployment docotrs-data
+
+
