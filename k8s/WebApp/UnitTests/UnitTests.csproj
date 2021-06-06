@@ -14,9 +14,11 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\BlazorServer\BlazorServer.csproj" />
       <ProjectReference Include="..\Controller\Controller.csproj" />
       <ProjectReference Include="..\Model\Model.csproj" />
-      <ProjectReference Include="..\PatientAppliocation.WindowsApplication.Logic\PatientAppliocation.WindowsApplication.Logic.csproj" />
+      <ProjectReference Include="..\Utilities\Utilities.csproj" />
     </ItemGroup>
+    
 
 </Project>

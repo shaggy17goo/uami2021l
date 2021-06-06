@@ -28,12 +28,7 @@ namespace UnitTests
         public void TestGetDoctorById()
         {
             Controller.Model.SearchText = "9";
-            var testCommand = Controller.GetDoctorByIdAsync();
-            if (testCommand.CanExecute(null))
-            {
-                testCommand.Execute(null);
-            }
-            else Assert.Fail();
+            var testTask = Controller.GetDoctorByIdAsync();
             Thread.Sleep(3000);
             var temp = Controller.Model.DoctorById;
             Assert.AreEqual(Controller.Model.DoctorById.Count,1);
@@ -43,12 +38,7 @@ namespace UnitTests
         public void TestGetPatientById()
         {
             Controller.Model.SearchText = "9";
-            var testCommand = Controller.GetDoctorByIdAsync();
-            if (testCommand.CanExecute(null))
-            {
-                testCommand.Execute(null);
-            }
-            else Assert.Fail();
+            var testTask = Controller.GetPatientByIdAsync();
             Thread.Sleep(3000);
             Assert.AreEqual(Controller.Model.PatientById.Count,1);
         }
