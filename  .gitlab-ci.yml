@@ -1,0 +1,23 @@
+stages:
+  - trigger
+  - deploy
+
+trigger-PatientsData:
+  stage: trigger
+  trigger:
+    include: k8s/PatientsData/.gitlab-ci.yml
+    strategy: depend
+  rules:
+    - changes:
+        - k8s/PatientsData/**/*
+
+deploy:
+  stage: deploy
+  tags:
+    - all
+  only:
+    - CI/CD_dev
+  script:
+    - docker-compose -f dockerize/docker-compose.yaml pull
+    - docker-compose up -d
+    - docker-compose down
