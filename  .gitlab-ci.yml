@@ -16,7 +16,7 @@ deploy:
   tags:
     - all
   only:
-    - CI/CD_dev
+    - master
   script:
     - docker-compose -f dockerize/docker-compose.yaml pull
     - docker-compose up -d
