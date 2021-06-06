@@ -12,3 +12,6 @@ docker push shaggy17goo/uaim:doctor_microservice
 
 docker build -t shaggy17goo/uaim:patient_microservice ./PatientsApplicationMicroservice
 docker push shaggy17goo/uaim:patient_microservice
+
+docker build -t shaggy17goo/uaim:patient_webapp ./PatientWebApp
+docker push shaggy17goo/uaim:patient_webapp

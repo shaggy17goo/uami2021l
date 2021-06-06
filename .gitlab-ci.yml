@@ -36,7 +36,7 @@ trigger-DoctorsWebApp:
     strategy: depend
   rules:
     - changes:
-        - k8s/WebApp/**/*
+        - k8s/PatientWebApp/**/*
 
 deploy:
   stage: deploy

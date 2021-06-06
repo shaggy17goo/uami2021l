@@ -27,6 +27,10 @@
       "commandName": "Docker",
       "launchBrowser": true,
       "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}",
+      "environmentVariables": {
+        "SERVICE_HOST": "Development",
+        "SERVICE_PORT": ""
+      },
       "publishAllPorts": true,
       "useSSL": true
     }

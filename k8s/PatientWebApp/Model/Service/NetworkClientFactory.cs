@@ -11,6 +11,8 @@
 //
 //===============================================================================
 
+using System;
+
 namespace Model.Service
 {
     public static class NetworkClientFactory
@@ -18,9 +20,9 @@ namespace Model.Service
         public static INetwork GetNetworkClient()
         {
             
-            const string serviceHost = "localhost";
-            const int servicePort = 8084;// 8084;
-
+            string serviceHost = Environment.GetEnvironmentVariable("SERVICE_HOST");
+            string servicePortStr =  Environment.GetEnvironmentVariable("SERVICE_PORT");
+            int servicePort = int.Parse(servicePortStr);
             return new NetworkClient(serviceHost, servicePort);
      
         }
