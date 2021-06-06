@@ -43,12 +43,12 @@ containerize:
     - docker push shaggy17goo/uaim:appointments_data
     
 deploy:
-  stage: all
+  stage: deploy
   image:
     name: bitnami/kubectl
     entrypoint: [ "" ]
   tags:
-    - deployment
+    -   stage: all
   script:
     - kubectl apply -f kubectl.yaml
     - kubectl rollout restart deployment appointments-data
