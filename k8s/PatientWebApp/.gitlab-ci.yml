@@ -49,6 +49,7 @@ containerize:
     - docker info
     - docker login -u $REGISTRY_USER -p $REGISTRY_PASSWORD
   script:
-    - docker build -t shaggy17goo/uaim:patient_webapp k8s/WebApp
+    - docker build -t shaggy17goo/uaim:patient_webapp k8s/PatientWebApp
     - docker push shaggy17goo/uaim:patient_webapp
+    
 
