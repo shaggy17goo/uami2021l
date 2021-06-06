@@ -11,6 +11,24 @@ trigger-PatientsData:
     - changes:
         - k8s/PatientsData/**/*
 
+trigger-AppointmentsData:
+  stage: trigger
+  trigger:
+    include: k8s/AppointmentsData/.gitlab-ci.yml
+    strategy: depend
+  rules:
+    - changes:
+        - k8s/AppointmentsData/**/*
+
+trigger-DoctorsApplicationMicroservice:
+  stage: trigger
+  trigger:
+    include: k8s/DoctorsApplicationMicroservice/.gitlab-ci.yml
+    strategy: depend
+  rules:
+    - changes:
+        - k8s/DoctorsApplicationMicroservice/**/*
+
 deploy:
   stage: deploy
   tags:
