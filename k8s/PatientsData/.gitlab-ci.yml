@@ -39,6 +39,6 @@ containerize:
     - docker info
     - docker login -u $REGISTRY_USER --password-stdin $REGISTRY_PASSWORD
   script:
-    - docker build -t shaggy17goo/uaim:patients_data ./k8s/PatientsData
+    - docker build -t shaggy17goo/uaim:patients_data k8s/PatientsData
     - docker push shaggy17goo/uaim:patients_data
 
