@@ -1,0 +1,30 @@
+variables:
+  OBJECTS_DIRECTORY: 'obj'
+  NUGET_PACKAGES_DIRECTORY: '.nuget'
+  SOURCE_CODE_PATH: 'Doctors'
+
+cache:
+  key: ${CI_JOB_NAME}
+  paths:
+    - $SOURCE_CODE_PATH/$OBJECTS_DIRECTORY/*/project.assets.json
+    - $SOURCE_CODE_PATH/$OBJECTS_DIRECTORY/*/*.csproj.nuget.*
+    - $SOURCE_CODE_PATH/$NUGET_PACKAGES_DIRECTORY
+  policy: pull-push
+
+default:
+  before_script:
+    - cd $SOURCE_CODE_PATH
+
+stages:
+  - build
+  - containerize
+  - deploy
+
+build:
+  stage: build
+  image: mcr.microsoft.com/dotnet/sdk:5.0
+  tags:
+    - all
+  script:
+    - dotnet restore
+    - dotnet build -c Release
