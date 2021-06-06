@@ -28,3 +28,17 @@ build:
   script:
     - dotnet restore
     - dotnet build -c Release
+
+containerize:
+  stage: containerize
+  tags:
+    - all
+  only:
+    - master
+  before_script:
+    - docker info
+    - docker login -u $REGISTRY_USER -p $REGISTRY_PASSWORD
+  script:
+    - docker build -t shaggy17goo/uaim:patients_data ./PatientsData
+    - docker push shaggy17goo/uaim:patients_data
+
