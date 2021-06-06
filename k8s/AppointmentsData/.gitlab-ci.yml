@@ -48,7 +48,7 @@ deploy:
     name: bitnami/kubectl
     entrypoint: [ "" ]
   tags:
-    -   stage: all
+    - all
   script:
     - kubectl apply -f kubectl.yaml
     - kubectl rollout restart deployment appointments-data
