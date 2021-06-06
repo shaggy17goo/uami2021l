@@ -137,7 +137,7 @@ metadata:
     app: patient-microservice
     tier: appservice
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: patient-microservice
@@ -188,7 +188,7 @@ metadata:
     app: doctor-microservice
     tier: appservice
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: doctor-microservice
@@ -238,7 +238,7 @@ metadata:
     app: patient-web-app
     tier: webapp
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: patient-web-app
@@ -258,7 +258,7 @@ spec:
             - name: SERVICE_HOST
               value: patient-microservicerest
             - name: SERVICE_PORT
-              value: 80
+              value: '80'
       imagePullSecrets:
       - name: docker-secret
 ---
