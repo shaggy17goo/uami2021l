@@ -11,7 +11,11 @@
 
 <RadzenListBox Name="doctorsList" Data="@Model.DoctorDtoList" TValue="DoctorDto" SelectedItem="@Model.SelectedDoctorDto" Style="width: 500px; height: 500px">
     <Template Context="doctorsList">
-        @doctorsList.name @doctorsList.surname
+        |Name:| @doctorsList.name @doctorsList.surname |Certifications:|
+        @foreach (var cert in doctorsList.certifications)
+        {
+            @cert
+        }
     </Template>
 </RadzenListBox>
 
@@ -41,4 +45,5 @@
     {
         IsVisible = false;
     }
+
 }
