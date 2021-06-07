@@ -38,7 +38,7 @@ namespace ZsutPw.Patterns.Application.Model
         string PatientId { get; set; }
         string DateOfAppointment { get; set; }
         string Description { get; set; }
-        PatientDto PatientById { get; }
+        List<PatientDto> PatientById { get; }
     List<PatientsShortDto> PatientsByDoctorId { get; }
     PatientsShortDto SelectedPatientsByDoctorId { get; set; }
     List<AppointmentsWithPatientNameDto> AppointmentsByDoctorIdAndData { get; }

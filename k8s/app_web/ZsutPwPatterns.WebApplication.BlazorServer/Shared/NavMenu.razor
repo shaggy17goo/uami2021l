@@ -6,39 +6,54 @@
 </div>
 
 <div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
-  <ul class="nav flex-column">
-    <li class="nav-item px-3">
-      <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-        <span class="oi oi-home" aria-hidden="true"></span> Home
-      </NavLink>
-    </li>
-    <li class="nav-item px-3">
-      <NavLink class="nav-link" href="counter">
-        <span class="oi oi-plus" aria-hidden="true"></span> Counter
-      </NavLink>
-    </li>
-    <li class="nav-item px-3">
-      <NavLink class="nav-link" href="list">
-        <span class="oi oi-list" aria-hidden="true"></span> List
-      </NavLink>
-    </li>
-    <li class="nav-item px-3">
-      <NavLink class="nav-link" href="map">
-        <span class="oi oi-map" aria-hidden="true"></span> Map
-      </NavLink>
-    </li>
-    <li />
-    <li class="nav-item px-3">
-      <NavLink class="nav-link" href="settings">
-        <span class="oi oi-pencil" aria-hidden="true"></span> Settings
-      </NavLink>
-    </li>
-    <li class="nav-item px-3">
-      <NavLink class="nav-link" href="help">
-        <span class="oi oi-question-mark" aria-hidden="true"></span> Help
-      </NavLink>
-    </li>
-  </ul>
+    <ul class="nav flex-column">
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                <span class="oi oi-home" aria-hidden="true"></span> Home
+            </NavLink>
+        </li>
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" href="counter">
+                <span class="oi oi-plus" aria-hidden="true"></span> Counter
+            </NavLink>
+        </li>
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" href="appointments">
+                <span class="oi oi-list" aria-hidden="true"></span> Appointments
+            </NavLink>
+        </li>
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" href="appointments-date">
+                <span class="oi oi-list" aria-hidden="true"></span> Appointments by date
+            </NavLink>
+        </li>
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" href="add-appointment">
+                <span class="oi oi-plus" aria-hidden="true"></span> Add appointment
+            </NavLink>
+        </li>
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" href="patients">
+                <span class="oi oi-list" aria-hidden="true"></span> Patients
+            </NavLink>
+        </li>
+        <li />
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" href="patient">
+                <span class="oi oi-list" aria-hidden="true"></span> Patient
+            </NavLink>
+        </li>
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" href="add-patient">
+                <span class="oi oi-plus" aria-hidden="true"></span> Add patient
+            </NavLink>
+        </li>
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" href="help">
+                <span class="oi oi-question-mark" aria-hidden="true"></span> Help
+            </NavLink>
+        </li>
+    </ul>
 </div>
 
 @code {

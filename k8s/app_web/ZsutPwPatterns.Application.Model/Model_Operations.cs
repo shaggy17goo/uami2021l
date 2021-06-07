@@ -85,7 +85,7 @@ namespace ZsutPw.Patterns.Application.Model
 
             try
             {
-                networkClient.DeleteAppointment(SearchText);
+                networkClient.DeleteAppointment(string.Format("{0}",SelectedAppointmentByDoctorId.AppointmentId));
 
             }
             catch (Exception e)
@@ -145,8 +145,8 @@ namespace ZsutPw.Patterns.Application.Model
             try
             {
                 var patient = networkClient.GetPatientById(SearchText);
-
-                PatientById = patient;
+                List<PatientDto> temp = new List<PatientDto> { patient };
+                PatientById = temp;
             }
             catch (Exception)
             {

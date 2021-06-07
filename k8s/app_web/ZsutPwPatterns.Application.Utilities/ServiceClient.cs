@@ -23,6 +23,8 @@ namespace ZsutPw.Patterns.Application.Model
   using System.Text.Json;
     using System.Text;
     using Newtonsoft.Json;
+    using System.Net;
+    using System.IO;
 
     public class ServiceClient
     {
@@ -71,20 +73,23 @@ namespace ZsutPw.Patterns.Application.Model
         public async Task<string> CallWebService(HttpMethod httpMethod, string callUri, string myJson)
         {
             var httpUri = string.Format("http://{0}:{1}/{2}", serviceHost, servicePort, callUri);
+            var httpWebRequest = (HttpWebRequest)WebRequest.Create(httpUri);
+            httpWebRequest.ContentType = "application/json";
+            httpWebRequest.Method = "POST";
 
-            var httpRequestMessage = new HttpRequestMessage(httpMethod, httpUri);
+            await using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
+            {
+              
 
-            httpClient.DefaultRequestHeaders.Add("Accept", "application/json");
+                streamWriter.Write(myJson);
+            }
 
-            httpRequestMessage.Content = new StringContent(myJson, Encoding.UTF8, "application/json");
-
-            var httpResponseMessage = await httpClient.SendAsync(httpRequestMessage).ConfigureAwait(false);
-
-            httpResponseMessage.EnsureSuccessStatusCode();
-
-            var httpResponseContent = await httpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
-
-            return httpResponseContent;
+            var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
+            using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
+            {
+                var result = streamReader.ReadToEnd();
+            }
+            return "200";
         }
 
         private T ConvertJson<T>(string json)

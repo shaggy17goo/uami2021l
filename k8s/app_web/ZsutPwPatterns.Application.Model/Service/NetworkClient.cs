@@ -77,7 +77,7 @@ namespace ZsutPw.Patterns.Application.Model
         public void AddAppointment (string doctorId, string patientId, string dateOfAppointment, string description)
         {
             string callUri = "addAppointment";
-            string myJson = "{\"doctorId\":" + doctorId + ", \"patientId\":" + patientId + ", \"dateOfAppointment\": \"" + dateOfAppointment + "\", \"description\":\"" + description + "\"}";
+            string myJson = "{\"doctorId\":" + doctorId + ",\"patientId\":" + patientId + ",\"dateOfAppointment\":\"" + dateOfAppointment + "\",\"description\":\"" + description + "\"}";
             serviceClient.CallWebService(HttpMethod.Post, callUri, myJson).Wait();
         }
         public void AddPatient (string pesel, string name, string surname, string sex, string birthdate, string city, string street, string houseNr)

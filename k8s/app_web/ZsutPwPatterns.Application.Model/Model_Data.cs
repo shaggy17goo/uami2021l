@@ -174,7 +174,7 @@ namespace ZsutPw.Patterns.Application.Model
         private string patientId;
         private string dateOfAppointment;
         private string description;
-        private string searchText ="9";
+        private string searchText ="";
         private string visitDate;
         private List<AppointmentsWithPatientNameDto> appointmentsByDoctorId = new List<AppointmentsWithPatientNameDto>();
         private AppointmentsWithPatientNameDto selectedAppoitmentByDoctorId;
@@ -182,7 +182,7 @@ namespace ZsutPw.Patterns.Application.Model
         private AppointmentsWithPatientNameDto selectedAppointmentByDoctorIdAndData;
         private List<PatientsShortDto> patientsByDoctorId = new List<PatientsShortDto>();
         private PatientsShortDto selectedPatientsByDoctorId;
-        private PatientDto patientById;
+        private List<PatientDto> patientById;
         public List<AppointmentsWithPatientNameDto> AppointmentsByDoctorId
         {
             get { return appointmentsByDoctorId; }
@@ -233,7 +233,7 @@ namespace ZsutPw.Patterns.Application.Model
                 RaisePropertyChanged("PatientsByDoctorId");
             }
         }
-        public PatientDto PatientById
+        public List<PatientDto> PatientById
         {
             get { return patientById; }
             set
