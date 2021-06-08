@@ -20,8 +20,8 @@ namespace Model
     {
         private string searchText = "";
 
-        public List<PatientDto> patientById;
-        public List<DoctorDto> doctorById;
+        public List<PatientDto> patientById = new List<PatientDto>();
+        public List<DoctorDto> doctorById = new List<DoctorDto>();
         
         private List<AppointmentWithNamesDto> appointmentsHistoryWithNamesDtoList = new List<AppointmentWithNamesDto>();
         private AppointmentWithNamesDto selectedAppointmentsHistoryWithNamesDtoDto;
