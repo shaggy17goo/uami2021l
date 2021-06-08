@@ -14,7 +14,7 @@
 
 <RadzenListBox Name="futureAppointments" Data="@Model.FutureAppointmentWithNamesDtoList" TValue="AppointmentWithNamesDto" SelectedItem="@Model.SelectedFutureAppointmentWithNamesDtoDto" Style="width: 500px; height: 200px">
     <Template Context="futureAppointments">
-        @futureAppointments.doctorName @futureAppointments.patientName
+        |Doctor:| @futureAppointments.doctorName @futureAppointments.doctorSurname |Date:| @futureAppointments.dateOfAppointment
     </Template>
 </RadzenListBox>
 

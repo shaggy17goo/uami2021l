@@ -14,7 +14,7 @@
 
 <RadzenListBox Name="patient" Data="@Model.PatientById" TValue="PatientDto" SelectedItem="@Model.SelectedPatientDto" Style="width: 500px; height: 100px">
     <Template Context="patient">
-        @patient.name @patient.surname
+        |Name:| @patient.name @patient.surname |PESEL:| @patient.PESEL |Birthday| @patient.birthDate
     </Template>
 </RadzenListBox>
 
