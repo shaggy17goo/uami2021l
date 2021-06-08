@@ -10,13 +10,27 @@
 
 <RadzenButton Icon="load" Text="Load" Click="@Controller.GetFutureAppointmentsAsync" Style="width: 160px"/>
 
-<h5 style="margin-top: 16px">Future Appointments</h5>
+<div class="container">
+    <h3 class="p-3 text-center">Future appointments</h3>
+    <table class="table table-striped table-bordered">
+        <thead>
+        <tr>
+            <th>Doctor's Name</th>
+            <th>Date of appointment</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var futureAppointments in @Model.FutureAppointmentWithNamesDtoList)
+        {
+            <tr>
+                <td>@futureAppointments.doctorName @futureAppointments.doctorSurname</td>
+                <td>@futureAppointments.dateOfAppointment</td>
 
-<RadzenListBox Name="futureAppointments" Data="@Model.FutureAppointmentWithNamesDtoList" TValue="AppointmentWithNamesDto" SelectedItem="@Model.SelectedFutureAppointmentWithNamesDtoDto" Style="width: 500px; height: 200px">
-    <Template Context="futureAppointments">
-        |Doctor:| @futureAppointments.doctorName @futureAppointments.doctorSurname |Date:| @futureAppointments.dateOfAppointment
-    </Template>
-</RadzenListBox>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>
 
 
 

@@ -10,13 +10,29 @@
 
 <RadzenButton Icon="load" Text="Load" Click="@Controller.GetAppointmentsHistoryAsync" Style="width: 160px"/>
 
-<h5 style="margin-top: 16px">Appointments Hisotry</h5>
+<div class="container">
+    <h3 class="p-3 text-center">Appointments' Hisotry</h3>
+    <table class="table table-striped table-bordered">
+        <thead>
+        <tr>
+            <th>Doctor's Name</th>
+            <th>Date of appointment</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var pastAppointments in @Model.AppointmentsHistoryWithNamesDtoList)
+        {
+            <tr>
+                <td>@pastAppointments.doctorName @pastAppointments.doctorSurname</td>
+                <td>@pastAppointments.dateOfAppointment</td>
 
-<RadzenListBox Name="appointmentsHistory" Data="@Model.AppointmentsHistoryWithNamesDtoList" TValue="AppointmentWithNamesDto" SelectedItem="@Model.SelectedAppointmentsHistoryWithNamesDtoDto" Style="width: 500px; height: 200px">
-    <Template Context="appointmentsHistory">
-        |Doctor:| @appointmentsHistory.doctorName @appointmentsHistory.doctorSurname |Date:| @appointmentsHistory.dateOfAppointment
-    </Template>
-</RadzenListBox>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>
+
+
 
 
 

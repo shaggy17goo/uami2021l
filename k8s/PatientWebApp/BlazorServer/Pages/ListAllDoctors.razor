@@ -7,21 +7,34 @@
 
 <RadzenButton Icon="load" Text="Load" Click="@Controller.GetDoctorsAsync" Style="width: 160px"/>
 
-<h5 style="margin-top: 16px">Doctors List</h5>
-
-<RadzenListBox Name="doctorsList" Data="@Model.DoctorDtoList" TValue="DoctorDto" SelectedItem="@Model.SelectedDoctorDto" Style="width: 500px; height: 500px">
-    <Template Context="doctorsList">
-        |Name:| @doctorsList.name @doctorsList.surname |Certifications:|
-        @foreach (var cert in doctorsList.certifications)
+<div class="container">
+    <h3 class="p-3 text-center">Doctors' List</h3>
+    <table class="table table-striped table-bordered">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Certifications</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var doctor in @Model.DoctorDtoList)
         {
-            @cert
-        }
-    </Template>
-</RadzenListBox>
+            <tr>
+                <td>@doctor.name @doctor.surname</td>
+                <td>
 
-<RadzenMenu>
-    <RadzenButton Text="Add" Icon="add" Size="ButtonSize.Small" Click="@ToTrue"></RadzenButton>
-</RadzenMenu>
+                    @foreach (var cert in @doctor.certifications)
+                    {
+                        @cert
+                    }
+                </td>
+
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>
+
 
 <div style="margin-top: 12px; width: 324px; text-align: center">
     <RadzenLink Text=":)" Path="https://cat-bounce.com/" Target="_blank"/>
