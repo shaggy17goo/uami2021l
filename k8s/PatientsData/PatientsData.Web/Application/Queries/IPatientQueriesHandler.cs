@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using PatientsData.Domain.PatientAggregate;
-
-namespace PatientsData.Web.Application
+﻿namespace PatientsData.Web.Application.Queries
 {
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
+    using Domain.PatientAggregate;
+    using Microsoft.AspNetCore.Mvc;
+
     public interface IPatientQueriesHandler
     {
         Task<IEnumerable<Patient>> GetAllAsync();

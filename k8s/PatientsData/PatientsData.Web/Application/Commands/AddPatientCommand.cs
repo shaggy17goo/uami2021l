@@ -1,7 +1,6 @@
-﻿using System;
-
-namespace PatientsData.Web.Application.Commands
+﻿namespace PatientsData.Web.Application.Commands
 {
+    using System;
     //wykorzystujemy interfejs wskaźnikowy ICommand do jawnego wskazania, że dana klasa jest komendą
     public class AddPatientCommand : ICommand
     {

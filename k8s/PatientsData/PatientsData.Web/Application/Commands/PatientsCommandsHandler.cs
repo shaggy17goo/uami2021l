@@ -1,7 +1,6 @@
-﻿using PatientsData.Domain.PatientAggregate;
-
-namespace PatientsData.Web.Application.Commands
+﻿namespace PatientsData.Web.Application.Commands
 {
+    using PatientsData.Domain.PatientAggregate;
     //"handler" komendy tworzenia gabinetu
     public class PatientsCommandsHandler : ICommandHandler<AddPatientCommand>, ICommandHandler<DeletePatientCommand>
     {

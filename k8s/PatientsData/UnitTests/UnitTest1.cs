@@ -1,17 +1,12 @@
-using NUnit.Framework;
-
 namespace UnitTests
 {
     using System;
     using System.Linq;
     using System.Threading;
-    using Microsoft.Extensions.Logging;
-    using Moq;
+    using NUnit.Framework;
     using PatientsData.Domain.PatientAggregate;
     using PatientsData.Infrastructure;
-    using PatientsData.Web.Application;
-    using PatientsData.Web.Application.Commands;
-    using PatientsData.Web.Controllers;
+    using PatientsData.Infrastructure.Repositories;
 
     public class Tests
     {
@@ -45,7 +40,7 @@ namespace UnitTests
             Thread.Sleep(3000);
             var taskResult = getPatientTask.Result;
             Assert.NotNull(taskResult);
-            var deletePatient = patientsRepository.DeletePatientAsync(taskResult.patientId, taskResult.PESEL);
+            var deletePatient = patientsRepository.DeletePatientAsync(taskResult.patientId, taskResult.pesel);
             Thread.Sleep(3000);
             Assert.AreEqual(deletePatient, 0);
         }

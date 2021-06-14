@@ -1,26 +1,27 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using PatientsData.Domain.PatientAggregate;
-using PatientsData.Web.Application;
-using PatientsData.Web.Application.Commands;
-
-namespace PatientsData.Web.Controllers
+﻿namespace PatientsData.Web.Controllers
 {
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
+    using Application.Queries;
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.Extensions.Logging;
+    using PatientsData.Domain.PatientAggregate;
+    using PatientsData.Web.Application;
+    using PatientsData.Web.Application.Commands;
+    
     [ApiController]
     public class PatientsController : ControllerBase
     {
         private readonly ICommandHandler<AddPatientCommand> _addPatientCommandHandler;
         private readonly ICommandHandler<DeletePatientCommand> _deletePatientCommandHandler;
         private readonly IPatientQueriesHandler _patientQueriesHandler;
-        private readonly ILogger<PatientsController> logger;
+        private readonly ILogger<PatientsController> _logger;
 
         public PatientsController(ILogger<PatientsController> logger, IPatientQueriesHandler patientQueriesHandler,
             ICommandHandler<AddPatientCommand> addPatientCommandHandler,
             ICommandHandler<DeletePatientCommand> deletePatientCommandHandler)
         {
-            this.logger = logger;
+            this._logger = logger;
             _patientQueriesHandler = patientQueriesHandler;
             _addPatientCommandHandler = addPatientCommandHandler;
             _deletePatientCommandHandler = deletePatientCommandHandler;

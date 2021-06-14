@@ -1,8 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-
-namespace PatientsData.Domain.PatientAggregate
+﻿namespace PatientsData.Domain.PatientAggregate
 {
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
     public interface IPatientsRepository
     {
         Task<IEnumerable<Patient>> listPatients();

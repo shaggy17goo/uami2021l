@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using PatientsData.Domain.PatientAggregate;
-
-namespace PatientsData.Web.Application
+﻿namespace PatientsData.Web.Application.Queries
 {
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
+    using Domain.PatientAggregate;
+
     public class PatientQueriesHandler : IPatientQueriesHandler
     {
         private readonly IPatientsRepository _patientsRepository;
