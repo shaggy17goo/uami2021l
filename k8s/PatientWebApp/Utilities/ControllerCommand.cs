@@ -10,17 +10,10 @@
         private readonly Action _execute;
         private readonly Func<bool> _canExecute;
 
-        public ControllerCommand(Action execute, Func<bool> canExecute)
+        public ControllerCommand(Action execute, Func<bool> canExecute = null)
         {
-            if (execute == null)
-                throw new ArgumentNullException("execute");
-
-            _execute = execute;
+            _execute = execute ?? throw new ArgumentNullException(nameof(execute));
             _canExecute = canExecute;
-        }
-
-        public ControllerCommand(Action execute) : this(execute, null)
-        {
         }
 
         public bool CanExecute(object parameter)
@@ -37,10 +30,7 @@
         {
             var handler = CanExecuteChanged;
 
-            if (handler != null)
-            {
-                handler(this, EventArgs.Empty);
-            }
+            handler?.Invoke(this, EventArgs.Empty);
         }
     }
 }

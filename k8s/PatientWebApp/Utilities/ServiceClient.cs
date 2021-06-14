@@ -7,7 +7,7 @@
 
     public class ServiceClient
     {
-        private static readonly HttpClient HttpClient = new HttpClient();
+        private static readonly HttpClient httpClient = new HttpClient();
 
         private readonly string _serviceHost;
         private readonly ushort _servicePort;
@@ -50,11 +50,11 @@
 
             httpRequestMessage.Headers.Add("Accept", "application/json");
 
-            var httpResponseMessage = await HttpClient.SendAsync(httpRequestMessage);
+            var httpResponseMessage = await httpClient.SendAsync(httpRequestMessage);
 
             httpResponseMessage.EnsureSuccessStatusCode();
 
-            string httpResponseContent = await httpResponseMessage.Content.ReadAsStringAsync();
+            var httpResponseContent = await httpResponseMessage.Content.ReadAsStringAsync();
 
             return httpResponseContent;
         }

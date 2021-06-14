@@ -25,27 +25,27 @@ namespace Model
         
         public void LoadDoctors()
         {
-            Task.Run(() => LoadDoctorsTask());
+            Task.Run(LoadDoctorsTask);
         }
 
         public void LoadDoctorById()
         {
-            Task.Run(() => LoadDoctorByIdTask());
+            Task.Run(LoadDoctorByIdTask);
         }
 
         public void LoadPatientById()
         {
-            Task.Run(() => LoadPatientByIdTask());
+            Task.Run(LoadPatientByIdTask);
         }
 
         public void LoadAppointmentsHistory()
         {
-            Task.Run(() => LoadAppointmentsHistoryTask());
+            Task.Run(LoadAppointmentsHistoryTask);
         }
 
         public void LoadFutureAppointments()
         {
-            Task.Run(() => LoadFutureAppointmentsTask());
+            Task.Run(LoadFutureAppointmentsTask);
         }
         
         
@@ -61,6 +61,7 @@ namespace Model
             }
             catch (Exception)
             {
+                throw new NotConnectedException();
             }
         }
         
@@ -71,11 +72,12 @@ namespace Model
             try
             {
                 var doctor = networkClient.GetDoctorById(SearchText);
-                List<DoctorDto> temp = new List<DoctorDto>{doctor};
+                var temp = new List<DoctorDto>{doctor};
                 DoctorById = temp;
             }
             catch (Exception)
             {
+                throw new NotConnectedException();
             }
         }
         
@@ -86,11 +88,12 @@ namespace Model
             try
             {
                 var patient = networkClient.GetPatientById(SearchText);
-                List<PatientDto> temp = new List<PatientDto>{patient};
+                var temp = new List<PatientDto>{patient};
                 PatientById = temp;
             }
             catch (Exception)
             {
+                throw new NotConnectedException();
             }
         }
         
@@ -106,6 +109,7 @@ namespace Model
             }
             catch (Exception)
             {
+                throw new NotConnectedException();
             }
         }
         
@@ -121,6 +125,7 @@ namespace Model
             }
             catch (Exception)
             {
+                throw new NotConnectedException();
             }
         }
 

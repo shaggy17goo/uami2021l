@@ -20,10 +20,10 @@
         @foreach (var doctor in @Model.DoctorDtoList)
         {
             <tr>
-                <td>@doctor.name @doctor.surname</td>
+                <td>@doctor.Name @doctor.Surname</td>
                 <td>
 
-                    @foreach (var cert in @doctor.certifications)
+                    @foreach (var cert in @doctor.Certifications)
                     {
                         @cert
                     }

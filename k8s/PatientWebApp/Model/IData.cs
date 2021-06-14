@@ -1,22 +1,10 @@
-﻿//===============================================================================
-//
-// PlaZa System Platform
-//
-//===============================================================================
-//
-// Warsaw University of Technology
-// Computer Networks and Services Division
-// Copyright © 2020 PlaZa Creators
-// All rights reserved.
-//
-//===============================================================================
-
-using System.Collections.Generic;
-using System.ComponentModel;
-using Model.Data;
-
-namespace Model
+﻿namespace Model
 {
+    
+    using System.Collections.Generic;
+    using System.ComponentModel;
+    using Data;
+
     public interface IData : INotifyPropertyChanged
     {
         string SearchText { get; set; }

@@ -4,7 +4,6 @@ namespace Controller
 {
     using System.ComponentModel;
     using System.Threading.Tasks;
-    using System.Windows.Input;
 
     public interface IController : INotifyPropertyChanged
     {

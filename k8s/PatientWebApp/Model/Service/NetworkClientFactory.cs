@@ -20,9 +20,9 @@ namespace Model.Service
         public static INetwork GetNetworkClient()
         {
             
-            string serviceHost = Environment.GetEnvironmentVariable("SERVICE_HOST");
-            string servicePortStr =  Environment.GetEnvironmentVariable("SERVICE_PORT");
-            int servicePort = int.Parse(servicePortStr);
+            var serviceHost = Environment.GetEnvironmentVariable("SERVICE_HOST");
+            var servicePortStr =  Environment.GetEnvironmentVariable("SERVICE_PORT");
+            var servicePort = int.Parse(servicePortStr ?? string.Empty);
             return new NetworkClient(serviceHost, servicePort);
      
         }

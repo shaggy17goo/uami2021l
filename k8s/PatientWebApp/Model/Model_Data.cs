@@ -10,84 +10,83 @@
 // All rights reserved.
 //
 //===============================================================================
-
-using System.Collections.Generic;
-using Model.Data;
-
 namespace Model
 {
+    
+    using System.Collections.Generic;
+    using Data;
     public partial class Model : IData
     {
-        private string searchText = "";
+        private string _searchText = "";
 
-        public List<PatientDto> patientById = new List<PatientDto>();
-        public List<DoctorDto> doctorById = new List<DoctorDto>();
+        private List<PatientDto> _patientById = new List<PatientDto>();
+        private List<DoctorDto> _doctorById = new List<DoctorDto>();
         
-        private List<AppointmentWithNamesDto> appointmentsHistoryWithNamesDtoList = new List<AppointmentWithNamesDto>();
-        private AppointmentWithNamesDto selectedAppointmentsHistoryWithNamesDtoDto;
+        private List<AppointmentWithNamesDto> _appointmentsHistoryWithNamesDtoList = new List<AppointmentWithNamesDto>();
+        private AppointmentWithNamesDto _selectedAppointmentsHistoryWithNamesDtoDto;
         
-        private List<AppointmentWithNamesDto> futureAppointmentWithNamesDtoList = new List<AppointmentWithNamesDto>();
-        private AppointmentWithNamesDto selectedFutureAppointmentWithNamesDtoDto;
+        private List<AppointmentWithNamesDto> _futureAppointmentWithNamesDtoList = new List<AppointmentWithNamesDto>();
+        private AppointmentWithNamesDto _selectedFutureAppointmentWithNamesDtoDto;
         
-        private List<DoctorDto> doctorDtoList = new List<DoctorDto>();
-        private DoctorDto selectedDoctorDto;
+        private List<DoctorDto> _doctorDtoList = new List<DoctorDto>();
+        private DoctorDto _selectedDoctorDto;
         
-        private List<PatientDto> patientDtoList = new List<PatientDto>();
-        private PatientDto selectedPatientDto;
+        private List<PatientDto> _patientDtoList = new List<PatientDto>();
+        private PatientDto _selectedPatientDto;
         
 
 
         public string SearchText
         {
-            get => searchText;
+            get => _searchText;
             set
             {
-                searchText = value;
+                _searchText = value;
 
-                RaisePropertyChanged("SearchText");
+                RaisePropertyChanged(nameof(SearchText));
             }
         }
         
         public List<PatientDto> PatientById
         {
-            get => patientById;
+            get => _patientById;
             set
             {
-                patientById = value;
+                _patientById = value;
 
-                RaisePropertyChanged("PatientById");
+                RaisePropertyChanged(nameof(PatientById));
             }
         }
         
         public List<DoctorDto> DoctorById
         {
-            get => doctorById;
+            get => _doctorById;
             set
             {
-                doctorById = value;
+                _doctorById = value;
 
-                RaisePropertyChanged("DoctorById");
+                RaisePropertyChanged(nameof(DoctorById));
             }
         }
         
         
         public List<AppointmentWithNamesDto> AppointmentsHistoryWithNamesDtoList
         {
-            get => appointmentsHistoryWithNamesDtoList;
+            get => _appointmentsHistoryWithNamesDtoList;
             private set
             {
-                appointmentsHistoryWithNamesDtoList = value;
+                _appointmentsHistoryWithNamesDtoList = value;
 
-                RaisePropertyChanged("AppointmentsHistoryWithNamesDtoList");
+                RaisePropertyChanged(nameof(AppointmentsHistoryWithNamesDtoList));
             }
         }
 
         public AppointmentWithNamesDto SelectedAppointmentsHistoryWithNamesDtoDto
         {
-            get => selectedAppointmentsHistoryWithNamesDtoDto ;
+            get => _selectedAppointmentsHistoryWithNamesDtoDto ;
             set
             {
-                selectedAppointmentsHistoryWithNamesDtoDto = value;
+                _selectedAppointmentsHistoryWithNamesDtoDto = value;
 
                 RaisePropertyChanged("SelectedAppointmentWithNamesDtoDto");
             }
@@ -96,67 +95,67 @@ namespace Model
 
         public List<AppointmentWithNamesDto> FutureAppointmentWithNamesDtoList
         {
-            get => futureAppointmentWithNamesDtoList;
+            get => _futureAppointmentWithNamesDtoList;
             private set
             {
-                futureAppointmentWithNamesDtoList = value;
+                _futureAppointmentWithNamesDtoList = value;
 
-                RaisePropertyChanged("FutureAppointmentWithNamesDtoList");
+                RaisePropertyChanged(nameof(FutureAppointmentWithNamesDtoList));
             }
         }
         
         public AppointmentWithNamesDto SelectedFutureAppointmentWithNamesDtoDto
         {
-            get => selectedFutureAppointmentWithNamesDtoDto ;
+            get => _selectedFutureAppointmentWithNamesDtoDto ;
             set
             {
-                selectedFutureAppointmentWithNamesDtoDto = value;
+                _selectedFutureAppointmentWithNamesDtoDto = value;
 
-                RaisePropertyChanged("SelectedFutureAppointmentWithNamesDtoDto");
+                RaisePropertyChanged(nameof(SelectedFutureAppointmentWithNamesDtoDto));
             }
         }
         
         public List<DoctorDto> DoctorDtoList
         {
-            get => doctorDtoList;
+            get => _doctorDtoList;
             private set
             {
-                doctorDtoList = value;
+                _doctorDtoList = value;
 
-                RaisePropertyChanged("DoctorDtoList");
+                RaisePropertyChanged(nameof(DoctorDtoList));
             }
         }
 
         public DoctorDto SelectedDoctorDto
         {
-            get => selectedDoctorDto ;
+            get => _selectedDoctorDto ;
             set
             {
-                selectedDoctorDto = value;
+                _selectedDoctorDto = value;
 
-                RaisePropertyChanged("SelectedDoctorDto");
+                RaisePropertyChanged(nameof(SelectedDoctorDto));
             }
         }
         
         public List<PatientDto> PatientDtoList
         {
-            get => patientDtoList;
+            get => _patientDtoList;
             private set
             {
-                patientDtoList = value;
+                _patientDtoList = value;
 
-                RaisePropertyChanged("PatientDtoList");
+                RaisePropertyChanged(nameof(PatientDtoList));
             }
         }
 
         public PatientDto SelectedPatientDto
         {
-            get => selectedPatientDto ;
+            get => _selectedPatientDto ;
             set
             {
-                selectedPatientDto = value;
+                _selectedPatientDto = value;
 
-                RaisePropertyChanged("SelectedPatientDto");
+                RaisePropertyChanged(nameof(SelectedPatientDto));
             }
         }
         

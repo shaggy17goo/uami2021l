@@ -2,6 +2,8 @@
 
 namespace Model.Service
 {
+    using System.Collections.Generic;
+
     public class FakeNetworkClient  : INetwork
     {
         public PatientDto GetPatientById(string patientId)
@@ -14,17 +16,17 @@ namespace Model.Service
             return new DoctorDto("Imie","Nazwisko");
         }
 
-        public DoctorDto[] GetDoctorDtoList()
+        public IEnumerable<DoctorDto> GetDoctorDtoList()
         {
             throw new System.NotImplementedException();
         }
 
-        public AppointmentWithNamesDto[] GetAppointmentsHistoryWithNamesDtoList(string patientId)
+        public IEnumerable<AppointmentWithNamesDto> GetAppointmentsHistoryWithNamesDtoList(string patientId)
         {
             throw new System.NotImplementedException();
         }
 
-        public AppointmentWithNamesDto[] GetFutureAppointmentWithNamesDtoList(string patientId)
+        public IEnumerable<AppointmentWithNamesDto> GetFutureAppointmentWithNamesDtoList(string patientId)
         {
             throw new System.NotImplementedException();
         }

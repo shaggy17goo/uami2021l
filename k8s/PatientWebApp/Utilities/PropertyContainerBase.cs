@@ -11,11 +11,11 @@
 
         #endregion
 
-        protected readonly IEventDispatcher dispatcher;
+        private readonly IEventDispatcher _dispatcher;
 
         protected PropertyContainerBase(IEventDispatcher dispatcher)
         {
-            this.dispatcher = dispatcher;
+            this._dispatcher = dispatcher;
         }
 
         protected void RaisePropertyChanged(string propertyName)
@@ -29,7 +29,7 @@
             
             Action action = () => handler(this, args);
 
-            dispatcher.Dispatch(action);
+            _dispatcher.Dispatch(action);
         }
     }
 }

@@ -5,10 +5,10 @@ namespace Model.Data
 {
     public class AppointmentDto
     {
-        public int appointmentId { get; set; }
-        public int doctorId { get; set; }
-        public int patientId { get; set; }  
-        public DateTime dateOfAppointment { get; set; }
-        public string description { get; set; }
+        public int AppointmentId { get; set; }
+        public int DoctorId { get; set; }
+        public int PatientId { get; set; }  
+        public DateTime DateOfAppointment { get; set; }
+        public string Description { get; set; }
     }
 }

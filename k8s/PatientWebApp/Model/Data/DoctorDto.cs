@@ -5,29 +5,29 @@
 
     public class DoctorDto
     {
-        public int id { get; set; }
-        public string pesel { get; set; }
-        public string name { get; set; }
-        public string surname { get; set; }
-        public string sex { get; set; }
-        public DateTime birthDate { get; set; }
-        public string city { get; set; }
-        public string street { get; set; }
-        public string houseNr { get; set; }
-        public List<int> certifications { get; set; }
+        public int Id { get; set; }
+        public string Pesel { get; set; }
+        public string Name { get; set; }
+        public string Surname { get; set; }
+        public string Sex { get; set; }
+        public DateTime BirthDate { get; set; }
+        public string City { get; set; }
+        public string Street { get; set; }
+        public string HouseNr { get; set; }
+        public List<int> Certifications { get; set; }
 
         public DoctorDto(string name, string surname)
         {
-            this.id = 0;
-            this.pesel = "9372509327502";
-            this.name = name;
-            this.surname = surname;
-            this.sex = "M";
-            this.birthDate = DateTime.Now;
-            this.city = "city";
-            this.street = "street";
-            this.houseNr = "houseNr";
-            this.certifications = new List<int> {1, 2, 3, 4};
+            this.Id = 0;
+            this.Pesel = "9372509327502";
+            this.Name = name;
+            this.Surname = surname;
+            this.Sex = "M";
+            this.BirthDate = DateTime.Now;
+            this.City = "city";
+            this.Street = "street";
+            this.HouseNr = "houseNr";
+            this.Certifications = new List<int> {1, 2, 3, 4};
         }
     }
 }
