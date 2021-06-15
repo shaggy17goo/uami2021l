@@ -1,9 +1,7 @@
-using NUnit.Framework;
-
 namespace UnitTests
 {
+    using NUnit.Framework;
     using DoctorsApplicationMicroservice.Web.Application.Commands.Queries;
-    using DoctorsApplicationMicroservice.Web.Application.DataServiceClients;
     using FakeClients;
     using Moq;
 

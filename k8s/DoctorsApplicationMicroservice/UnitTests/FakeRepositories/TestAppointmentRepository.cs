@@ -3,7 +3,6 @@
 	using System.Collections.Generic;
 	using System.Threading.Tasks;
 	using DoctorsApplicationMicroservice.Web.Application.Dtos;
-	using NUnit.Framework;
 
 	public class TestAppointmentRepository
     {

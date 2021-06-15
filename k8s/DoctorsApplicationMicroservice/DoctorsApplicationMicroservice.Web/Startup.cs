@@ -1,5 +1,3 @@
-using DoctorsApplicationMicroservice.Web.Application.Commands.Commands;
-
 namespace DoctorsApplicationMicroservice.Web
 {
     using Application.Commands.Queries;
@@ -10,6 +8,7 @@ namespace DoctorsApplicationMicroservice.Web
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
     using Microsoft.OpenApi.Models;
+    using Application.Commands.Commands;
 
     public class Startup
     {

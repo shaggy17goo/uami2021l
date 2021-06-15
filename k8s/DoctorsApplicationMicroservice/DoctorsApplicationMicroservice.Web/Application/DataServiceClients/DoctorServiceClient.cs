@@ -1,7 +1,6 @@
-﻿using DoctorsApplicationMicroservice.Web.Application.Commands.Commands;
-
-namespace DoctorsApplicationMicroservice.Web.Application.DataServiceClients
+﻿namespace DoctorsApplicationMicroservice.Web.Application.DataServiceClients
 {
+    using DoctorsApplicationMicroservice.Web.Application.Commands.Commands;
     using System;
     using System.Collections.Generic;
     using System.Net.Http;
@@ -13,7 +12,7 @@ namespace DoctorsApplicationMicroservice.Web.Application.DataServiceClients
     {
         private readonly JsonSerializerOptions _options;
         private readonly GenericServiceClient _serviceClient;
-        public string Host;
+        private readonly string _host;
         public DoctorServiceClient(IHttpClientFactory clientFactory)
         {
             _options = new JsonSerializerOptions
@@ -21,31 +20,31 @@ namespace DoctorsApplicationMicroservice.Web.Application.DataServiceClients
                 PropertyNameCaseInsensitive = true,
             };
             _serviceClient = new GenericServiceClient(clientFactory);
-            Host = Environment.GetEnvironmentVariable("DOCTORS_HOST");
+            _host = Environment.GetEnvironmentVariable("DOCTORS_HOST");
         }
         
 
         public async Task<IEnumerable<DoctorDto>> GetAllAsync()
         {
-            string requestUri = string.Format("{0}doctors", Host);
+            var requestUri = $"{_host}doctors";
             return await _serviceClient.GetData<IEnumerable<DoctorDto>>(requestUri);
         }
         
         public async Task<IEnumerable<DoctorDto>> GetById(int doctorId)
         {
-            string requestUri = string.Format("{0}getDoctorById?doctorId={1}", Host, doctorId);
+            var requestUri = $"{_host}getDoctorById?doctorId={doctorId}";
             return await _serviceClient.GetData<IEnumerable<DoctorDto>>(requestUri);
         }
 
         public async Task<IEnumerable<DoctorDto>> GetByCertificationType(int certificationType)
         {
-            string requestUri = string.Format("{0}getDoctorBySpecializations?certificationType={1}", Host, certificationType);
+            var requestUri = $"{_host}getDoctorBySpecializations?certificationType={certificationType}";
             return await _serviceClient.GetData<IEnumerable<DoctorDto>>(requestUri);
         }
 
         public void DeleteDoctor(DeleteDoctorCommand deleteDoctorCommand)
         {
-            string url = string.Format("{0}doctor-delete");
+            var url = $"{_host}doctor-delete";
             _serviceClient.PostData(url, deleteDoctorCommand);
         }
     }

@@ -1,6 +1,4 @@
-﻿using System.Text;
-
-namespace DoctorsApplicationMicroservice.Web.Application.DataServiceClients
+﻿namespace DoctorsApplicationMicroservice.Web.Application.DataServiceClients
 {
     using System;
     using System.Collections.Generic;
