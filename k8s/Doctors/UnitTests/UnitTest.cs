@@ -34,7 +34,7 @@ namespace UnitTests
            
             var doctorsController = new DoctorsController(logger, doctorQueriesHandler, addDoctorCommandHandler, deleteDoctorCommandHandler);
             var tmp = doctorsController.GetAllAsync();
-            Assert.AreEqual(tmp.Result.ToList().Count, 100);
+            Assert.AreEqual(tmp.Result.ToList().Count, 101);
         }
     }
 }
