@@ -22,10 +22,15 @@ namespace UnitTests
         }
 
         [Test]
-        public void ConstructorTest()
+        public void ModelTest_ModelShouldNotBeNull_NotNull()
+        {
+            Assert.NotNull(Model);
+        }
+        
+        [Test]
+        public void ControllerTest_ModelShouldNotBeNull_NotNull()
         {
             Assert.NotNull(Controller);
-            Assert.NotNull(Model);
         }
         
     }
